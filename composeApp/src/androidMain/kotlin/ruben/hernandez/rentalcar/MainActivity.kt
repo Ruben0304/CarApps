@@ -31,4 +31,5 @@ class MainActivity : ComponentActivity() {
 fun AppAndroidPreview() {
     val navController = rememberNavController()
     AppRoutes(navController = navController)
+
 }

@@ -1,0 +1,261 @@
+{
+  "name": "messages_send_field",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "YrOigC7FvdmUPjBGobSvlb",
+    "node": "7:730",
+    "version": "6840541743",
+    "component-id": "3f8975ef8470843cb481050e70ff87defa07cf76"
+  },
+  "default": "_Messages-sendField",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "Left Content"
+      },
+      {
+        "type": "group",
+        "id": "Right Content"
+      },
+      {
+        "type": "vector",
+        "id": "Cursor"
+      },
+      {
+        "type": "group",
+        "id": "_Messages-sendIcon"
+      },
+      {
+        "type": "group",
+        "id": "_Messages-sendIcon1"
+      },
+      {
+        "type": "vector",
+        "id": "SF Symbol / mic"
+      },
+      {
+        "type": "vector",
+        "id": "SF Symbol / arrow.up"
+      }
+    ],
+    "modes": {
+      "_Messages-sendField": {
+        "rules": [
+          {
+            "id": "top_level",
+            "padding": {
+              "left": 12.0,
+              "top": 4.0,
+              "right": 4.0,
+              "bottom": 4.0
+            },
+            "border-radius": 18.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "stroke-width": 1.0,
+            "stroke-alignment": "center",
+            "stroke-color": {
+              "alpha": 0.3568627450980392,
+              "hue": 240.0,
+              "saturation": 0.10447761194029856,
+              "value": 0.2627450980392157
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "children": [
+              "Left Content",
+              "Right Content"
+            ],
+            "item-spacing": 4.0,
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            },
+            "clip-content": false
+          },
+          {
+            "id": "Left Content",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Cursor"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Right Content",
+            "tap-handler": "$onSend",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "end",
+            "cross-axis-align": "end",
+            "children": [
+              "_Messages-sendIcon",
+              "_Messages-sendIcon1"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Cursor",
+            "presence": false,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 24.0
+              }
+            }
+          },
+          {
+            "id": "_Messages-sendIcon",
+            "presence": false,
+            "border-radius": 100.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 28.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 28.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "SF Symbol / mic"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "_Messages-sendIcon1",
+            "border-radius": 100.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 28.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 28.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "SF Symbol / arrow.up"
+            ],
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 211.2941176470588,
+              "saturation": 1.0,
+              "value": 1.0
+            },
+            "clip-content": false
+          },
+          {
+            "id": "SF Symbol / mic",
+            "alignment": {
+              "horizontal": {
+                "attachment": "center",
+                "offset": 0.462646484375
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": -0.58251953125
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 11.87841796875
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 17.763671875
+              }
+            }
+          },
+          {
+            "id": "SF Symbol / arrow.up",
+            "alignment": {
+              "horizontal": {
+                "attachment": "center",
+                "offset": 0.0
+              },
+              "vertical": {
+                "attachment": "center",
+                "offset": 0.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 12.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 14.0
+              }
+            },
+            "vector-content": "sf_symbol_arrow_up.svg"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onSend": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": "Click"
+    }
+  },
+  "previews": [
+    {
+      "design": "_Messages-sendField",
+      "size": {
+        "width": 327.3333435058594,
+        "height": 36.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

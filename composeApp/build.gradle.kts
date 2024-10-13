@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    kotlin("plugin.serialization") version "2.0.0"
+    id("com.google.relay") version "0.3.12"
 }
 
 kotlin {
@@ -81,8 +83,7 @@ kotlin {
             implementation(libs.androidx.ui.text.google.fonts)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.7.0-alpha07")
-
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha08")
         }
     }
 }
