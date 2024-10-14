@@ -1,14 +1,14 @@
 {
-  "name": "message_bubble",
+  "name": "bubble_message_sender",
   "version": 33,
   "source-key": {
     "type": "figma",
     "file": "YrOigC7FvdmUPjBGobSvlb",
-    "node": "3:320",
+    "node": "13:1378",
     "version": "6841230830",
-    "component-id": "1d65487e9cf311043fca0681a4e189743bc43840"
+    "component-id": "6847144f8ac018b41ca3858802530df7872773d3"
   },
-  "default": "MessageBubble",
+  "default": "BubbleMessageSender",
   "design": {
     "atoms": [
       {
@@ -18,7 +18,7 @@
       },
       {
         "type": "group",
-        "id": "MessageBubble"
+        "id": "Mmm"
       },
       {
         "type": "group",
@@ -54,7 +54,7 @@
       }
     ],
     "modes": {
-      "MessageBubble": {
+      "BubbleMessageSender": {
         "rules": [
           {
             "id": "top_level",
@@ -69,12 +69,12 @@
             "main-axis-align": "start",
             "cross-axis-align": "start",
             "children": [
-              "MessageBubble"
+              "Mmm"
             ],
             "clip-content": false
           },
           {
-            "id": "MessageBubble",
+            "id": "Mmm",
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -338,7 +338,7 @@
   },
   "previews": [
     {
-      "design": "MessageBubble",
+      "design": "BubbleMessageSender",
       "size": {
         "width": 244.0,
         "height": 34.0

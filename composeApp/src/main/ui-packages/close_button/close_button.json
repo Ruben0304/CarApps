@@ -1,0 +1,110 @@
+{
+  "name": "close_button",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "FDDfZmpFu9fxZthg2Pmupi",
+    "node": "15:162",
+    "version": "6842897151",
+    "component-id": "79f6650a7bd146d5e0a5981e7b4c523989ea3c4e"
+  },
+  "default": "Close Button",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "Close"
+      },
+      {
+        "type": "vector",
+        "id": "Background"
+      },
+      {
+        "type": "vector",
+        "id": "SF Symbol / xmark"
+      }
+    ],
+    "modes": {
+      "Close Button": {
+        "rules": [
+          {
+            "id": "top_level",
+            "tap-handler": "$on Close Button tapped",
+            "is-structured": false,
+            "children": [
+              "Close"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Close",
+            "is-structured": false,
+            "children": [
+              "Background",
+              "SF Symbol / xmark"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Background",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "vector-content": "background.svg"
+          },
+          {
+            "id": "SF Symbol / xmark",
+            "margin": {
+              "left": 10.0,
+              "top": 10.0,
+              "right": 9.6295166015625,
+              "bottom": 9.629505157470703
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "vector-content": "sf_symbol_xmark.svg"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "on Close Button tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "Close Button",
+      "size": {
+        "width": 30.0,
+        "height": 30.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

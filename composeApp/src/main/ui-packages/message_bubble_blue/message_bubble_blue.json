@@ -1,14 +1,14 @@
 {
-  "name": "message_bubble",
+  "name": "message_bubble_blue",
   "version": 33,
   "source-key": {
     "type": "figma",
     "file": "YrOigC7FvdmUPjBGobSvlb",
-    "node": "3:320",
+    "node": "15:246",
     "version": "6841230830",
-    "component-id": "1d65487e9cf311043fca0681a4e189743bc43840"
+    "component-id": "500f665f4ce50feaec94f9567cbf7635a95df67d"
   },
-  "default": "MessageBubble",
+  "default": "MessageBubbleBlue",
   "design": {
     "atoms": [
       {
@@ -23,10 +23,6 @@
       {
         "type": "group",
         "id": "Message + Send Time"
-      },
-      {
-        "type": "text",
-        "id": "✏️ Delivery Status"
       },
       {
         "type": "group",
@@ -54,7 +50,7 @@
       }
     ],
     "modes": {
-      "MessageBubble": {
+      "MessageBubbleBlue": {
         "rules": [
           {
             "id": "top_level",
@@ -78,7 +74,7 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": 244.0
+                "value": 267.0
               },
               "height-constraints": {
                 "sizing-mode": "shrink"
@@ -87,8 +83,7 @@
             "main-axis-align": "end",
             "cross-axis-align": "end",
             "children": [
-              "Message + Send Time",
-              "✏️ Delivery Status"
+              "Message + Send Time"
             ],
             "item-spacing": 8.0,
             "clip-content": false
@@ -113,78 +108,6 @@
             "clip-content": false
           },
           {
-            "id": "✏️ Delivery Status",
-            "presence": false,
-            "color": {
-              "alpha": 0.6,
-              "hue": 240.0,
-              "saturation": 0.10447761194029856,
-              "value": 0.2627450980392157
-            },
-            "annotated-text-content": {
-              "text": "Read 10:02",
-              "annotated-text-span-list": [
-                {
-                  "span-start": 0,
-                  "span-length": 4,
-                  "annotated-text-style": {
-                    "font-weight": 400.0,
-                    "text-size": 11.0,
-                    "letter-spacing": 0.05999999865889549,
-                    "line-height": 1.181818161010742,
-                    "typeface": "Sans Serif Collection",
-                    "color": {
-                      "alpha": 0.6,
-                      "hue": 240.0,
-                      "saturation": 0.10447761194029856,
-                      "value": 0.2627450980392157
-                    }
-                  }
-                },
-                {
-                  "span-start": 4,
-                  "span-length": 1,
-                  "annotated-text-style": {
-                    "font-weight": 400.0,
-                    "text-size": 11.0,
-                    "letter-spacing": 0.06599999964237213,
-                    "line-height": 1.181818161010742,
-                    "typeface": "Sans Serif Collection",
-                    "color": {
-                      "alpha": 0.6,
-                      "hue": 240.0,
-                      "saturation": 0.10447761194029856,
-                      "value": 0.2627450980392157
-                    }
-                  }
-                },
-                {
-                  "span-start": 5,
-                  "span-length": 5,
-                  "annotated-text-style": {
-                    "font-weight": 400.0,
-                    "text-size": 11.0,
-                    "letter-spacing": 0.06599999964237213,
-                    "line-height": 1.181818161010742,
-                    "typeface": "Sans Serif Collection",
-                    "color": {
-                      "alpha": 0.6,
-                      "hue": 240.0,
-                      "saturation": 0.10447761194029856,
-                      "value": 0.2627450980392157
-                    }
-                  }
-                }
-              ]
-            },
-            "overflow": "visible",
-            "text-align": "left",
-            "text-size": 11.0,
-            "letter-spacing": 0.05999999865889549,
-            "line-height": 1.181818161010742,
-            "typeface": "Sans Serif Collection"
-          },
-          {
             "id": "Bubble + Tail",
             "size-constraints": {
               "width-constraints": {
@@ -193,7 +116,7 @@
               },
               "height-constraints": {
                 "sizing-mode": "fixed",
-                "value": 34.0
+                "value": 56.0
               }
             },
             "is-structured": false,
@@ -209,7 +132,7 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": 244.0
+                "value": 267.0
               },
               "height-constraints": {
                 "sizing-mode": "shrink"
@@ -271,15 +194,6 @@
               "bottom": 6.0
             },
             "border-radius": 18.0,
-            "size-constraints": {
-              "width-constraints": {
-                "sizing-mode": "shrink"
-              },
-              "height-constraints": {
-                "sizing-mode": "proportional",
-                "value": 1.0
-              }
-            },
             "stroke-alignment": "center",
             "arrangement": "row",
             "main-axis-align": "start",
@@ -289,14 +203,23 @@
             ],
             "background-color": {
               "alpha": 1.0,
-              "hue": 223.0769230769231,
-              "saturation": 0.46428571428571425,
-              "value": 0.6588235294117647
+              "hue": 211.2941176470588,
+              "saturation": 1.0,
+              "value": 1.0
             },
             "clip-content": false
           },
           {
             "id": "✏️ Message",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
             "color": {
               "alpha": 1.0,
               "hue": 0.0,
@@ -305,11 +228,12 @@
             },
             "text-content": "$text",
             "overflow": "visible",
+            "max-lines": -1,
             "text-align": "left",
             "text-size": 17.0,
             "letter-spacing": -0.40799999237060547,
             "line-height": 1.2941175842285155,
-            "typeface": "Sans Serif Collection"
+            "typeface": "SF Pro Text"
           },
           {
             "id": "Vector",
@@ -338,13 +262,13 @@
   },
   "previews": [
     {
-      "design": "MessageBubble",
+      "design": "MessageBubbleBlue",
       "size": {
-        "width": 244.0,
-        "height": 34.0
+        "width": 267.0,
+        "height": 56.0
       },
       "parameters": {
-        "text": "I’d love to see you!"
+        "text": "Let’s get lunch soon! When are you free? 🤗"
       }
     }
   ],

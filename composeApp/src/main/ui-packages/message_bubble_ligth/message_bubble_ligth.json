@@ -1,14 +1,14 @@
 {
-  "name": "message_bubble",
+  "name": "message_bubble_ligth",
   "version": 33,
   "source-key": {
     "type": "figma",
     "file": "YrOigC7FvdmUPjBGobSvlb",
-    "node": "3:320",
+    "node": "12:1167",
     "version": "6841230830",
-    "component-id": "1d65487e9cf311043fca0681a4e189743bc43840"
+    "component-id": "c91f8212b9a621e378f29aee6be6104b85fa200e"
   },
-  "default": "MessageBubble",
+  "default": "MessageBubbleLigth",
   "design": {
     "atoms": [
       {
@@ -26,7 +26,7 @@
       },
       {
         "type": "text",
-        "id": "✏️ Delivery Status"
+        "id": "✏️  Time"
       },
       {
         "type": "group",
@@ -54,7 +54,7 @@
       }
     ],
     "modes": {
-      "MessageBubble": {
+      "MessageBubbleLigth": {
         "rules": [
           {
             "id": "top_level",
@@ -78,7 +78,7 @@
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
-                "value": 244.0
+                "value": 372.0
               },
               "height-constraints": {
                 "sizing-mode": "shrink"
@@ -87,8 +87,7 @@
             "main-axis-align": "end",
             "cross-axis-align": "end",
             "children": [
-              "Message + Send Time",
-              "✏️ Delivery Status"
+              "Message + Send Time"
             ],
             "item-spacing": 8.0,
             "clip-content": false
@@ -107,80 +106,34 @@
             "main-axis-align": "start",
             "cross-axis-align": "start",
             "children": [
+              "✏️  Time",
               "Bubble + Tail"
             ],
             "item-spacing": 12.0,
             "clip-content": false
           },
           {
-            "id": "✏️ Delivery Status",
-            "presence": false,
+            "id": "✏️  Time",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
             "color": {
               "alpha": 0.6,
               "hue": 240.0,
               "saturation": 0.10447761194029856,
               "value": 0.2627450980392157
             },
-            "annotated-text-content": {
-              "text": "Read 10:02",
-              "annotated-text-span-list": [
-                {
-                  "span-start": 0,
-                  "span-length": 4,
-                  "annotated-text-style": {
-                    "font-weight": 400.0,
-                    "text-size": 11.0,
-                    "letter-spacing": 0.05999999865889549,
-                    "line-height": 1.181818161010742,
-                    "typeface": "Sans Serif Collection",
-                    "color": {
-                      "alpha": 0.6,
-                      "hue": 240.0,
-                      "saturation": 0.10447761194029856,
-                      "value": 0.2627450980392157
-                    }
-                  }
-                },
-                {
-                  "span-start": 4,
-                  "span-length": 1,
-                  "annotated-text-style": {
-                    "font-weight": 400.0,
-                    "text-size": 11.0,
-                    "letter-spacing": 0.06599999964237213,
-                    "line-height": 1.181818161010742,
-                    "typeface": "Sans Serif Collection",
-                    "color": {
-                      "alpha": 0.6,
-                      "hue": 240.0,
-                      "saturation": 0.10447761194029856,
-                      "value": 0.2627450980392157
-                    }
-                  }
-                },
-                {
-                  "span-start": 5,
-                  "span-length": 5,
-                  "annotated-text-style": {
-                    "font-weight": 400.0,
-                    "text-size": 11.0,
-                    "letter-spacing": 0.06599999964237213,
-                    "line-height": 1.181818161010742,
-                    "typeface": "Sans Serif Collection",
-                    "color": {
-                      "alpha": 0.6,
-                      "hue": 240.0,
-                      "saturation": 0.10447761194029856,
-                      "value": 0.2627450980392157
-                    }
-                  }
-                }
-              ]
-            },
+            "annotated-text-content": "$time",
             "overflow": "visible",
-            "text-align": "left",
+            "max-lines": -1,
             "text-size": 11.0,
-            "letter-spacing": 0.05999999865889549,
+            "letter-spacing": 0.06599999964237213,
             "line-height": 1.181818161010742,
             "typeface": "Sans Serif Collection"
           },
@@ -188,12 +141,10 @@
             "id": "Bubble + Tail",
             "size-constraints": {
               "width-constraints": {
-                "sizing-mode": "proportional",
-                "value": 1.0
+                "sizing-mode": "shrink"
               },
               "height-constraints": {
-                "sizing-mode": "fixed",
-                "value": 34.0
+                "sizing-mode": "shrink"
               }
             },
             "is-structured": false,
@@ -208,8 +159,7 @@
             "opacity": 100.0,
             "size-constraints": {
               "width-constraints": {
-                "sizing-mode": "fixed",
-                "value": 244.0
+                "sizing-mode": "shrink"
               },
               "height-constraints": {
                 "sizing-mode": "shrink"
@@ -227,26 +177,14 @@
             "id": "Tail",
             "alignment": {
               "horizontal": {
-                "attachment": "end",
-                "offset": 4.0
+                "attachment": "start",
+                "offset": -5.0
               },
               "vertical": {
                 "attachment": "end",
-                "offset": -0.6775131225585938
+                "offset": 0.32248687744140625
               }
             },
-            "relative-transform": [
-              [
-                -1.0,
-                0.0,
-                0.0
-              ],
-              [
-                0.0,
-                1.0,
-                0.0
-              ]
-            ],
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "shrink"
@@ -289,20 +227,14 @@
             ],
             "background-color": {
               "alpha": 1.0,
-              "hue": 223.0769230769231,
-              "saturation": 0.46428571428571425,
-              "value": 0.6588235294117647
+              "hue": 240.0,
+              "saturation": 0.008510638297872311,
+              "value": 0.9215686274509803
             },
             "clip-content": false
           },
           {
             "id": "✏️ Message",
-            "color": {
-              "alpha": 1.0,
-              "hue": 0.0,
-              "saturation": 0.0,
-              "value": 1.0
-            },
             "text-content": "$text",
             "overflow": "visible",
             "text-align": "left",
@@ -313,6 +245,16 @@
           },
           {
             "id": "Vector",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0000095367431640625
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 0.0
+              }
+            },
             "size-constraints": {
               "width-constraints": {
                 "sizing-mode": "fixed",
@@ -330,6 +272,11 @@
     }
   },
   "parameters": {
+    "time": {
+      "data-type": "annotated-text-content",
+      "required": false,
+      "description": ""
+    },
     "text": {
       "data-type": "text",
       "required": false,
@@ -338,13 +285,67 @@
   },
   "previews": [
     {
-      "design": "MessageBubble",
+      "design": "MessageBubbleLigth",
       "size": {
-        "width": 244.0,
-        "height": 34.0
+        "width": 372.0,
+        "height": 59.0
       },
       "parameters": {
-        "text": "I’d love to see you!"
+        "time": {
+          "text": "Yesterday 9:41",
+          "annotated-text-span-list": [
+            {
+              "span-start": 0,
+              "span-length": 9,
+              "annotated-text-style": {
+                "font-weight": 400.0,
+                "text-size": 11.0,
+                "letter-spacing": 0.05999999865889549,
+                "line-height": 1.181818161010742,
+                "typeface": "Sans Serif Collection",
+                "color": {
+                  "alpha": 0.6,
+                  "hue": 240.0,
+                  "saturation": 0.10447761194029856,
+                  "value": 0.2627450980392157
+                }
+              }
+            },
+            {
+              "span-start": 9,
+              "span-length": 1
+            },
+            {
+              "span-start": 10,
+              "span-length": 1,
+              "annotated-text-style": {
+                "font-weight": 400.0,
+                "text-size": 11.0,
+                "letter-spacing": 0.06599999964237213,
+                "line-height": 1.181818161010742,
+                "typeface": "Sans Serif Collection"
+              }
+            },
+            {
+              "span-start": 11,
+              "span-length": 3,
+              "annotated-text-style": {
+                "font-weight": 400.0,
+                "text-size": 11.0,
+                "letter-spacing": 0.06599999964237213,
+                "line-height": 1.181818161010742,
+                "typeface": "Sans Serif Collection",
+                "color": {
+                  "alpha": 0.6,
+                  "hue": 240.0,
+                  "saturation": 0.10447761194029856,
+                  "value": 0.2627450980392157
+                }
+              }
+            }
+          ]
+        },
+        "text": "We should catch up soon!"
       }
     }
   ],
