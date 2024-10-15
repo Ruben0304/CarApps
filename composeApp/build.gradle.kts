@@ -57,8 +57,15 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             // Navigation
             implementation(libs.androidx.navigation.compose)
+            implementation(libs.kotlinx.serialization.json)
 
             // Icons (similar a tus íconos de lucide-react)
+            implementation("io.ktor:ktor-client-core:2.2.0")
+            implementation("io.ktor:ktor-client-cio:2.2.0")
+            implementation("io.ktor:ktor-client-content-negotiation:2.2.0")
+            implementation("io.ktor:ktor-serialization-gson:2.2.0")
+            implementation("io.ktor:ktor-client-serialization:2.2.0")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
             implementation(libs.androidx.animation)
             // For swipe-to-refresh, placeholder loading, etc.
@@ -69,7 +76,6 @@ kotlin {
             implementation(libs.androidx.ui.text.google.fonts)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.coil.compose)
-
             implementation("androidx.compose.ui:ui-text-google-fonts:1.5.0")
         }
         commonMain.dependencies {
@@ -84,6 +90,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha08")
+            implementation(libs.cohere.java)
+
         }
     }
 }

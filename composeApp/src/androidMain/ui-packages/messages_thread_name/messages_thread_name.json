@@ -1,0 +1,185 @@
+{
+  "name": "messages_thread_name",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "YrOigC7FvdmUPjBGobSvlb",
+    "node": "75:1418",
+    "version": "6850413215",
+    "component-id": "d481590cf1102397b9f5aff879698780ab250d32"
+  },
+  "default": "_Messages-threadName",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "_Messages-threadName"
+      },
+      {
+        "type": "group",
+        "id": "_Messages-avatar"
+      },
+      {
+        "type": "group",
+        "id": "Name + Chevron"
+      },
+      {
+        "type": "image",
+        "id": "✏️ Contact Photo"
+      },
+      {
+        "type": "text",
+        "id": "✏️ Name"
+      },
+      {
+        "type": "vector",
+        "id": "SF Symbol / chevron.right"
+      }
+    ],
+    "modes": {
+      "_Messages-threadName": {
+        "rules": [
+          {
+            "id": "top_level",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "_Messages-threadName"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "_Messages-threadName",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "main-axis-align": "start",
+            "children": [
+              "_Messages-avatar",
+              "Name + Chevron"
+            ],
+            "item-spacing": 5.0,
+            "clip-content": false
+          },
+          {
+            "id": "_Messages-avatar",
+            "border-radius": 99.99999237060547,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 49.999996185302734
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 49.999996185302734
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "✏️ Contact Photo"
+            ]
+          },
+          {
+            "id": "Name + Chevron",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "children": [
+              "✏️ Name",
+              "SF Symbol / chevron.right"
+            ],
+            "item-spacing": 3.0,
+            "clip-content": false
+          },
+          {
+            "id": "✏️ Contact Photo",
+            "border-radius": 111.1111068725586,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "stroke-alignment": "center",
+            "image-content": "$nombre",
+            "scale": "cover"
+          },
+          {
+            "id": "✏️ Name",
+            "text-content": "Kristen",
+            "overflow": "visible",
+            "text-size": 11.0,
+            "letter-spacing": 0.06599999964237213,
+            "line-height": 1.181818161010742,
+            "typeface": "SF Pro Text"
+          },
+          {
+            "id": "SF Symbol / chevron.right",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 4.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 7.1002044677734375
+              }
+            },
+            "vector-content": "sf_symbol_chevron_right.svg"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "nombre": {
+      "data-type": "image",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "_Messages-threadName",
+      "size": {
+        "width": 49.999996185302734,
+        "height": 68.0
+      },
+      "parameters": {
+        "nombre": "_contact_photo.png"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
