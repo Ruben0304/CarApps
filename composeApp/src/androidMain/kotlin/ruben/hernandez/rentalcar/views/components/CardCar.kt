@@ -1,6 +1,7 @@
 package ruben.hernandez.rentalcar.views.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -32,14 +33,16 @@ fun CarCard(
     imageUrl: String,
     passengers: Int,
     transmission: String,
-    pricePerDay: String
+    pricePerDay: String,
+    onClick: ()-> Unit = {}
 ) {
     Surface(
         shape = RoundedCornerShape(18.dp),
         shadowElevation = 6.dp,
         modifier = Modifier
             .padding(16.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable { onClick() },
         color = Color.White
     ) {
         Column(
@@ -85,10 +88,6 @@ fun CarCard(
                     .height(150.dp),
                 contentScale = ContentScale.Fit
             )
-
-
-
-
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -144,7 +143,7 @@ fun CarCard(
 fun CarList() {
     LazyColumn{
         // Lista de coches (puedes añadir más elementos aquí)
-        items(5) { index ->
+        items(1) { index ->
             CarCard(
                 carName = "Porsche 718 Cayma",
                 carType = "Coupe",
