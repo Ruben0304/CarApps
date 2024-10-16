@@ -101,7 +101,7 @@ fun App(navController: NavController) {
                 colors = CardDefaults.cardColors(containerColor = Color.White)
             ) {
 
-                ScrolleableLists()
+                ScrolleableLists(navController)
 
             }
 

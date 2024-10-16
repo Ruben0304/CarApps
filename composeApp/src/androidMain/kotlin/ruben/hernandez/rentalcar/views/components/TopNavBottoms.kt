@@ -37,7 +37,7 @@ fun TopNavButton(onClick: () -> Unit, isSelected: Boolean, text: String) {
         ) {
             Text(
                 text = text,
-                fontSize = 14.sp,
+                fontSize = 19.sp,
                 color = Color.White,
                 fontWeight = FontWeight.SemiBold,
                 textAlign = TextAlign.Center,

@@ -9,11 +9,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 
 @Composable
-fun ScrolleableLists() {
+fun ScrolleableLists(navController: NavController) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(top = 20.dp, bottom = 25.dp)
@@ -37,7 +38,7 @@ fun ScrolleableLists() {
                 imageUrl = "https://pngimg.com/d/maserati_PNG28.png",
                 passengers = 2,
                 transmission = "Manual",
-                pricePerDay = "$400/d"
+                pricePerDay = "$400/d",
             )
             if (index < 4) {  // No añadir espacio después del último item
                 Spacer(modifier = Modifier.height(16.dp))

@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 
-fun BackButton(onClick: () -> Unit, modifier: Modifier) {
+fun BackButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
     Surface(
         onClick = onClick,
         color = Color.White,
