@@ -37,6 +37,7 @@ import ruben.hernandez.rentalcar.views.components.CarBrand
 import ruben.hernandez.rentalcar.views.components.HorizontalCarBrandList
 import ruben.hernandez.rentalcar.views.components.ScrolleableLists
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -57,14 +58,18 @@ import ruben.hernandez.rentalcar.views.components.SectionHeader
 @Preview
 fun App(navController: NavController) {
     val corrutineScope = rememberCoroutineScope()
-    val sheetState = rememberBottomSheetState(
+    var sheetState = rememberBottomSheetState(
         initialValue = BottomSheetValue.Collapsed,
         animationSpec = tween(durationMillis = 400, easing = FastOutSlowInEasing)
     )
     // Estado que controla el contenido del composable
     var vista by remember { mutableStateOf<@Composable () -> Unit>({}) }
 
-
+    LaunchedEffect(true) {
+        if (sheetState.isCollapsed) {
+            vista = {}
+        }
+    }
     MenuDeslizable(
         sheetContent = vista,
         sheetState = sheetState,
@@ -161,7 +166,11 @@ fun App(navController: NavController) {
                                     passengers = 2,
                                     transmission = "Manual",
                                     pricePerDay = "$400/d",
-                                    onClick = { corrutineScope.launch { vista = { SheetContent() };sheetState.expand() } }
+                                    onClick = {
+                                        corrutineScope.launch {
+                                            vista = { SheetContent(sheetState) };sheetState.expand()
+                                        }
+                                    }
                                 )
                                 if (index < 4) {  // No añadir espacio después del último item
                                     Spacer(modifier = Modifier.height(16.dp))

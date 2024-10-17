@@ -1,5 +1,9 @@
 package ruben.hernandez.rentalcar.views.components
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,13 +23,18 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.BottomSheetState
+import androidx.compose.material.BottomSheetValue
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.rememberBottomSheetState
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.SheetState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,6 +42,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,6 +59,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import carrental.composeapp.generated.resources.Account
 import carrental.composeapp.generated.resources.CarDoorBlue
+import carrental.composeapp.generated.resources.Close
+import carrental.composeapp.generated.resources.CloseBootomSheet
 import carrental.composeapp.generated.resources.FlightSeatBlue
 import carrental.composeapp.generated.resources.GasStationBlue
 import carrental.composeapp.generated.resources.GearboxBlue
@@ -56,10 +68,13 @@ import carrental.composeapp.generated.resources.Phone
 import carrental.composeapp.generated.resources.Res
 import carrental.composeapp.generated.resources.SnowflakeBlue
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
+import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Preview
 @Composable
 fun Preview() {
@@ -92,7 +107,7 @@ fun Preview() {
     )
 }
 
-
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CardCarInfo(
     carName: String,
@@ -107,68 +122,84 @@ fun CardCarInfo(
     fuelCapacity: Int,
     confortable: Boolean,
     navController: NavController = rememberNavController(),
-    isOpened: Boolean = false
-
+    isOpened: Boolean = false,
+    initialLoading: Boolean = true,
+    sheetState: BottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
 ) {
-    var isLoading by remember { mutableStateOf(true) }
+    var isLoading by remember { mutableStateOf(initialLoading) }
+    val corrutineScope = rememberCoroutineScope()
 
-    // LaunchedEffect que se activa al iniciar la composición
     LaunchedEffect(isOpened) {
-        delay(2000)
+        delay(3000)
         isLoading = false
     }
 
     Box(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
     ) {
-        if (isLoading)
-            CircularProgressIndicator()
-        else {
-            Column(
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp)
+        if (isLoading) {
+            // Vista de loading con CircularProgressIndicator
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(.8f)
             ) {
-                // Título y tipo de coche
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                CircularProgressIndicator(
+                    strokeWidth = 7.dp,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(60.dp),
+                    color = AppColors.principal
+                )
+            }
+        } else {
+            // Contenido después del loading con animaciones elegantes
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 20.dp, vertical = 10.dp)
+                    .fillMaxWidth()
+            ) {
+                // Animación del título y tipo de coche
+                AnimatedVisibility(
+                    visible = !isLoading,
+                    enter = slideInVertically(initialOffsetY = { -1000 }, animationSpec = tween(800)) + fadeIn(animationSpec = tween(1000, delayMillis = 200))
                 ) {
-
-                    Text(
-                        text = carName,
-                        fontSize = 20.sp,
-                        fontFamily = poppinsFontFamily,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(top = 10.dp)
-
-                    )
-//                    Text(
-//                        text = carType,
-//                        fontSize = 14.sp,
-//                        fontFamily = poppinsFontFamily,
-//                        color = Color.Gray
-//                    )
-
-                    LikeButton(
-                        onFavoriteClick = { }
-                    )
-
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = carName,
+                            fontSize = 17.sp,
+                            fontFamily = poppinsFontFamily,
+                            fontWeight = FontWeight.Bold,
+                        )
+                       IconButton(onClick = { corrutineScope.launch { sheetState.collapse() }}, modifier = Modifier.size(20.dp)) {
+                           Icon(painter = painterResource(resource = Res.drawable.Close), contentDescription = "close button", modifier= Modifier.fillMaxSize())
+                       }
+                    }
                 }
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                Row(
-                    modifier = Modifier.height(200.dp)
+                // Animación de la imagen del coche
+                AnimatedVisibility(
+                    visible = !isLoading,
+                    enter = slideInVertically(initialOffsetY = { -1000 }, animationSpec = tween(900)) + fadeIn(animationSpec = tween(900, delayMillis = 400))
                 ) {
-                    CarouselImage(
-                        imagenesUrl,
-                        modifier = Modifier.padding(top = 0.dp, bottom = 0.dp)
-                    )
+                    Row(
+                        modifier = Modifier.height(200.dp)
+                    ) {
+                        CarouselImage(
+                            imagenesUrl,
+                            modifier = Modifier.padding(top = 0.dp, bottom = 0.dp)
+                        )
+                    }
                 }
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-
+                // Especificaciones del coche con Fade y Slide
                 Text(
                     text = "Especificaciones",
                     fontSize = 18.sp,
@@ -178,47 +209,59 @@ fun CardCarInfo(
 
                 Spacer(modifier = Modifier.height(10.dp))
 
-                // espesificaciones del carro
                 LazyRow(Modifier.padding()) {
                     items(carSpecsList) { item ->
-                        CardCarSpecs(item)
+                        AnimatedVisibility(
+                            visible = !isLoading,
+                            enter = slideInVertically(initialOffsetY = { -800 }, animationSpec = tween(700)) + fadeIn(animationSpec = tween(700, delayMillis = 500))
+                        ) {
+                            CardCarSpecs(item)
+                        }
                     }
                 }
 
                 Spacer(modifier = Modifier.height(15.dp))
 
+                // Información adicional del coche
+                AnimatedVisibility(
+                    visible = !isLoading,
+                    enter = slideInVertically(initialOffsetY = { -700 }, animationSpec = tween(800)) + fadeIn(animationSpec = tween(800, delayMillis = 600))
+                ) {
+                    Text(
+                        text = "Información Del Carro",
+                        fontSize = 17.sp,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = FontWeight.SemiBold,
+                    )
+                }
 
-                Text(
-                    text = "Informacion Del Carro",
-                    fontSize = 17.sp,
-                    fontFamily = poppinsFontFamily,
-                    fontWeight = FontWeight.SemiBold,
-                )
                 Spacer(modifier = Modifier.height(15.dp))
 
-                carInfoSeccion(
-                    passengers,
-                    transmission,
-                    doors,
-                    airConditioning,
-                    fuelCapacity,
-                    confortable,
-                    recurso1 = painterResource(Res.drawable.CarDoorBlue),
-                    recurso2 = painterResource(Res.drawable.Account),
-                    recurso3 = painterResource(Res.drawable.GearboxBlue),
-                    recurso4 = painterResource(Res.drawable.SnowflakeBlue),
-                    recurso5 = painterResource(Res.drawable.GasStationBlue),
-                    recurso6 = painterResource(Res.drawable.FlightSeatBlue),
-                    textStyle = 16.sp,
-                    modifierCuerpo = Modifier.padding(top = 10.dp),
-                    modifierIcon = Modifier.size(20.dp)
-
-                )
-//            Spacer(modifier = Modifier.height(30.dp))
-
-
+                AnimatedVisibility(
+                    visible = !isLoading,
+                    enter = slideInVertically(initialOffsetY = { -600 }, animationSpec = tween(900)) + fadeIn(animationSpec = tween(900, delayMillis = 700))
+                ) {
+                    carInfoSeccion(
+                        passengers,
+                        transmission,
+                        doors,
+                        airConditioning,
+                        fuelCapacity,
+                        confortable,
+                        recurso1 = painterResource(Res.drawable.CarDoorBlue),
+                        recurso2 = painterResource(Res.drawable.Account),
+                        recurso3 = painterResource(Res.drawable.GearboxBlue),
+                        recurso4 = painterResource(Res.drawable.SnowflakeBlue),
+                        recurso5 = painterResource(Res.drawable.GasStationBlue),
+                        recurso6 = painterResource(Res.drawable.FlightSeatBlue),
+                        textStyle = 16.sp,
+                        modifierCuerpo = Modifier.padding(top = 10.dp),
+                        modifierIcon = Modifier.size(20.dp)
+                    )
+                }
             }
 
+            // Precio y botón "Contactar" con animación
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -248,27 +291,29 @@ fun CardCarInfo(
                         fontSize = 20.sp,
                         fontFamily = poppinsFontFamily,
                         fontWeight = FontWeight.Bold,
-
                         color = Color.Gray
                     )
                 }
-
-
             }
-            BotonColor(
-                modificador = Modifier
-                    .align(Alignment.BottomEnd)
-                    .size(160.dp, 80.dp)
-                    .padding(bottom = 30.dp, end = 20.dp),
-                icono = painterResource(resource = Res.drawable.Phone),
-                texto = "Contactar",
-                tamanoTexto = 14.sp,
-                colorSombra = Color.Blue,
-                tamanoIcono = 15.dp
 
-            )
+            // Botón de contacto con animación
+
+                BotonColor(
+                    modificador = Modifier
+                        .align(Alignment.BottomEnd)
+                        .size(160.dp, 80.dp)
+                        .padding(bottom = 30.dp, end = 20.dp),
+                    icono = painterResource(resource = Res.drawable.Phone),
+                    texto = "Contactar",
+                    tamanoTexto = 14.sp,
+                    colorSombra = Color.Blue,
+                    tamanoIcono = 15.dp
+                )
+
         }
+
     }
+
 }
 
 

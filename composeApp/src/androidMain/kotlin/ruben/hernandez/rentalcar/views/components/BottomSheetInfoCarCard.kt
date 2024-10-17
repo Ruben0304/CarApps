@@ -87,11 +87,13 @@ fun MenuDeslizable(
         ) {
             parentContent()
         }
+
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun SheetContent() {
+fun SheetContent(sheetState: BottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)) {
     val carSpecs = listOf(
         CarSpecs("Max. Potencia", "320", "ph"),
         CarSpecs("0-60 mph", "4.4", "segundos"),
@@ -116,6 +118,7 @@ fun SheetContent() {
         airConditioning = true,
         fuelCapacity = 40,
         confortable = true,
+        sheetState = sheetState
     )
 }
 
