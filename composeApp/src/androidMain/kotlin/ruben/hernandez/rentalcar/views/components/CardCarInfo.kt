@@ -148,7 +148,7 @@ fun CardCarInfo(
                     strokeWidth = 7.dp,
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .size(60.dp),
+                        .size(50.dp),
                     color = AppColors.principal
                 )
             }
