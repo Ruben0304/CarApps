@@ -1,0 +1,355 @@
+{
+  "name": "message_bubble_ligth",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "YrOigC7FvdmUPjBGobSvlb",
+    "node": "12:1167",
+    "version": "6841230830",
+    "component-id": "c91f8212b9a621e378f29aee6be6104b85fa200e"
+  },
+  "default": "MessageBubbleLigth",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "MessageBubble"
+      },
+      {
+        "type": "group",
+        "id": "Message + Send Time"
+      },
+      {
+        "type": "text",
+        "id": "✏️  Time"
+      },
+      {
+        "type": "group",
+        "id": "Bubble + Tail"
+      },
+      {
+        "type": "group",
+        "id": "Bubble + Tail_synth"
+      },
+      {
+        "type": "group",
+        "id": "Tail"
+      },
+      {
+        "type": "group",
+        "id": "Bubble"
+      },
+      {
+        "type": "text",
+        "id": "✏️ Message"
+      },
+      {
+        "type": "vector",
+        "id": "Vector"
+      }
+    ],
+    "modes": {
+      "MessageBubbleLigth": {
+        "rules": [
+          {
+            "id": "top_level",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "MessageBubble"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "MessageBubble",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 372.0
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "main-axis-align": "end",
+            "cross-axis-align": "end",
+            "children": [
+              "Message + Send Time"
+            ],
+            "item-spacing": 8.0,
+            "clip-content": false
+          },
+          {
+            "id": "Message + Send Time",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "✏️  Time",
+              "Bubble + Tail"
+            ],
+            "item-spacing": 12.0,
+            "clip-content": false
+          },
+          {
+            "id": "✏️  Time",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "color": {
+              "alpha": 0.6,
+              "hue": 240.0,
+              "saturation": 0.10447761194029856,
+              "value": 0.2627450980392157
+            },
+            "annotated-text-content": "$time",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-size": 11.0,
+            "letter-spacing": 0.06599999964237213,
+            "line-height": 1.181818161010742,
+            "typeface": "Sans Serif Collection"
+          },
+          {
+            "id": "Bubble + Tail",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Bubble + Tail_synth",
+              "Tail"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Bubble + Tail_synth",
+            "opacity": 100.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "end",
+            "cross-axis-align": "end",
+            "children": [
+              "Bubble"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Tail",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": -5.0
+              },
+              "vertical": {
+                "attachment": "end",
+                "offset": 0.32248687744140625
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "Vector"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Bubble",
+            "padding": {
+              "left": 12.0,
+              "top": 6.0,
+              "right": 12.0,
+              "bottom": 6.0
+            },
+            "border-radius": 18.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "stroke-alignment": "center",
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "✏️ Message"
+            ],
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 240.0,
+              "saturation": 0.008510638297872311,
+              "value": 0.9215686274509803
+            },
+            "clip-content": false
+          },
+          {
+            "id": "✏️ Message",
+            "text-content": "$text",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 17.0,
+            "letter-spacing": -0.40799999237060547,
+            "line-height": 1.2941175842285155,
+            "typeface": "Sans Serif Collection"
+          },
+          {
+            "id": "Vector",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0000095367431640625
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 0.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 16.417245864868164
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 20.322486877441406
+              }
+            },
+            "vector-content": "vector.svg"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "time": {
+      "data-type": "annotated-text-content",
+      "required": false,
+      "description": ""
+    },
+    "text": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "MessageBubbleLigth",
+      "size": {
+        "width": 372.0,
+        "height": 59.0
+      },
+      "parameters": {
+        "time": {
+          "text": "Yesterday 9:41",
+          "annotated-text-span-list": [
+            {
+              "span-start": 0,
+              "span-length": 9,
+              "annotated-text-style": {
+                "font-weight": 400.0,
+                "text-size": 11.0,
+                "letter-spacing": 0.05999999865889549,
+                "line-height": 1.181818161010742,
+                "typeface": "Sans Serif Collection",
+                "color": {
+                  "alpha": 0.6,
+                  "hue": 240.0,
+                  "saturation": 0.10447761194029856,
+                  "value": 0.2627450980392157
+                }
+              }
+            },
+            {
+              "span-start": 9,
+              "span-length": 1
+            },
+            {
+              "span-start": 10,
+              "span-length": 1,
+              "annotated-text-style": {
+                "font-weight": 400.0,
+                "text-size": 11.0,
+                "letter-spacing": 0.06599999964237213,
+                "line-height": 1.181818161010742,
+                "typeface": "Sans Serif Collection"
+              }
+            },
+            {
+              "span-start": 11,
+              "span-length": 3,
+              "annotated-text-style": {
+                "font-weight": 400.0,
+                "text-size": 11.0,
+                "letter-spacing": 0.06599999964237213,
+                "line-height": 1.181818161010742,
+                "typeface": "Sans Serif Collection",
+                "color": {
+                  "alpha": 0.6,
+                  "hue": 240.0,
+                  "saturation": 0.10447761194029856,
+                  "value": 0.2627450980392157
+                }
+              }
+            }
+          ]
+        },
+        "text": "We should catch up soon!"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

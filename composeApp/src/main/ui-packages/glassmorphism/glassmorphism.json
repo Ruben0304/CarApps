@@ -1,0 +1,73 @@
+{
+  "name": "glassmorphism",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "YrOigC7FvdmUPjBGobSvlb",
+    "node": "18:7072",
+    "version": "6841073748",
+    "component-id": "cb8e32545f2b2a05e671dc1f64757c34f1c5c84a"
+  },
+  "default": "glassmorphism",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 2"
+      }
+    ],
+    "modes": {
+      "glassmorphism": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": false,
+            "children": [
+              "Rectangle 2"
+            ],
+            "background-color": "$color",
+            "clip-content": false
+          },
+          {
+            "id": "Rectangle 2",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "vector-content": "rectangle_2.svg"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "color": {
+      "data-type": "color",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "glassmorphism",
+      "size": {
+        "width": 364.0,
+        "height": 121.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

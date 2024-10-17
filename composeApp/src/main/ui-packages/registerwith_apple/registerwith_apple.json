@@ -1,0 +1,148 @@
+{
+  "name": "registerwith_apple",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "YrOigC7FvdmUPjBGobSvlb",
+    "node": "84:1434",
+    "version": "6860014584",
+    "component-id": "250c8f2301dba7f2618219bcea8f461db9e005b2"
+  },
+  "default": "RegisterwithApple",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "SignInWithApple"
+      },
+      {
+        "type": "text",
+        "id": "SF Symbol / applelogo"
+      },
+      {
+        "type": "text",
+        "id": "Sign in with Apple"
+      }
+    ],
+    "modes": {
+      "RegisterwithApple": {
+        "rules": [
+          {
+            "id": "top_level",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "shrink"
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "cross-axis-align": "start",
+            "children": [
+              "SignInWithApple"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "SignInWithApple",
+            "padding": {
+              "left": 40.0,
+              "top": 14.0,
+              "right": 40.0,
+              "bottom": 14.0
+            },
+            "border-radius": 100.0,
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 268.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "arrangement": "row",
+            "main-axis-align": "start",
+            "children": [
+              "SF Symbol / applelogo",
+              "Sign in with Apple"
+            ],
+            "item-spacing": 10.0,
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.0
+            }
+          },
+          {
+            "id": "SF Symbol / applelogo",
+            "font-weight": 600.0,
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            },
+            "text-content": "􀣺",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": 17.0,
+            "letter-spacing": -0.40799999237060547,
+            "line-height": 1.2941175842285155,
+            "typeface": "SF Pro Text"
+          },
+          {
+            "id": "Sign in with Apple",
+            "font-weight": 600.0,
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            },
+            "text-content": "$texto",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": 17.0,
+            "letter-spacing": -0.40799999237060547,
+            "line-height": 1.2941175842285155,
+            "typeface": "SF Pro Text"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "texto": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "RegisterwithApple",
+      "size": {
+        "width": 268.0,
+        "height": 50.0
+      },
+      "parameters": {
+        "texto": "Sign in with Apple"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
