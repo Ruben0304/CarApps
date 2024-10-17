@@ -1,50 +1,36 @@
 package ruben.hernandez.rentalcar.views.components
 
+import MenuDeslizable
+import SheetContent
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
+import androidx.compose.material.BottomSheetValue
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import kotlinx.coroutines.launch
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ScrolleableLists(navController: NavController) {
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(top = 20.dp, bottom = 25.dp)
-    ) {
-        item {
-            SectionHeader(title = "Recientes")
-        }
-        item {
-            MechanicCarHorizontal()
-        }
-        item {
-            Spacer(modifier = Modifier.height(20.dp))
-        }
-        item {
-            SectionHeader(title = "Mejor valorados")
-        }
-        items(5) { index ->
-            CarCard(
-                carName = "Porsche 718 Cayman S",
-                carType = "Coupe",
-                imageUrl = "https://pngimg.com/d/maserati_PNG28.png",
-                passengers = 2,
-                transmission = "Manual",
-                pricePerDay = "$400/d",
-            )
-            if (index < 4) {  // No añadir espacio después del último item
-                Spacer(modifier = Modifier.height(16.dp))
-            }
-        }
-    }
+
+
+
+
+
+
 }
 
 @Composable

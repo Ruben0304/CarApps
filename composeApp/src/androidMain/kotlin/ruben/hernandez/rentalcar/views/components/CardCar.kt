@@ -40,10 +40,9 @@ fun CarCard(
         shape = RoundedCornerShape(18.dp),
         shadowElevation = 6.dp,
         modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth()
-            .clickable { onClick() },
-        color = Color.White
+            .padding(16.dp),
+        color = Color.White,
+        onClick = onClick
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
@@ -68,14 +67,9 @@ fun CarCard(
                     )
                 }
 
-                // Icono de "me gusta"
-                IconButton(onClick = { /* Acción */ }) {
-                    Icon(
-                        Icons.Filled.Favorite,
-                        contentDescription = "Favorite",
-                        tint = Color.Red
-                    )
-                }
+              LikeButton {
+
+              }
             }
             Spacer(modifier = Modifier.height(8.dp))
             // Cargar imagen con Coil
