@@ -14,10 +14,6 @@ import androidx.compose.ui.unit.dp
 import carrental.composeapp.generated.resources.Account
 import carrental.composeapp.generated.resources.Res
 import carrental.composeapp.generated.resources._1
-import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.LottieConstants
-import com.airbnb.lottie.compose.rememberLottieComposition
 import kotlinx.serialization.json.internal.readJson
 
 //@Composable

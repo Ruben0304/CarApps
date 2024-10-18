@@ -1,6 +1,15 @@
 package ruben.hernandez.rentalcar.views.components
 
-
+import android.graphics.RenderEffect
+import android.graphics.Shader
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,9 +23,15 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.ExtendedFloatingActionButton
+import androidx.compose.material.FloatingActionButtonDefaults
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DirectionsCar
+import androidx.compose.material.icons.filled.Login
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -31,8 +46,11 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.GraphicsLayerScope
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.asComposeRenderEffect
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -44,11 +62,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import carrental.composeapp.generated.resources.Car
+import carrental.composeapp.generated.resources.CarDoorBlue
+import carrental.composeapp.generated.resources.Phone
 import carrental.composeapp.generated.resources.Res
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ruben.hernandez.rentalcar.R
-import ruben.hernandez.rentalcar.registerwithapple.RegisterwithApple
 
 // Colores personalizados
 val backgroundColor = Color(0xFFE0E0E0)
@@ -76,6 +95,7 @@ fun PruebaLoginView() {
 }
 
 
+@RequiresApi(Build.VERSION_CODES.S)
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun LoginScreen(
@@ -90,11 +110,12 @@ fun LoginScreen(
 
     // Colores para el modo claro
     val lightGradient = listOf(
-        Color(0xFFFFFFFF),
-        Color(0xFFE3F2FD),
-        Color(0xFFBBDEFB),
-        Color(0xFFE3F2FD),
-        Color(0xFFFFFFFF)
+        Color(0xFFD4CBC3),  // Beige medio
+        Color(0xFFF5F3F0),  // Beige muy claro
+        Color(0xFFE6DFD9),  // Gris beige claro
+        Color(0xFFD4CBC3),  // Beige medio
+        Color(0xFFE6DFD9),  // Gris beige claro
+        Color(0xFFF5F3F0)   // Beige muy claro
     )
 
     Box(
@@ -109,21 +130,6 @@ fun LoginScreen(
             ),
         contentAlignment = Alignment.Center
     ) {
-        // Efecto de desenfoque/blur para el fondo
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = androidx.compose.ui.graphics.Brush.radialGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            Color.White.copy(alpha = 0.2f)
-                        ),
-                        center = Offset.Infinite,
-                        radius = 1000f
-                    )
-                )
-        )
 
         // Contenido del login
         Column(
@@ -169,6 +175,7 @@ fun LoginScreen(
     }
 }
 
+
 @Composable
 fun CustomTextField(
     value: TextFieldValue,
@@ -212,19 +219,86 @@ fun LoginLogo() {
                 clip = true
             }
     )
+//    Icon(
+//        imageVector = Icons.Filled.DirectionsCar,
+//        contentDescription = null,
+//        modifier = Modifier
+//            .size(120.dp)
+//            .graphicsLayer {
+//                shadowElevation = 8.dp.toPx()
+//                shape = CircleShape
+//                clip = true
+//            }
+//            .clip(CircleShape)
+//            .background(Color.Gray),  // Puedes cambiar el color del fondo
+//        tint = Color.White // Color del ícono
+//    )
 }
 
 @Composable
-fun LoginTitle(textColor: Color) {
+fun LoginTitle(textColor: Color = Color.White) {
     Text(
         text = "Inicio de Sesion",
         style = MaterialTheme.typography.titleLarge.copy(
             fontWeight = FontWeight.Bold,
-            color = textColor
+            color = textColor,
+            shadow = Shadow(
+                color = Color(0xFFD4CBC3), // Color medio de softBeigeGradient
+                offset = Offset(2f, 2f),
+                blurRadius = 3f
+            )
         ),
-        modifier = Modifier.padding(vertical = 16.dp)
+        modifier = Modifier
+            .padding(vertical = 16.dp)
+            .graphicsLayer {
+                shadowElevation = 8f
+                spotShadowColor = Color(0xFFE6DFD9).copy(alpha = 0.5f) // Color claro de softBeigeGradient
+                ambientShadowColor = Color(0xFFD4CBC3).copy(alpha = 0.3f) // Color medio de softBeigeGradient
+            }
     )
 }
+
+// Uso alternativo con parámetros personalizables
+@Composable
+fun LoginTitle(
+    textColor: Color = Color.Black,
+    shadowColor: Color = Color(0xFFD4CBC3),
+    shadowOffset: Offset = Offset(2f, 2f),
+    shadowBlur: Float = 3f
+) {
+    Text(
+        text = "Inicio de Sesion",
+        style = MaterialTheme.typography.titleLarge.copy(
+            fontWeight = FontWeight.Bold,
+            color = textColor,
+            shadow = Shadow(
+                color = shadowColor,
+                offset = shadowOffset,
+                blurRadius = shadowBlur
+            )
+        ),
+        modifier = Modifier
+            .padding(vertical = 16.dp)
+            .graphicsLayer {
+                shadowElevation = 8f
+                spotShadowColor = shadowColor.copy(alpha = 0.5f)
+                ambientShadowColor = shadowColor.copy(alpha = 0.3f)
+            }
+    )
+}
+//    Column(modifier = Modifier.fillMaxWidth()){
+//        Text(
+//            text = "Ingresar Credenciales",
+//            color = Color.Black,
+//            style = MaterialTheme.typography.titleLarge.copy(
+//                shadow = Shadow(
+//                    color = Color(0xFFBBDEFB),
+//                    offset = Offset(3f,3f),
+//                    blurRadius = 0f
+//                )
+//            )
+//        )
+
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -232,48 +306,25 @@ fun LoginButton(
     buttonState: ButtonState,
     onClick: () -> Unit
 ) {
-    // Gradiente que complementa el fondo existente
-    val buttonGradient = listOf(
-        Color(0xFFE3F2FD),
-        Color(0xFFBBDEFB),
-        Color(0xFFBBDEFB),
-        Color(0xFFBBDEFB),
-        Color(0xFFBBDEFB)
-    )
+    Column(Modifier.padding(20.dp)) {
+        AnimatedVisibility(visible = buttonState == ButtonState.Loading) {
+            CircularProgressIndicator(color = Color.White)
+        }
 
-    AnimatedVisibility(visible = buttonState == ButtonState.Loading) {
-        CircularProgressIndicator(color = Color.White)
-    }
-
-    AnimatedVisibility(visible = buttonState != ButtonState.Loading) {
-        Button(
-            onClick = onClick,
-            modifier = Modifier
-                .width(267.dp).height(50.dp)
-                .background(
-                    brush = Brush.linearGradient(
-                        colors = buttonGradient,
-                        start = Offset(0f, 0f),
-                        end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
-                    ),
-                    shape = RoundedCornerShape(50)
-                )
-                .graphicsLayer {
-                    shadowElevation = 50.dp.toPx()
-                    shape = RoundedCornerShape(50)
-                },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Black,
-                contentColor = Color.White
-            ),
-            enabled = buttonState != ButtonState.Loading
-        ) {
-            Text(
+        AnimatedVisibility(visible = buttonState != ButtonState.Loading) {
+            BotonColor(
+                icono = org.jetbrains.compose.resources.painterResource(resource = Res.drawable.Phone),
+                colorSombra = Color.Black,
+                onClick = onClick,
+                modifier = Modifier
+                    .width(267.dp)
+                    .height(50.dp),
+                enabled = buttonState != ButtonState.Loading,
                 text = when (buttonState) {
                     ButtonState.Finished -> "Bienvenido!"
                     else -> "Iniciar Sesion"
                 },
-                style = MaterialTheme.typography.bodySmall.copy(
+                textStyle = MaterialTheme.typography.bodySmall.copy(
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -283,8 +334,112 @@ fun LoginButton(
 }
 
 @Composable
+fun BotonColor(
+    icono: Painter,
+    colorSombra: Color,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    text: String,
+    textStyle: TextStyle
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier.graphicsLayer {
+            shadowElevation = 50.dp.toPx()
+            shape = RoundedCornerShape(50)
+        },
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Black,
+            contentColor = Color.White
+        ),
+        enabled = enabled
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Image(painter = icono, contentDescription = null)
+            Text(
+                text = text,
+                style = textStyle
+            )
+        }
+    }
+}
+
+//@Composable
+//fun LoginButton(
+//    buttonState: ButtonState,
+//    onClick: () -> Unit
+//) {
+//    // Gradiente aplicado al fondo del botón
+//    val buttonGradient = Brush.linearGradient(
+//        colors = listOf(
+//            Color(0xFFE3F2FD),
+//            Color(0xFFBBDEFB),
+//            Color(0xFFBBDEFB),
+//            Color(0xFFBBDEFB),
+//            Color(0xFFBBDEFB)
+//        ),
+//        start = Offset(0f, 0f),
+//        end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
+//    )
+//
+//    // Botón FAB extendido con animaciones
+//    AnimatedVisibility(visible = buttonState != ButtonState.Loading) {
+//        ExtendedFloatingActionButton(
+//            text = {
+//                Text(
+//                    text = when (buttonState) {
+//                        ButtonState.Finished -> "Bienvenido!"
+//                        else -> "Iniciar Sesión"
+//                    },
+//                    fontWeight = FontWeight.Bold,
+//                    fontSize = 18.sp
+//                )
+//            },
+//            onClick = onClick,
+//            modifier = Modifier
+//                .width(267.dp)
+//                .height(50.dp)
+//                .clip(RoundedCornerShape(50))
+//                .background(buttonGradient)
+//                .graphicsLayer {
+//                    shadowElevation = 16.dp.toPx()
+//                    shape = RoundedCornerShape(50)
+//                    clip = true
+//                },
+//            elevation = FloatingActionButtonDefaults.elevation(16.dp),
+//            icon = {
+//                Icon(
+//                    imageVector = Icons.Default.Login,
+//                    contentDescription = "Login Icon"
+//                )
+//            }
+//        )
+//    }
+//
+//    // Indicador de carga cuando el estado es ButtonState.Loading
+//    AnimatedVisibility(visible = buttonState == ButtonState.Loading) {
+//        CircularProgressIndicator(
+//            color = Color.White,
+//            modifier = Modifier.size(50.dp)
+//        )
+//    }
+//}
+//@Composable
+//fun LoginButton() {
+//    Column(Modifier.padding(20.dp)) {
+//        BotonColor(
+//            icono = org.jetbrains.compose.resources.painterResource(resource = Res.drawable.Phone),
+//            colorSombra = Color.Black
+//        )
+//    }
+//}
+
+@Composable
 fun SocialIcons() {
-    RegisterwithApple(texto = "Registrarse con AppleID")
 //    Row(
 //        horizontalArrangement = Arrangement.SpaceEvenly,
 //        modifier = Modifier.fillMaxWidth()

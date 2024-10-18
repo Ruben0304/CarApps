@@ -66,9 +66,6 @@ kotlin {
             implementation("io.ktor:ktor-serialization-gson:2.2.0")
             implementation("io.ktor:ktor-client-serialization:2.2.0")
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-// https://mvnrepository.com/artifact/com.airbnb.android/lottie-compose
-            implementation(libs.lottie.compose)
-
             implementation(libs.androidx.animation)
             // For swipe-to-refresh, placeholder loading, etc.
             implementation(libs.accompanist.systemuicontroller)
