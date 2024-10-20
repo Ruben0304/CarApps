@@ -1,5 +1,6 @@
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -40,19 +41,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import carrental.composeapp.generated.resources.Res
+import carrental.composeapp.generated.resources.ResizeIndicator
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.views.components.CarDetailContent
 import ruben.hernandez.rentalcar.views.components.CarSpecs
 import ruben.hernandez.rentalcar.views.components.CardCarInfo
 
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MenuDeslizable(
     sheetContent: @Composable () -> Unit,
     sheetState: BottomSheetState,
-    onHide: () -> Unit
-
+    parentContent: @Composable () -> Unit = {},
+    topPadding: Dp = 110.dp
 ) {
 
     val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = sheetState)
@@ -65,18 +69,20 @@ fun MenuDeslizable(
             sheetGesturesEnabled = true,
             sheetContent = {
                 Column {
-                    Spacer(
+                    Image(
                         modifier = Modifier
-                            .padding(vertical = 10.dp)
+                            .padding(vertical = 8.dp)
                             .width(40.dp)
                             .height(4.dp)
-                            .background(Color.LightGray)
-                            .align(Alignment.CenterHorizontally)
-                    )
+
+                            .align(Alignment.CenterHorizontally),
+                        painter = painterResource(resource = Res.drawable.ResizeIndicator),
+                        contentDescription = ""
+                        )
                     Box(
                         Modifier
                             .fillMaxWidth()
-                            .height(screenHeight - 100.dp)
+                            .height(screenHeight - topPadding)
                     ) {
                         sheetContent()
                     }
@@ -85,60 +91,61 @@ fun MenuDeslizable(
             sheetPeekHeight = 0.dp,
             sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
         ) {
-            LaunchedEffect(sheetState.isCollapsed) {
-                if (sheetState.isCollapsed) {
-                    onHide()
-                }
-            }
+            parentContent()
         }
+
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun SheetContent(sheetState: BottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)) {
+    val carSpecs = listOf(
+        CarSpecs("Max. Potencia", "320", "ph"),
+        CarSpecs("0-60 mph", "4.4", "segundos"),
+        CarSpecs("Maxima Velocidad", "177", "mph")
+    )
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
+    val imgs = listOf(
+        "https://www.automachi.com/wp-content/uploads/2021/08/Untitled-1-3.jpg",
+        "https://wallup.net/wp-content/uploads/2019/09/345133-bmw-i8-car-hybrib-future-4000x3000-748x561.jpg",
+        "https://gossipvehiculo.com/wp-content/uploads/2022/03/toyota-2-1024x526.png"
+    )
+
+    CardCarInfo(
+        carName = "Porsche 718 Cayma",
+        carType = "Coupe",
+        imagenesUrl = imgs,
+        passengers = 2,
+        transmission = "Manual",
+        pricePerDay = "$400",
+        carSpecsList = carSpecs,
+        doors = 2,
+        airConditioning = true,
+        fuelCapacity = 40,
+        confortable = true,
+        sheetState = sheetState
+    )
+}
+
+
+@OptIn(ExperimentalMaterialApi::class)
 @Preview(showBackground = true)
 @Composable
 fun PreviewMenuDeslizable() {
-    var isOpenButtomShet by remember { mutableStateOf(false) }
+//    var isOpenButtomShet by remember { mutableStateOf(false) }
+
     val corrutineScope = rememberCoroutineScope()
     val sheetState = rememberBottomSheetState(
         initialValue = BottomSheetValue.Collapsed,
         animationSpec = tween(durationMillis = 400, easing = FastOutSlowInEasing)
     )
 
-    val shetContent = @androidx.compose.runtime.Composable {
-        val carSpecs = listOf(
-            CarSpecs("Maxima Potencia", "320", "ph"),
-            CarSpecs("0-60 mph", "4.4", "segundos"),
-            CarSpecs("Maxima Velocidad", "177", "mph")
-        )
-
-        val imgs = listOf(
-            "https://www.automachi.com/wp-content/uploads/2021/08/Untitled-1-3.jpg",
-            "https://wallup.net/wp-content/uploads/2019/09/345133-bmw-i8-car-hybrib-future-4000x3000-748x561.jpg",
-            "https://gossipvehiculo.com/wp-content/uploads/2022/03/toyota-2-1024x526.png"
-        )
-
-        CardCarInfo(
-            carName = "Porsche 718 Cayma",
-            carType = "Coupe",
-            imagenesUrl = imgs,
-            passengers = 2,
-            transmission = "Manual",
-            pricePerDay = "$400",
-            carSpecsList = carSpecs,
-            doors = 2,
-            airConditioning = true,
-            fuelCapacity = 40,
-            confortable = true,
-        )
-    }
-
 
     MenuDeslizable(
-        shetContent,
+        { SheetContent() },
         sheetState
-    ) { isOpenButtomShet = false }
+    )
 
     androidx.compose.material3.Button(onClick = {
         corrutineScope.launch {

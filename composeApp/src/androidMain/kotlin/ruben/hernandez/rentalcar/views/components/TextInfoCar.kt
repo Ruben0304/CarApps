@@ -2,6 +2,7 @@ package ruben.hernandez.rentalcar.views.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
@@ -31,18 +32,18 @@ fun TextInfoCar(
     textStyle: TextUnit
 ) {
     Row (
-        modifier = modifierRow
+        modifier = modifierRow.padding(bottom = 14.dp)
     ) {
         Icon(
             painter = recurso,
             contentDescription = null,
-            tint = Color(0, 126, 255),
+            tint = Color(15, 112, 231, 255),
             modifier = modifierIcon
         )
-        Spacer(modifier = Modifier.width(5.dp))
+        Spacer(modifier = Modifier.width(10.dp))
         Text(
             text = texto,
-            fontSize = textStyle,
+            fontSize = 14.sp,
             fontFamily = poppinsFontFamily,
             color = Color.Black
         )

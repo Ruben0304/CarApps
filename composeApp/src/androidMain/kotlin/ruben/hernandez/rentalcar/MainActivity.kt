@@ -86,13 +86,13 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun AppAndroidPreview() {
-//    val navController = rememberNavController()
-//    AppRoutes(navController = navController)
+    val navController = rememberNavController()
+    AppRoutes(navController = navController)
 //SettingsAccount(Modifier.padding(top = 200.dp, start = 10.dp), icono = painterResource(resource = Res.drawable.Gearbox), nombre = "Ruben")
 //    MaterialTheme {
 //        Surface(color = Color(0xFFF1F3F4)) {
 //            Send()
 //        }
 //    }
-    ChatScreen()
+//    ChatScreen()
 }

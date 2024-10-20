@@ -45,35 +45,31 @@ fun carInfoSeccion(
 
 ) {
     Row(
-        modifier = modifierCuerpo.fillMaxWidth(),
+        modifier = modifierCuerpo.fillMaxWidth().padding(horizontal = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween
+
     ) {
         Column(
             modifier = modifierSeccion
 
         ) {
             TextInfoCar("$doors Puertas", recurso1, modifierRowText, modifierIcon, textStyle)
-
-            Spacer(modifier = Modifier.height(5.dp))
-
             TextInfoCar("$passengers Personas", recurso2, modifierRowText, modifierIcon, textStyle)
 
             TextInfoCar(
                 "Capacidad $fuelCapacity lt", recurso5, modifierRowText, modifierIcon, textStyle
             )
-            Spacer(modifier = Modifier.height(5.dp))
-            Spacer(modifier = Modifier.height(10.dp))
+
         }
         Column(
             modifier = modifierSeccion
         ) {
             TextInfoCar(transmission, recurso3, modifierRowText, modifierIcon, textStyle)
-            Spacer(modifier = Modifier.height(5.dp))
             if (airConditioning) {
                 TextInfoCar("Climatizado", recurso4, modifierRowText, modifierIcon, textStyle)
             }
             if (confortable) {
-                TextInfoCar("Confortable", recurso6, modifierRowText, modifierIcon, textStyle)
+                TextInfoCar("Poco confortable", recurso6, modifierRowText, modifierIcon, textStyle)
             }
         }
     }
