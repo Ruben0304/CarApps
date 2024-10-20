@@ -48,7 +48,6 @@ import carrental.composeapp.generated.resources.Res
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ruben.hernandez.rentalcar.R
-import ruben.hernandez.rentalcar.registerwithapple.RegisterwithApple
 
 // Colores personalizados
 val backgroundColor = Color(0xFFE0E0E0)
@@ -164,7 +163,7 @@ fun LoginScreen(
                 }
             )
             Spacer(modifier = Modifier.height(24.dp))
-            SocialIcons()
+//            SocialIcons()
         }
     }
 }
@@ -281,10 +280,10 @@ fun LoginButton(
         }
     }
 }
-
-@Composable
-fun SocialIcons() {
-    RegisterwithApple(texto = "Registrarse con AppleID")
+//
+//@Composable
+//fun SocialIcons() {
+//    RegisterwithApple(texto = "Registrarse con AppleID")
 //    Row(
 //        horizontalArrangement = Arrangement.SpaceEvenly,
 //        modifier = Modifier.fillMaxWidth()
@@ -300,4 +299,4 @@ fun SocialIcons() {
 //            )
 //        }
 //    }
-}
+//}

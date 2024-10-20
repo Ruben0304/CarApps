@@ -42,8 +42,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.imageResource
 import org.jetbrains.compose.resources.painterResource
-import ruben.hernandez.rentalcar.appclip.Icon
-import ruben.hernandez.rentalcar.messagesthreadname.MessagesThreadName
+//import ruben.hernandez.rentalcar.appclip.Icon
+//import ruben.hernandez.rentalcar.messagesthreadname.MessagesThreadName
 
 import ruben.hernandez.rentalcar.views.components.AnimatedMessageBubble
 import ruben.hernandez.rentalcar.views.components.BackButton
@@ -87,10 +87,10 @@ fun ChatScreen() {
                 modifier = Modifier.padding(top = 23.dp, start = 15.dp).size(45.dp),
                 onClick = { /* TODO */ }
             )
-            MessagesThreadName(
-                nombre = painterResource(Res.drawable.descarga),
-                modifier = Modifier.padding(top = 20.dp)
-            )
+//            MessagesThreadName(
+//                nombre = painterResource(Res.drawable.descarga),
+//                modifier = Modifier.padding(top = 20.dp)
+//            )
             IconButton(onClick = { /* TODO */ }, modifier = Modifier.padding(top = 20.dp, end = 15.dp).size(50.dp)) {
                 androidx.compose.material.Icon(
                     painter = painterResource(Res.drawable.Phone),

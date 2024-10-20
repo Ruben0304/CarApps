@@ -58,7 +58,7 @@ fun App(navController: NavController) {
 //                MenuPegadoALaBarra()
 //
                 SearchInput(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth().height(40.dp)
                 )
                 Spacer(modifier = Modifier.width(15.dp))
 //                CircularButton(
