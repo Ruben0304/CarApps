@@ -56,7 +56,8 @@ fun ChatsCenterScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
-                .background(Color.White).padding( top = 10.dp, start = 10.dp, end = 10.dp)
+                .background(Color.White)
+                .padding(top = 10.dp, start = 10.dp, end = 10.dp)
         ) {
             Row(
                 modifier = Modifier
@@ -68,26 +69,20 @@ fun ChatsCenterScreen(
                     modifier = Modifier
                         .size(35.dp)
                 )
-                BotonPerfilChatCenter(
-                    nombre = user.nombre,
-                    apellido = user.apellido
-                )
-            }
-            Row(
-                modifier = Modifier.padding(top = 15.dp, bottom = 10.dp).fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
                 Text(
                     text = "Chats",
-                    fontSize = 28.sp,
+                    fontSize = 27.sp,
                     fontFamily = poppinsFontFamily,
                     fontWeight = FontWeight.Bold,
-                    color = AppColors.dark
+                    color = AppColors.dark,
+                    modifier = Modifier.padding(end = 230.dp)
                 )
                 Surface(
                     shape = RoundedCornerShape(10.dp),
                     color = Color.White,
-                    modifier = Modifier.size(30.dp).padding(end = 4.dp),
+                    modifier = Modifier
+                        .size(30.dp)
+                        .padding(end = 4.dp),
                     onClick = onClickConfiguracion
 
                 ) {
@@ -98,6 +93,8 @@ fun ChatsCenterScreen(
                     )
                 }
             }
+
+            Spacer(modifier = Modifier.height(10.dp))
 
             SearchInput(
                 modifier = Modifier
@@ -115,9 +112,11 @@ fun ChatsCenterScreen(
 
         }
         Box(
-            modifier = Modifier.fillMaxSize().padding(bottom = 20.dp, end = 10.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 20.dp, end = 10.dp),
             contentAlignment = Alignment.BottomEnd
-        ){
+        ) {
             BotonColor(
                 texto = "Nuevo Chat",
                 icono = painterResource(resource = Res.drawable.MessagingWhite),
