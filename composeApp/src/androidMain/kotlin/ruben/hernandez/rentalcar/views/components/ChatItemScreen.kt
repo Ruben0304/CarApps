@@ -1,6 +1,8 @@
 package ruben.hernandez.rentalcar.views.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,6 +14,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -66,18 +69,20 @@ fun ChatItemScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.White).padding(top = 4.dp)
+                .background(Color.White)
+                .padding(top = 4.dp)
         ) {
             Row(
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Column(
-                    modifier = modifierNombre.width(280.dp)
                 ) {
                     Text(
                         text = contenido.nombre,
                         fontSize = 18.sp,
                         fontFamily = poppinsFontFamily,
-                        color = AppColors.dark
+                        color = AppColors.dark,
+                        modifier = modifierNombre
                     )
 
                     Spacer(modifier = Modifier.height(6.dp))
@@ -87,13 +92,16 @@ fun ChatItemScreen(
                         fontSize = 14.sp,
                         fontFamily = poppinsFontFamily,
                         color = Color.Gray,
-                        modifier = modifierContent.height(45.dp)
+                        modifier = modifierContent
+                            .height(45.dp)
+                            .width(280.dp)
                     )
 
                 }
 
                 Column(
-
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.End
                 ) {
                     Text(
                         text = contenido.fecha,
@@ -108,7 +116,7 @@ fun ChatItemScreen(
                     // Circulo pequenio de notificaciones
                     Surface(
                         modifier = modifierNotificaciones
-                            .padding(start = 17.dp, top = 4.dp)
+                            .padding(top = 4.dp, end = 17.dp)
                             .width(20.dp)
                             .height(20.dp),
                         shape = CircleShape,
@@ -143,7 +151,8 @@ fun ChatItemScreen(
                                 Color(214, 219, 234, 255), Color(187, 194, 201, 255)
                             )
                         )
-                    ).width(360.dp)
+                    )
+                    .fillMaxWidth()
             )
         }
     }
