@@ -2,8 +2,10 @@ package ruben.hernandez.rentalcar.views.components
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -40,55 +42,67 @@ fun ChatsCenterScreen(
     conversaciones: List<ChatItem>,
     onClickConfiguracion: () -> Unit,
 ) {
-    Scaffold(floatingActionButton = {
+    Scaffold(containerColor = Color.White, floatingActionButton = {
         BotonColor(
             texto = "Consultar",
             icono = painterResource(resource = Res.drawable.MessagingWhite),
             tamanoIcono = 26.dp,
             tamanoTexto = 18.sp,
-            modifier = Modifier.height(60.dp).padding(bottom = 10.dp),
+            modifier = Modifier
+                .height(60.dp)
+                .padding(bottom = 10.dp),
             colorSombra = AppColors.principal
         )
     }, topBar = {
-        Row(modifier = Modifier.padding(start = 10.dp, end = 10.dp, top = 15.dp)) {
-            BackButton(
-                onClick = { navController.popBackStack() },
-                modifier = Modifier
-                    .size(40.dp)
-            )
-            SearchInput(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(horizontal = 10.dp)
-                    .height(40.dp)
-            )
 
-            Surface(
+            Row(
                 modifier = Modifier
-                    .size(40.dp),
-                shadowElevation = 8.dp,
-                shape = CircleShape,
-                onClick = onClickConfiguracion,
-                color = AppColors.dark
+                    .padding(start = 10.dp, end = 10.dp, top = 15.dp)
+
             ) {
-                Box {
-                    Text(
-                        text = "RH",
-                        color = Color.White,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.align(Alignment.Center)
-                    )
+                BackButton(
+                    onClick = { navController.popBackStack() },
+                    modifier = Modifier
+                        .size(40.dp)
+                )
+                SearchInput(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(horizontal = 10.dp)
+                        .height(40.dp)
+                )
+
+                Surface(
+                    modifier = Modifier
+                        .size(40.dp),
+                    shadowElevation = 8.dp,
+                    shape = CircleShape,
+                    onClick = onClickConfiguracion,
+                    color = AppColors.dark
+                ) {
+                    Box {
+                        Text(
+                            text = "RH",
+                            color = Color.White,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.align(Alignment.Center)
+                        )
+                    }
                 }
             }
-        }
+
+
     }
     ) { paddingValues ->
 
-            ChatsList(
-                listaConversaciones = conversaciones,
-                modifier = Modifier.fillMaxWidth().padding(paddingValues).padding(end = 8.dp, start = 12.dp, top = 20.dp),
-                modifierNotificaciones = Modifier.padding(start = 8.dp)
-            )
+        ChatsList(
+            listaConversaciones = conversaciones,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(paddingValues)
+                .padding(end = 8.dp, start = 12.dp, top = 20.dp),
+            modifierNotificaciones = Modifier.padding(start = 8.dp)
+        )
 
 
     }
