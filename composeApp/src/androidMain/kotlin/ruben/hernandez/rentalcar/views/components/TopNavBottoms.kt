@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -25,13 +26,13 @@ fun TopNavButton(onClick: () -> Unit, isSelected: Boolean, text: String) {
                 .background(
                     brush = Brush.horizontalGradient(
                         listOf(
-                            Color(161, 161, 248, 255), Color(102, 157, 250, 255)
+                            Color(103, 142, 248, 255), Color(84, 157, 244, 255)
                         )
                     ), shape = CircleShape
                 )
-//                .shadow(spotColor = Color(113, 163, 248, 255), elevation = 18.dp, shape = CircleShape)
+                .shadow(spotColor = Color(113, 163, 248, 255), elevation = 30.dp, shape = CircleShape)
                 .height(33.dp),
-            shadowElevation = 35.dp,
+            shadowElevation = 100.dp,
             tonalElevation = 35.dp,
             color = Color.Transparent,
         ) {
@@ -41,7 +42,7 @@ fun TopNavButton(onClick: () -> Unit, isSelected: Boolean, text: String) {
                 color = Color.White,
                 fontWeight = FontWeight.SemiBold,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.padding(vertical = 8.dp, horizontal = 25.dp)
+                modifier = Modifier.padding(vertical = 5.dp, horizontal = 25.dp)
             )
         }
     else

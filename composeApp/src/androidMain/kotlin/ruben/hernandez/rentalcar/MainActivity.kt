@@ -64,18 +64,9 @@ import androidx.compose.ui.unit.sp
 import carrental.composeapp.generated.resources.Gearbox
 import carrental.composeapp.generated.resources.Home
 import carrental.composeapp.generated.resources.Res
-import ruben.hernandez.rentalcar.appclip.AppClip
-import ruben.hernandez.rentalcar.appclip.CloseButton
-
-import ruben.hernandez.rentalcar.basicdialogo.BasicDialogo
-import ruben.hernandez.rentalcar.jjk.Jjk
-import ruben.hernandez.rentalcar.messagebubble.MessageBubble
-import ruben.hernandez.rentalcar.messagebubbleligth.MessageBubbleLigth
-
 
 import ruben.hernandez.rentalcar.navigation.AppRoutes
-import ruben.hernandez.rentalcar.settingsaccount.RightContent
-import ruben.hernandez.rentalcar.settingsaccount.SettingsAccount
+
 import ruben.hernandez.rentalcar.views.screens.ChatScreen
 
 class MainActivity : ComponentActivity() {

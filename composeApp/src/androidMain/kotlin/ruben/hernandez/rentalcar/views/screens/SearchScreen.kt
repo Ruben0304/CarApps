@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,11 +37,11 @@ fun SearchScreen(navController: NavController ,generic: Boolean = true) {
             .background(AppColors.backgroundGreyWhite)
     ) {
         Row {
-            BackButton(modifier = Modifier.padding(top = 20.dp, start = 15.dp), onClick = {navController.popBackStack()})
+            BackButton(modifier = Modifier.padding(top = 20.dp, start = 15.dp).size(40.dp), onClick = {navController.popBackStack()})
             SearchInput(
                 modifier = Modifier
                     .padding(top = 20.dp, start = 10.dp, end = 15.dp)
-                    .fillMaxWidth()
+                    .fillMaxWidth().height(40.dp)
             )
         }
 

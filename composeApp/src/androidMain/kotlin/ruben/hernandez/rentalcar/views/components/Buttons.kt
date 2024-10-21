@@ -52,7 +52,7 @@ fun BotonColor(
     colorTexto: Color = Color.White,
     colorSombra: Color? = null,
     icono: Painter? = null,
-    texto: String = "Soy botón",
+    texto: String = "",
     alClic: () -> Unit = {},
     tamanoTexto: TextUnit = 13.sp,
     tamanoIcono: Dp = 15.dp,
@@ -84,7 +84,7 @@ fun BotonColor(
                     painter = icono,
                     contentDescription = "icono",
                     tint = colorTexto,
-                    modifier = Modifier.size(tamanoIcono)
+                    modifier = Modifier.size(tamanoIcono).fillMaxSize()
                 )
             Text(
                 text = texto,
