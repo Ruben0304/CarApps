@@ -51,18 +51,9 @@ fun MechanicPartCard(
     partType: String,
     imageUrl: String,
     price: String,
-    isFavorite: Boolean,
+    isFavorite: Boolean = false,
     onFavoriteClick: () -> Unit
 ) {
-    var isLiked by remember { mutableStateOf(isFavorite) }
-    val likeColor by animateColorAsState(
-        if (isLiked) Color.Red else Color.Gray,
-        animationSpec = tween(durationMillis = 300)
-    )
-    val scale by animateFloatAsState(
-        targetValue = if (isLiked) 1.2f else 1f,
-        animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy)
-    )
 
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -70,7 +61,11 @@ fun MechanicPartCard(
         modifier = Modifier
             .padding(16.dp)
             .size(180.dp, 280.dp)
-            .shadow(spotColor = Color(113, 163, 248, 255), elevation = 100.dp, shape = RoundedCornerShape(16.dp)),
+            .shadow(
+                spotColor = Color(113, 163, 248, 255),
+                elevation = 100.dp,
+                shape = RoundedCornerShape(16.dp)
+            ),
         colors = CardDefaults.cardColors(containerColor = Color.White)
 
     ) {
@@ -87,22 +82,14 @@ fun MechanicPartCard(
                         modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
                     )
-                    IconButton(
-                        onClick = {
-                            isLiked = !isLiked
-                            onFavoriteClick()
-                        },
+                    LikeButton(
                         modifier = Modifier
                             .align(Alignment.TopEnd)
-                            .padding(8.dp)
-                            .scale(scale)
-                    ) {
-                        Icon(
-                            imageVector = if (isLiked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
-                            contentDescription = "Favorite",
-                            tint = likeColor
-                        )
-                    }
+                            .padding(8.dp),
+                        onFavoriteClick = onFavoriteClick,
+                        isFavorite = isFavorite
+
+                    )
                 }
 
                 Column(

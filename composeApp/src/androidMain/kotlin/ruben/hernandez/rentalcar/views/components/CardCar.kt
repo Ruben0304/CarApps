@@ -1,6 +1,7 @@
 package ruben.hernandez.rentalcar.views.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -32,15 +33,16 @@ fun CarCard(
     imageUrl: String,
     passengers: Int,
     transmission: String,
-    pricePerDay: String
+    pricePerDay: String,
+    onClick: ()-> Unit = {}
 ) {
     Surface(
         shape = RoundedCornerShape(18.dp),
         shadowElevation = 6.dp,
         modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        color = Color.White
+            .padding(16.dp),
+        color = Color.White,
+        onClick = onClick
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
@@ -65,14 +67,9 @@ fun CarCard(
                     )
                 }
 
-                // Icono de "me gusta"
-                IconButton(onClick = { /* Acción */ }) {
-                    Icon(
-                        Icons.Filled.Favorite,
-                        contentDescription = "Favorite",
-                        tint = Color.Red
-                    )
-                }
+              LikeButton {
+
+              }
             }
             Spacer(modifier = Modifier.height(8.dp))
             // Cargar imagen con Coil
@@ -85,10 +82,6 @@ fun CarCard(
                     .height(150.dp),
                 contentScale = ContentScale.Fit
             )
-
-
-
-
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -144,7 +137,7 @@ fun CarCard(
 fun CarList() {
     LazyColumn{
         // Lista de coches (puedes añadir más elementos aquí)
-        items(5) { index ->
+        items(1) { index ->
             CarCard(
                 carName = "Porsche 718 Cayma",
                 carType = "Coupe",

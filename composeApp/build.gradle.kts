@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    kotlin("plugin.serialization") version "2.0.0"
+    id("com.google.relay") version "0.3.12"
 }
 
 kotlin {
@@ -29,14 +31,14 @@ kotlin {
         }
         binaries.executable()
     }
-    
+
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -47,16 +49,25 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
-        
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             // Navigation
             implementation(libs.androidx.navigation.compose)
+            implementation(libs.kotlinx.serialization.json)
 
             // Icons (similar a tus íconos de lucide-react)
+            implementation("io.ktor:ktor-client-core:2.2.0")
+            implementation("io.ktor:ktor-client-cio:2.2.0")
+            implementation("io.ktor:ktor-client-content-negotiation:2.2.0")
+            implementation("io.ktor:ktor-serialization-gson:2.2.0")
+            implementation("io.ktor:ktor-client-serialization:2.2.0")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+// https://mvnrepository.com/artifact/com.airbnb.android/lottie-compose
+            implementation(libs.lottie.compose)
 
             implementation(libs.androidx.animation)
             // For swipe-to-refresh, placeholder loading, etc.
@@ -67,8 +78,10 @@ kotlin {
             implementation(libs.androidx.ui.text.google.fonts)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.coil.compose)
+            implementation(libs.androidx.ui.text.google.fonts.v150)
+            implementation(libs.accompanist.pager)
+            implementation("com.google.accompanist:accompanist-pager-indicators:0.29.1-alpha")
 
-            implementation("androidx.compose.ui:ui-text-google-fonts:1.5.0")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -81,7 +94,8 @@ kotlin {
             implementation(libs.androidx.ui.text.google.fonts)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.7.0-alpha07")
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha08")
+            implementation(libs.cohere.java)
 
         }
     }
@@ -123,6 +137,17 @@ android {
         debugImplementation(compose.uiTooling)
     }
 }
+
+// Asegúrate que en el build.gradle.kts del módulo común tienes:
+kotlin {
+    sourceSets {
+        commonMain {
+
+            resources.srcDirs("src/commonMain/resources")
+        }
+    }
+}
+
 dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.material3.android)
