@@ -1,6 +1,7 @@
 package ruben.hernandez.rentalcar.views.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -55,34 +58,25 @@ fun ChatItemScreen(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     contenido: ChatItem,
-    modifierNombre: Modifier = Modifier,
-    modifierContent: Modifier = Modifier,
-    modifierHora: Modifier = Modifier,
-    modifierNotificaciones: Modifier = Modifier
 ) {
     Surface(
         shape = RectangleShape,
         modifier = modifier,
-        onClick = onClick
+        onClick = onClick,
+        color = Color.White
 
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White)
-                .padding(top = 4.dp)
-        ) {
+        Box {
             Row(
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.padding(vertical = 8.dp)
             ) {
-                Column(
-                ) {
+                Column {
                     Text(
                         text = contenido.nombre,
                         fontSize = 18.sp,
                         fontFamily = poppinsFontFamily,
                         color = AppColors.dark,
-                        modifier = modifierNombre
                     )
 
                     Spacer(modifier = Modifier.height(6.dp))
@@ -92,7 +86,7 @@ fun ChatItemScreen(
                         fontSize = 14.sp,
                         fontFamily = poppinsFontFamily,
                         color = Color.Gray,
-                        modifier = modifierContent
+                        modifier = Modifier
                             .height(45.dp)
                             .width(280.dp)
                     )
@@ -101,59 +95,38 @@ fun ChatItemScreen(
 
                 Column(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.End
+                    horizontalAlignment = Alignment.End,
                 ) {
                     Text(
                         text = contenido.fecha,
                         fontSize = 15.sp,
                         fontFamily = poppinsFontFamily,
-                        color = Color.Gray,
-                        modifier = modifierHora
+                        color = Color.Gray
                     )
 
-                    Spacer(modifier = Modifier.height(5.dp))
 
                     // Circulo pequenio de notificaciones
-                    Surface(
-                        modifier = modifierNotificaciones
-                            .padding(top = 4.dp, end = 17.dp)
+                    Box(
+                        modifier = Modifier
+                            .padding(top = 8.dp, end = 17.dp)
                             .width(20.dp)
-                            .height(20.dp),
-                        shape = CircleShape,
-                        onClick = onClick
+                            .height(20.dp)
+                            .background(color = AppColors.principal, shape = CircleShape),
                     ) {
                         Text(
                             text = contenido.cantNotif.toString(),
-                            fontSize = 13.sp,
+                            fontSize = 12.sp,
                             fontFamily = poppinsFontFamily,
                             color = Color.White,
+                            textAlign = TextAlign.Center,
                             modifier = Modifier
-                                .background(
-                                    brush = Brush.horizontalGradient(
-                                        colors = listOf(
-                                            Color(103, 142, 248, 255), Color(84, 157, 244, 255)
-                                        )
-                                    ), shape = CircleShape
-                                )
-                                .padding(start = 6.dp, top = 1.dp)
+                                .align(Alignment.Center)
                         )
                     }
 
                 }
-
             }
-            Spacer(
-                modifier = Modifier
-                    .height(1.dp)
-                    .background(
-                        brush = Brush.horizontalGradient(
-                            colors = listOf(
-                                Color(214, 219, 234, 255), Color(187, 194, 201, 255)
-                            )
-                        )
-                    )
-                    .fillMaxWidth()
-            )
+            HorizontalDivider(modifier = Modifier.align(Alignment.BottomCenter))
         }
     }
 }

@@ -1,12 +1,15 @@
 package ruben.hernandez.rentalcar.views.components
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.EaseOutQuad
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,15 +22,11 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+@SuppressLint("UseOfNonLambdaOffsetOverload")
 @Composable
 fun ChatsList(
     modifier: Modifier = Modifier,
     listaConversaciones: List<ChatItem>,
-    modifierCaja: Modifier = Modifier,
-    modifierNombre: Modifier = Modifier,
-    modifierContent: Modifier = Modifier,
-    modifierHora: Modifier = Modifier,
-    modifierNotificaciones: Modifier = Modifier
 ) {
     AnimatedVisibility(
         visible = true,
@@ -35,7 +34,7 @@ fun ChatsList(
     ) {
         LazyColumn(
             modifier = modifier
-                .background(Color.White)
+                .background(Color.White),
         ) {
             itemsIndexed(listaConversaciones) { index, item ->
                 val animatedProgress = remember {
@@ -60,12 +59,7 @@ fun ChatsList(
                         .offset(y = (20 * (1f - animatedProgress.value)).dp)
                 ) {
                     ChatItemScreen(
-                        contenido = item,
-                        modifier = modifierCaja,
-                        modifierNombre = modifierNombre,
-                        modifierContent = modifierContent,
-                        modifierHora = modifierHora,
-                        modifierNotificaciones = modifierNotificaciones
+                        contenido = item
                     )
                 }
             }

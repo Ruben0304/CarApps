@@ -101,7 +101,7 @@ fun ChatsCenterScreen(
                 .fillMaxWidth()
                 .padding(paddingValues)
                 .padding(end = 8.dp, start = 12.dp, top = 20.dp),
-            modifierNotificaciones = Modifier.padding(start = 8.dp)
+
         )
 
 
