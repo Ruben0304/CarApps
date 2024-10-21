@@ -16,6 +16,7 @@ androidx-test-junit = "1.2.1"
 animation = "1.7.2"
 cohereJava = "1.3.2"
 coilCompose = "2.3.0"
+coilSvgVersion = "2.4.0"
 compose-plugin = "1.6.11"
 junit = "4.13.2"
 kotlin = "2.0.20"
@@ -42,6 +43,7 @@ androidx-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-f
 androidx-ui-text-google-fonts-v150 = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "uiTextGoogleFontsVersion" }
 cohere-java = { module = "com.cohere:cohere-java", version.ref = "cohereJava" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
+coil-kt-coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coilSvgVersion" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }

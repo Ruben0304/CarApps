@@ -2,31 +2,21 @@ package ruben.hernandez.rentalcar.views.components
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,7 +26,6 @@ import carrental.composeapp.generated.resources.MessagingWhite
 import carrental.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
-import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 data class User(
     val nombre: String,
@@ -47,84 +36,64 @@ data class User(
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ChatsCenterScreen(
-    user: User,
     navController: NavController = rememberNavController(),
+    conversaciones: List<ChatItem>,
     onClickConfiguracion: () -> Unit,
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .background(Color.White)
-                .padding(top = 10.dp, start = 10.dp, end = 10.dp)
-        ) {
-            Row(
+    Scaffold(floatingActionButton = {
+        BotonColor(
+            texto = "Consultar",
+            icono = painterResource(resource = Res.drawable.MessagingWhite),
+            tamanoIcono = 26.dp,
+            tamanoTexto = 18.sp,
+            modifier = Modifier.height(60.dp).padding(bottom = 10.dp),
+            colorSombra = AppColors.principal
+        )
+    }, topBar = {
+        Row(modifier = Modifier.padding(start = 10.dp, end = 10.dp, top = 15.dp)) {
+            BackButton(
+                onClick = { navController.popBackStack() },
                 modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                BackButton(
-                    onClick = { navController.popBackStack() },
-                    modifier = Modifier
-                        .size(35.dp)
-                )
-                Text(
-                    text = "Chats",
-                    fontSize = 27.sp,
-                    fontFamily = poppinsFontFamily,
-                    fontWeight = FontWeight.Bold,
-                    color = AppColors.dark,
-                    modifier = Modifier.padding(end = 230.dp)
-                )
-                Surface(
-                    shape = RoundedCornerShape(10.dp),
-                    color = Color.White,
-                    modifier = Modifier
-                        .size(30.dp)
-                        .padding(end = 4.dp),
-                    onClick = onClickConfiguracion
-
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.Settings,
-                        contentDescription = "back",
-                        tint = AppColors.dark,
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(10.dp))
-
+                    .size(40.dp)
+            )
             SearchInput(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .weight(1f)
+                    .padding(horizontal = 10.dp)
                     .height(40.dp)
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Surface(
+                modifier = Modifier
+                    .size(40.dp),
+                shadowElevation = 8.dp,
+                shape = CircleShape,
+                onClick = onClickConfiguracion,
+                color = AppColors.dark
+            ) {
+                Box {
+                    Text(
+                        text = "RH",
+                        color = Color.White,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+            }
+        }
+    }
+    ) { paddingValues ->
 
             ChatsList(
-                listaConversaciones = user.conversaciones,
-                modifier = Modifier.fillMaxWidth(),
+                listaConversaciones = conversaciones,
+                modifier = Modifier.fillMaxWidth().padding(paddingValues).padding(end = 8.dp, start = 12.dp, top = 20.dp),
                 modifierNotificaciones = Modifier.padding(start = 8.dp)
             )
 
-        }
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(bottom = 20.dp, end = 10.dp),
-            contentAlignment = Alignment.BottomEnd
-        ) {
-            BotonColor(
-                texto = "Nuevo Chat",
-                icono = painterResource(resource = Res.drawable.MessagingWhite),
-                tamanoIcono = 20.dp
-            )
-        }
+
     }
 }
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -180,7 +149,27 @@ fun PreviewChatsCenter() {
             nombre = "Alberto mecanico", ultimoMensg =
             "El problema podria ser de corriente, la bobina que parece estar sucia",
             cantNotif = 7, fecha = "22:43 pm"
-        )
+        ),
+        ChatItem(
+            nombre = "Alberto mecanico", ultimoMensg =
+            "El problema podria ser de corriente, la bobina que parece estar sucia",
+            cantNotif = 10, fecha = "22:43 pm"
+        ),
+        ChatItem(
+            nombre = "Alberto mecanico", ultimoMensg =
+            "El problema podria ser de corriente, la bobina que parece estar sucia",
+            cantNotif = 2, fecha = "22:43 pm"
+        ),
+        ChatItem(
+            nombre = "Alberto mecanico", ultimoMensg =
+            "El problema podria ser de corriente, la bobina que parece estar sucia",
+            cantNotif = 7, fecha = "22:43 pm"
+        ),
+        ChatItem(
+            nombre = "Alberto mecanico", ultimoMensg =
+            "El problema podria ser de corriente, la bobina que parece estar sucia",
+            cantNotif = 7, fecha = "22:43 pm"
+        ),
     )
 
     val usuario = User(
@@ -189,6 +178,6 @@ fun PreviewChatsCenter() {
         conversaciones = conversaciones
     )
 
-    ChatsCenterScreen(user = usuario, onClickConfiguracion = { })
+    ChatsCenterScreen(conversaciones = conversaciones, onClickConfiguracion = { })
 
 }

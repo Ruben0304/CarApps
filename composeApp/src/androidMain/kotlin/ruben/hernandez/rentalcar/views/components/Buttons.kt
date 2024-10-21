@@ -1,8 +1,7 @@
 package ruben.hernandez.rentalcar.views.components
 
 import androidx.compose.ui.graphics.Shape
-import android.service.autofill.OnClickAction
-import android.widget.GridView
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,10 +18,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ButtonElevation
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Shapes
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,7 +43,7 @@ import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 @Composable
 fun BotonColor(
-    modificador: Modifier = Modifier,
+    modifier: Modifier = Modifier,
     color: Color = Color(88, 133, 243, 255),
     colorTexto: Color = Color.White,
     colorSombra: Color? = null,
@@ -61,12 +57,12 @@ fun BotonColor(
     Button(
         onClick = alClic,
         modifier =
-        if (colorSombra != null && colorSombra != Color.Black) modificador.shadow(
+        if (colorSombra != null && colorSombra != Color.Black) modifier.shadow(
             elevation = 8.dp,
             shape = forma,
             spotColor = colorSombra,
             ambientColor = colorSombra
-        ) else modificador,
+        ) else modifier,
         shape = forma,
         colors = ButtonDefaults.buttonColors(
             containerColor = color
@@ -93,6 +89,61 @@ fun BotonColor(
                 fontFamily = poppinsFontFamily,
                 modifier = Modifier.padding(horizontal = 4.dp),
                 color = colorTexto
+            )
+        }
+    }
+}
+
+
+
+@Composable
+fun BotonColorIconoDerecha(
+    modificador: Modifier = Modifier,
+    color: Color = Color(88, 133, 243, 255),
+    colorTexto: Color = Color.White,
+    colorSombra: Color? = null,
+    icono: Painter,
+    texto: String = "Soy botón",
+    alClic: () -> Unit = {},
+    tamanoTexto: TextUnit = 13.sp,
+    tamanoIcono: Dp = 15.dp,
+    forma: Shape = CircleShape
+) {
+    Button(
+        onClick = alClic,
+        modifier =
+        if (colorSombra != null && colorSombra != Color.Black) modificador.shadow(
+            elevation = 8.dp,
+            shape = forma,
+            spotColor = colorSombra,
+            ambientColor = colorSombra
+        ) else modificador,
+        shape = forma,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = color
+        ),
+        elevation = if (colorSombra == Color.Black) ButtonDefaults.buttonElevation(8.dp) else ButtonDefaults.buttonElevation(0.dp)
+
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+
+            ) {
+
+            Text(
+                text = texto,
+                fontSize = tamanoTexto,
+                textAlign = TextAlign.Center,
+                fontFamily = poppinsFontFamily,
+                modifier = Modifier.padding(horizontal = 4.dp),
+                color = colorTexto
+            )
+            Icon(
+                painter = icono,
+                contentDescription = "icono",
+                tint = colorTexto,
+                modifier = Modifier.size(tamanoIcono)
             )
         }
     }
@@ -172,6 +223,63 @@ fun BackButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
 
     ) {
         Icon(imageVector = Icons.Filled.ArrowBackIosNew, contentDescription = "back", tint = Color.Gray, modifier = Modifier.padding(12.dp))
+    }
+}
+
+@Composable
+fun ButtonNotBackground(
+    modificador: Modifier = Modifier,
+    color: Color = Color(88, 133, 243, 255),
+    colorTexto: Color = Color.White,
+    colorSombra: Color? = null,
+    icono: Painter? = null,
+    texto: String = "Soy botón",
+    alClic: () -> Unit = {},
+    tamanoTexto: TextUnit = 13.sp,
+    tamanoIcono: Dp = 15.dp,
+    forma: Shape = CircleShape,
+    border: BorderStroke = ButtonDefaults.outlinedButtonBorder(true),
+) {
+    OutlinedButton(
+        onClick = alClic,
+        border = border,
+        modifier =
+        if (colorSombra != null && colorSombra != Color.Black) modificador.shadow(
+            elevation = 8.dp,
+            shape = forma,
+            spotColor = colorSombra,
+            ambientColor = colorSombra
+        ) else modificador,
+        shape = forma,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = color
+        ),
+        elevation = if (colorSombra == Color.Black) ButtonDefaults.buttonElevation(8.dp) else ButtonDefaults.buttonElevation(0.dp)
+
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+
+            ) {
+
+            if (icono != null)
+                Icon(
+                    painter = icono,
+                    contentDescription = "icono",
+                    tint = colorTexto,
+                    modifier = Modifier.size(tamanoIcono)
+                )
+            Text(
+                text = texto,
+                fontSize = tamanoTexto,
+                textAlign = TextAlign.Center,
+                fontFamily = poppinsFontFamily,
+                modifier = Modifier.padding(horizontal = 4.dp),
+                color = colorTexto
+            )
+
+        }
     }
 }
 

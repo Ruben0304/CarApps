@@ -77,6 +77,7 @@ kotlin {
             implementation(libs.coil.compose)
             implementation(libs.androidx.ui.text.google.fonts.v150)
             implementation(libs.accompanist.pager)
+            implementation(libs.coil.kt.coil.svg)
             implementation("com.google.accompanist:accompanist-pager-indicators:0.29.1-alpha")
 
         }

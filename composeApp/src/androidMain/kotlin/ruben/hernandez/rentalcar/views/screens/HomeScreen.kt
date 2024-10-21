@@ -5,8 +5,13 @@ import SheetContent
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,7 +48,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.draw.blur
 import androidx.navigation.NavController
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.components.CarCard
@@ -52,8 +59,8 @@ import ruben.hernandez.rentalcar.views.components.SearchInput
 import ruben.hernandez.rentalcar.views.components.SectionHeader
 
 
+@RequiresApi(Build.VERSION_CODES.S)
 @OptIn(ExperimentalMaterialApi::class)
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 @Preview
 fun App(navController: NavController) {
@@ -62,50 +69,58 @@ fun App(navController: NavController) {
         initialValue = BottomSheetValue.Collapsed,
         animationSpec = tween(durationMillis = 400, easing = FastOutSlowInEasing)
     )
-    // Estado que controla el contenido del composable
     var vista by remember { mutableStateOf<@Composable () -> Unit>({}) }
 
-    LaunchedEffect(true) {
-        if (sheetState.isCollapsed) {
-            vista = {}
-        }
-    }
+    // Añadimos el estado para controlar el blur
+    var isBlured by remember { mutableStateOf(false) }
+    var authOpened by remember { mutableStateOf(false) }
+
+    // Animación del blur
+    val blurRadius by animateDpAsState(
+        targetValue = if (isBlured) 30.dp else 0.dp,
+        animationSpec = tween(durationMillis = 400, easing = FastOutSlowInEasing)
+    )
+
+
+
+
     MenuDeslizable(
         sheetContent = vista,
         sheetState = sheetState,
-        topPadding = 40.dp,
+        topPadding = 60.dp,
         parentContent = {
 
-            // Aplica el fondo degradado aquí
+
             Box(
                 modifier = Modifier
-//            .fillMaxSize()
-                    .background(
-                        AppColors.backgroundGreyWhite
-                    )
+                    .fillMaxSize()
+                    .background(AppColors.backgroundGreyWhite)
+                    .blur(blurRadius) // Aplicamos el efecto blur aquí
             ) {
+
                 Column {
-                    ruben.hernandez.rentalcar.views.components.TopBar()
-                    // Todo el contenido de tu app
-                    Row(
-                        modifier = Modifier.padding(
-                            top = 15.dp,
-                            start = 20.dp,
-                            bottom = 10.dp,
-                            end = 20.dp
-                        ),
-                    ) {
-//                MenuPegadoALaBarra()
-//
-                        SearchInput(
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                        Spacer(modifier = Modifier.width(15.dp))
-//                CircularButton(
-//                    icon = Icons.Default.Tune,
-//                    contentDescription = "",
-////                            modifier = Modifier.align(Alignment.End)
-//                )
+
+                    Column {
+                        ruben.hernandez.rentalcar.views.components.TopBar(onClick = {
+                            corrutineScope.launch {
+                                isBlured = true
+                            };
+                            authOpened = true
+                        })
+                        // Todo el contenido de tu app
+                        Row(
+                            modifier = Modifier.padding(
+                                top = 15.dp,
+                                start = 20.dp,
+                                bottom = 10.dp,
+                                end = 20.dp
+                            ),
+                        ) {
+                            SearchInput(
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                            Spacer(modifier = Modifier.width(15.dp))
+                        }
                     }
                     HorizontalCarBrandList(
                         carBrands = listOf(
@@ -168,21 +183,18 @@ fun App(navController: NavController) {
                                     pricePerDay = "$400/d",
                                     onClick = {
                                         corrutineScope.launch {
-                                            vista = { SheetContent(sheetState) };sheetState.expand()
+                                            vista = { SheetContent(sheetState) }
+                                            sheetState.expand()
                                         }
                                     }
                                 )
-                                if (index < 4) {  // No añadir espacio después del último item
-                                    Spacer(modifier = Modifier.height(16.dp))
-                                }
                             }
                         }
 
                     }
 
+
                 }
-
-
 
                 BottomNav(
                     navController = navController,
@@ -190,9 +202,27 @@ fun App(navController: NavController) {
                         .align(Alignment.BottomCenter)
                 )
 
-
             }
-
+            AnimatedVisibility(
+                visible = authOpened,
+                enter = fadeIn(animationSpec = spring()),
+                exit = fadeOut(animationSpec = spring())
+            ) {
+                LoginScreen(
+                    onLoginCancel = {
+                        corrutineScope.launch {
+                            isBlured = false
+                            authOpened = false
+                        }
+                    },
+                    onLoginSuccess = {
+                        corrutineScope.launch {
+                            isBlured = false
+                            authOpened = false
+                        }
+                    }
+                )
+            }
         }
     )
 

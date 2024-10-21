@@ -2,6 +2,7 @@ package ruben.hernandez.rentalcar.views.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -28,7 +29,7 @@ import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 
 @Composable
-fun TopBar() {
+fun TopBar(onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -56,19 +57,6 @@ fun TopBar() {
             contentScale = ContentScale.FillBounds
         )
         Spacer(modifier = Modifier.width(15.dp))
-        Image(
-            painter = rememberAsyncImagePainter(
-                ImageRequest.Builder(LocalContext.current)
-                    .data(data = "https://i.pinimg.com/originals/b8/5e/9d/b85e9df9e9b75bcce3a767eb894ef153.jpg")
-                    .apply(block = fun ImageRequest.Builder.() {
-                        crossfade(true)
-                    }).build()
-            ),
-            contentDescription = "Profile Picture",
-            modifier = Modifier
-                .size(40.dp)
-                .clip(CircleShape),
-            contentScale = ContentScale.Crop
-        )
+
     }
 }
