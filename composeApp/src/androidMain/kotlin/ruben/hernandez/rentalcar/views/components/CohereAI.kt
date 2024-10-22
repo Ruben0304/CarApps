@@ -2,7 +2,7 @@ package ruben.hernandez.rentalcar.views.components
 
 import java.util.List
 
-import com.cohere.api.types.*
+
 import kotlinx.serialization.Serializable
 import io.ktor.client.*
 import io.ktor.client.call.body

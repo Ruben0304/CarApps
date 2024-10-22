@@ -6,13 +6,9 @@ import androidx.compose.animation.core.EaseOutQuad
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -21,12 +17,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @SuppressLint("UseOfNonLambdaOffsetOverload")
 @Composable
 fun ChatsList(
     modifier: Modifier = Modifier,
     listaConversaciones: List<ChatItem>,
+    onClick: (String) -> Unit
 ) {
     AnimatedVisibility(
         visible = true,
@@ -58,8 +56,10 @@ fun ChatsList(
                         .alpha(animatedProgress.value)
                         .offset(y = (20 * (1f - animatedProgress.value)).dp)
                 ) {
-                    ChatItemScreen(
-                        contenido = item
+                    ChatItem(
+                        contenido = item,
+                        onClick = onClick
+
                     )
                 }
             }

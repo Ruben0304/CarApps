@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version "2.0.0"
     id("com.google.relay") version "0.3.12"
+    alias(libs.plugins.apollo)
 }
 
 kotlin {
@@ -78,6 +79,8 @@ kotlin {
             implementation(libs.androidx.ui.text.google.fonts.v150)
             implementation(libs.accompanist.pager)
             implementation(libs.coil.kt.coil.svg)
+            implementation(libs.apollo.runtime)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
             implementation("com.google.accompanist:accompanist-pager-indicators:0.29.1-alpha")
 
         }
@@ -93,7 +96,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha08")
-            implementation(libs.cohere.java)
 
         }
     }
@@ -142,6 +144,16 @@ kotlin {
         commonMain {
 
             resources.srcDirs("src/commonMain/resources")
+        }
+    }
+}
+apollo {
+    service("service") {
+        packageName.set("ruben.hernandez.rentalcar")
+        introspection {
+            endpointUrl.set("https://car-app-backend-lac.vercel.app/graphql")
+//            headers.put("api-key", "1234567890abcdef")
+            schemaFile.set(file("src/main/graphql/schema.graphqls"))
         }
     }
 }

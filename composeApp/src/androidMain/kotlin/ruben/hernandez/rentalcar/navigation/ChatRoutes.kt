@@ -6,20 +6,18 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import ruben.hernandez.rentalcar.views.screens.Home.App
-
-import ruben.hernandez.rentalcar.views.screens.Search.SearchScreen
-
+import ruben.hernandez.rentalcar.views.screens.Chat.ChatScreen
+import ruben.hernandez.rentalcar.views.screens.ChatCenter.ChatsCenterScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun AppRoutes(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Screen.Home.route) {
-        composable(Screen.Home.route) {
-            App(navController)
+fun ChatRoutes(navController: NavHostController) {
+    NavHost(navController = navController, startDestination = "chatCenter") {
+        composable("chatCenter") {
+            ChatsCenterScreen(navController)
         }
-        composable(Screen.Search.route) {
-            SearchScreen(navController)
+        composable("chat") {
+            ChatScreen(navController)
         }
 
 //        navController.navigate(Screen.Detail.createRoute("1234"))
@@ -30,13 +28,4 @@ fun AppRoutes(navController: NavHostController) {
 //            DetailScreen(navController, itemId)
 //        }
     }
-}
-
-
-sealed class Screen(val route: String) {
-    data object Home : Screen("home")
-    data object Search : Screen("search")
-
-
-
 }
