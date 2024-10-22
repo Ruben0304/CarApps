@@ -1,6 +1,6 @@
 package ruben.hernandez.rentalcar.views.screens.Home
 
-import MenuDeslizable
+
 import SheetContent
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -35,9 +35,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-import ruben.hernandez.rentalcar.views.components.BottomNav
-import ruben.hernandez.rentalcar.views.components.CarBrand
-import ruben.hernandez.rentalcar.views.components.HorizontalCarBrandList
+import ruben.hernandez.rentalcar.views.components.common.BottomNav
+import ruben.hernandez.rentalcar.views.components.home.CarBrand
+import ruben.hernandez.rentalcar.views.components.home.HorizontalCarBrandList
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -48,10 +48,12 @@ import androidx.compose.ui.draw.blur
 import androidx.navigation.NavController
 import kotlinx.coroutines.launch
 import ruben.hernandez.rentalcar.AppColors
-import ruben.hernandez.rentalcar.views.components.CarCard
-import ruben.hernandez.rentalcar.views.components.MechanicCarHorizontal
-import ruben.hernandez.rentalcar.views.components.SearchInput
-import ruben.hernandez.rentalcar.views.components.SectionHeader
+import ruben.hernandez.rentalcar.views.components.car.CarCard
+import ruben.hernandez.rentalcar.views.components.common.MenuDeslizable
+import ruben.hernandez.rentalcar.views.components.piezas.MechanicCarHorizontal
+import ruben.hernandez.rentalcar.views.components.common.SearchInput
+import ruben.hernandez.rentalcar.views.components.common.SectionHeader
+import ruben.hernandez.rentalcar.views.components.common.TopBar
 import ruben.hernandez.rentalcar.views.screens.Auth.LoginScreen
 
 
@@ -97,7 +99,7 @@ fun App(navController: NavController) {
                 Column {
 
                     Column {
-                        ruben.hernandez.rentalcar.views.components.TopBar(onClick = {
+                        TopBar(onClick = {
                             corrutineScope.launch {
                                 isBlured = true
                             };

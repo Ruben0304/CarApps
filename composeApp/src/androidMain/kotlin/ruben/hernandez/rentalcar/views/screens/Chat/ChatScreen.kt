@@ -1,6 +1,5 @@
 package ruben.hernandez.rentalcar.views.screens.Chat
 
-import android.net.Uri
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -29,20 +28,15 @@ import androidx.navigation.compose.rememberNavController
 import carrental.composeapp.generated.resources.Phone
 import carrental.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.painterResource
+import ruben.hernandez.rentalcar.models.ChatMessage
 //import ruben.hernandez.rentalcar.appclip.Icon
 //import ruben.hernandez.rentalcar.messagesthreadname.MessagesThreadName
 
-import ruben.hernandez.rentalcar.views.components.AnimatedMessageBubble
-import ruben.hernandez.rentalcar.views.components.BackButton
-import ruben.hernandez.rentalcar.views.components.CohereAI
-import ruben.hernandez.rentalcar.views.components.ElegantChatInput
+import ruben.hernandez.rentalcar.views.components.chat.AnimatedMessageBubble
+import ruben.hernandez.rentalcar.views.components.common.BackButton
+import ruben.hernandez.rentalcar.views.components.chat.ElegantChatInput
 
-data class ChatMessage(
-    val id: Int,
-    val content: String? = null,  // Mensaje de texto
-    val imageUri: Uri? = null,     // Imagen (si aplica)
-    val isReceived: Boolean
-)
+
 
 @Composable
 fun ChatScreen(navController: NavController = rememberNavController()) {
@@ -115,7 +109,7 @@ fun ChatScreen(navController: NavController = rememberNavController()) {
                     // Llamar a la función asíncrona
                     messages = messages + ChatMessage( // Agregar respuesta a la lista
                         id = messages.size,
-                        content = CohereAI.generateLlmPrompt(newMessage),
+                        content = "prueba recibir",
                         isReceived = true // Marcar como recibido
                     )
                     listState.animateScrollToItem(0) // Desplazar hacia el mensaje más reciente
@@ -125,7 +119,7 @@ fun ChatScreen(navController: NavController = rememberNavController()) {
                 val isReceived = false
                 messages = messages + ChatMessage(
                     id = messages.size,
-                    imageUri = imageUri,
+                    imageUri = imageUri.toString(),
                     isReceived = isReceived
                 )
                 coroutineScope.launch {

@@ -7,7 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ruben.hernandez.rentalcar.views.screens.Chat.ChatScreen
-import ruben.hernandez.rentalcar.views.screens.ChatCenter.ChatsCenterScreen
+import ruben.hernandez.rentalcar.views.screens.Chat.ChatsCenterScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable

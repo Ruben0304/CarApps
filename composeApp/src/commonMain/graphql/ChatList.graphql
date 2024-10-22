@@ -1,9 +1,7 @@
 query ChatList{
     conversaciones{
-        Id,
         idMecanico,
         conversation{
-            autor,
             mensaje
         }
     }

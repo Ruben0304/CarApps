@@ -79,7 +79,6 @@ kotlin {
             implementation(libs.androidx.ui.text.google.fonts.v150)
             implementation(libs.accompanist.pager)
             implementation(libs.coil.kt.coil.svg)
-            implementation(libs.apollo.runtime)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
             implementation("com.google.accompanist:accompanist-pager-indicators:0.29.1-alpha")
 
@@ -95,8 +94,9 @@ kotlin {
             implementation(libs.androidx.ui.text.google.fonts)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha08")
-
+            implementation(libs.navigation.compose)
+            implementation(libs.apollo.runtime)
+            implementation(libs.apollo.api)
         }
     }
 }

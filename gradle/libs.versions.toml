@@ -14,7 +14,6 @@ androidx-lifecycle = "2.8.0"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
 animation = "1.7.2"
-apolloRuntime = "4.0.1"
 coilCompose = "2.3.0"
 coilSvgVersion = "2.4.0"
 compose-plugin = "1.6.11"
@@ -26,6 +25,7 @@ kotlinxSerializationJson = "1.3.2"
 ktorClientApache5 = "2.3.12"
 lottieCompose = "6.5.2"
 materialIconsExtended = "1.7.2"
+navigationCompose = "2.8.0-alpha08"
 navigationRuntimeKtx = "2.8.1"
 material3Android = "1.3.0"
 uiTextGoogleFonts = "1.7.2"
@@ -43,7 +43,8 @@ androidx-material-icons-extended = { module = "androidx.compose.material:materia
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationRuntimeKtx" }
 androidx-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 androidx-ui-text-google-fonts-v150 = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "uiTextGoogleFontsVersion" }
-apollo-runtime = { module = "com.apollographql.apollo:apollo-runtime", version.ref = "apolloRuntime" }
+apollo-api = { module = "com.apollographql.apollo:apollo-api", version.ref = "apollo"}
+apollo-runtime = { module = "com.apollographql.apollo:apollo-runtime", version.ref = "apollo" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 coil-kt-coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coilSvgVersion" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -66,6 +67,7 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 ktor-client-apache5 = { module = "io.ktor:ktor-client-apache5", version.ref = "ktorClientApache5" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorClientApache5" }
 lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottieCompose" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

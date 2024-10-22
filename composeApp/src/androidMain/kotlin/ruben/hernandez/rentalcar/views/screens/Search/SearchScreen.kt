@@ -19,11 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ruben.hernandez.rentalcar.AppColors
-import ruben.hernandez.rentalcar.views.components.BackButton
-import ruben.hernandez.rentalcar.views.components.CarList
-import ruben.hernandez.rentalcar.views.components.MechanicCarList
-import ruben.hernandez.rentalcar.views.components.SearchInput
-import ruben.hernandez.rentalcar.views.components.TopNavButton
+import ruben.hernandez.rentalcar.views.components.common.BackButton
+import ruben.hernandez.rentalcar.views.components.car.CarList
+import ruben.hernandez.rentalcar.views.components.piezas.MechanicCarList
+import ruben.hernandez.rentalcar.views.components.common.SearchInput
+import ruben.hernandez.rentalcar.views.components.search.TopNavButton
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
