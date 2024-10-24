@@ -115,7 +115,5 @@ fun ChatsCenterScreen(
             is ListUiState.Error -> println(state.message)
         }
 
-
-
     }
 }

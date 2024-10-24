@@ -39,7 +39,7 @@ fun Previa() {
 
 
 @Composable
-fun CarouselImage(imagenes: List<String>,modifier: Modifier = Modifier) {
+fun CarouselImage(imagenes: List<String>, modifier: Modifier = Modifier) {
     val pagerState = rememberPagerState(initialPage = 0) {
         imagenes.size
     }
@@ -59,35 +59,34 @@ fun CarouselImage(imagenes: List<String>,modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
 
-
-
-        ) { Box(
-            contentAlignment = Alignment.Center, // Centrar contenido en la página
-            modifier = Modifier.fillMaxSize()
         ) {
-            Surface(
-                shape = RoundedCornerShape(20.dp),  // Bordes redondeados en el Surface
-                modifier = Modifier
-                    .graphicsLayer { scaleX = .9f }
-                    .width(400.dp)
-                    .height(600.dp),
-                color = Color.White,          // Fondo transparente
-                shadowElevation = 4.dp             // Sombra en Surface
+            Box(
+                contentAlignment = Alignment.Center, // Centrar contenido en la página
+                modifier = Modifier.fillMaxSize()
             ) {
-                AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(imagenes[currentPage])
-                        .crossfade(true)
-                        .scale(Scale.FILL)
-                        .build(),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
+                Surface(
+                    shape = RoundedCornerShape(20.dp),  // Bordes redondeados en el Surface
                     modifier = Modifier
-                        .fillMaxSize()
-                        .clip(RoundedCornerShape(20.dp))
-                )
+                        .graphicsLayer { scaleX = .9f }
+                        .width(400.dp)
+                        .height(600.dp),
+                    color = Color.White,          // Fondo transparente
+                    shadowElevation = 4.dp             // Sombra en Surface
+                ) {
+                    AsyncImage(
+                        model = ImageRequest.Builder(LocalContext.current)
+                            .data(imagenes[currentPage])
+                            .crossfade(true)
+                            .scale(Scale.FILL)
+                            .build(),
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clip(RoundedCornerShape(20.dp))
+                    )
+                }
             }
-        }
 
         }
 
