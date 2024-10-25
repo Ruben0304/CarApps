@@ -11,7 +11,7 @@ import ruben.hernandez.rentalcar.views.screens.Home.App
 import ruben.hernandez.rentalcar.views.screens.Search.SearchScreen
 
 
-@RequiresApi(Build.VERSION_CODES.O)
+@RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun AppRoutes(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screen.Home.route) {

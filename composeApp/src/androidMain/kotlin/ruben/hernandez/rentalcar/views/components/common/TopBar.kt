@@ -1,5 +1,7 @@
 package ruben.hernandez.rentalcar.views.components.common
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -24,9 +26,12 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import ruben.hernandez.rentalcar.AppColors
+import ruben.hernandez.rentalcar.viewModels.Auth.LoginViewModel
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
+import ruben.hernandez.rentalcar.views.screens.Auth.LoginScreen
 
 
+@RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun TopBar(onClick: () -> Unit) {
     Row(
@@ -56,6 +61,10 @@ fun TopBar(onClick: () -> Unit) {
             contentScale = ContentScale.FillBounds
         )
         Spacer(modifier = Modifier.width(15.dp))
+        ButtonProfile(
+            modifier = Modifier,
+           onClick = onClick
+        )
 
     }
 }
