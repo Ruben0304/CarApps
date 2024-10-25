@@ -40,6 +40,7 @@ import carrental.composeapp.generated.resources.Res
 import carrental.composeapp.generated.resources.Shape
 import carrental.composeapp.generated.resources.Wrapper
 import carrental.composeapp.generated.resources.profile
+import ruben.hernandez.rentalcar.viewModels.Chat.Auth.ButtonState
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 // Colores personalizados
@@ -47,9 +48,6 @@ val backgroundColor = Color(0xFFE0E0E0)
 val cardBackground = Color(0xFF1C1C1C).copy(alpha = 0.85f)
 val textColor = Color.White
 
-enum class ButtonState {
-    Idle, Loading, Finished
-}
 
 @Composable
 fun CustomTextField(

@@ -62,7 +62,6 @@ kotlin {
 
             // Icons (similar a tus íconos de lucide-react)
             implementation("io.ktor:ktor-client-core:2.2.0")
-            implementation("io.ktor:ktor-client-cio:2.2.0")
             implementation("io.ktor:ktor-client-content-negotiation:2.2.0")
             implementation("io.ktor:ktor-serialization-gson:2.2.0")
             implementation("io.ktor:ktor-client-serialization:2.2.0")
@@ -80,7 +79,7 @@ kotlin {
             implementation(libs.accompanist.pager)
             implementation(libs.coil.kt.coil.svg)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
-            implementation("com.google.accompanist:accompanist-pager-indicators:0.29.1-alpha")
+            implementation(libs.ktor.client.cio.v300rc1)
 
         }
         commonMain.dependencies {
@@ -153,7 +152,8 @@ apollo {
         introspection {
             endpointUrl.set("https://car-app-backend-lac.vercel.app/graphql")
 //            headers.put("api-key", "1234567890abcdef")
-            schemaFile.set(file("src/main/graphql/schema.graphqls"))
+            schemaFile.set(file("src/commonMain/graphql/schema.graphqls"))
+
         }
     }
 }
