@@ -45,9 +45,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.draw.blur
+import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import ruben.hernandez.rentalcar.AppColors
+import ruben.hernandez.rentalcar.views.components.car.AnimatedCarCard
 import ruben.hernandez.rentalcar.views.components.car.CarCard
 import ruben.hernandez.rentalcar.views.components.common.MenuDeslizable
 import ruben.hernandez.rentalcar.views.components.piezas.MechanicCarHorizontal
@@ -57,75 +60,74 @@ import ruben.hernandez.rentalcar.views.components.common.TopBar
 import ruben.hernandez.rentalcar.views.screens.Auth.LoginScreen
 
 
+
+
 @RequiresApi(Build.VERSION_CODES.S)
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-@Preview
 fun App(navController: NavController) {
-    val corrutineScope = rememberCoroutineScope()
+    val coroutineScope = rememberCoroutineScope()
     var sheetState = rememberBottomSheetState(
         initialValue = BottomSheetValue.Collapsed,
         animationSpec = tween(durationMillis = 400, easing = FastOutSlowInEasing)
     )
     var vista by remember { mutableStateOf<@Composable () -> Unit>({}) }
-
-    // Añadimos el estado para controlar el blur
     var isBlured by remember { mutableStateOf(false) }
     var authOpened by remember { mutableStateOf(false) }
 
-    // Animación del blur
+    // Estado para controlar qué carta está expandida
+    var expandedCardIndex by remember { mutableStateOf<Int?>(null) }
+
     val blurRadius by animateDpAsState(
         targetValue = if (isBlured) 30.dp else 0.dp,
         animationSpec = tween(durationMillis = 400, easing = FastOutSlowInEasing)
     )
-
-
-
 
     MenuDeslizable(
         sheetContent = vista,
         sheetState = sheetState,
         topPadding = 60.dp,
         parentContent = {
-
-
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(AppColors.backgroundGreyWhite)
-                    .blur(blurRadius) // Aplicamos el efecto blur aquí
             ) {
-
-                Column {
-
+                // Contenido principal que se blurrea
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .blur(blurRadius)
+                ) {
                     Column {
-                        TopBar(onClick = {
-                            corrutineScope.launch {
-                                isBlured = true
-                            };
-                            authOpened = true
-                        })
-                        // Todo el contenido de tu app
-                        Row(
-                            modifier = Modifier.padding(
-                                top = 15.dp,
-                                start = 20.dp,
-                                bottom = 10.dp,
-                                end = 20.dp
-                            ),
-                        ) {
-                            SearchInput(
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                            Spacer(modifier = Modifier.width(15.dp))
+                        Column {
+                            TopBar(onClick = {
+                                coroutineScope.launch {
+                                    isBlured = true
+                                }
+                                authOpened = true
+                            })
+                            Row(
+                                modifier = Modifier.padding(
+                                    top = 15.dp,
+                                    start = 20.dp,
+                                    bottom = 10.dp,
+                                    end = 20.dp
+                                ),
+                            ) {
+                                SearchInput(
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+                                Spacer(modifier = Modifier.width(15.dp))
+                            }
                         }
-                    }
-                    HorizontalCarBrandList(
-                        carBrands = listOf(
-                            CarBrand(
-                                "Mercedes",
-                                "https://i.pinimg.com/736x/ec/12/2a/ec122af05ba3534cc01e2cfc269b3c12.jpg"
-                            ),
+
+                        HorizontalCarBrandList(
+                            carBrands = listOf(
+                                CarBrand(
+                                    "Mercedes",
+                                    "https://i.pinimg.com/736x/ec/12/2a/ec122af05ba3534cc01e2cfc269b3c12.jpg"
+                                ),
                             CarBrand(
                                 "Lada",
                                 "https://logopond.com/logos/ef337ee83020b8e9a550f203d2f54fdb.png"
@@ -145,84 +147,87 @@ fun App(navController: NavController) {
 
                             )
                     )
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(700.dp),
-                        shape = RoundedCornerShape(topEnd = 20.dp, topStart = 20.dp),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color.White)
-                    ) {
+                        Spacer(modifier = Modifier.height(12.dp))
 
-                        LazyColumn(
-                            modifier = Modifier.fillMaxSize(),
-                            contentPadding = PaddingValues(top = 20.dp, bottom = 25.dp)
-                        ) {
-                            item {
-                                SectionHeader(title = "Recientes")
-                            }
-                            item {
-                                MechanicCarHorizontal()
-                            }
-                            item {
-                                Spacer(modifier = Modifier.height(20.dp))
-                            }
-                            item {
-                                SectionHeader(title = "Mejor valorados")
-                            }
-                            items(5) { index ->
-                                CarCard(
-                                    carName = "Porsche 718 Cayman S",
-                                    carType = "Coupe",
-                                    imageUrl = "https://pngimg.com/d/maserati_PNG28.png",
-                                    passengers = 2,
-                                    transmission = "Manual",
-                                    pricePerDay = "$400/d",
-                                    onClick = {
-                                        corrutineScope.launch {
-                                            vista = { SheetContent(sheetState) }
-                                            sheetState.expand()
-                                        }
-                                    }
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(
+                                    color = Color.White,
+                                    shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
                                 )
+                        ) {
+                            LazyColumn(
+                                modifier = Modifier.fillMaxSize(),
+                                contentPadding = PaddingValues(top = 20.dp, bottom = 25.dp)
+                            ) {
+                                item {
+                                    SectionHeader(title = "Recientes")
+                                }
+                                item {
+                                    MechanicCarHorizontal()
+                                }
+                                item {
+                                    Spacer(modifier = Modifier.height(20.dp))
+                                }
+                                item {
+                                    SectionHeader(title = "Mejor valorados")
+                                }
+                                items(5) { index ->
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .zIndex(if (expandedCardIndex == index) 100f else 1f)
+                                    ) {
+                                        AnimatedCarCard(
+                                            carName = "Porsche 718 Cayman S",
+                                            carType = "Coupe",
+                                            imageUrl = "https://pngimg.com/d/maserati_PNG28.png",
+                                            passengers = 2,
+                                            transmission = "Manual",
+                                            pricePerDay = "$400/d",
+                                            isExpanded = expandedCardIndex == index,
+                                            onExpand = {
+                                                expandedCardIndex = index
+                                            },
+                                            onCollapse = {
+                                                expandedCardIndex = null
+                                            }
+                                        )
+                                    }
+                                }
                             }
                         }
-
                     }
 
-
+                    BottomNav(
+                        navController = navController,
+                        modifier = Modifier.align(Alignment.BottomCenter)
+                    )
                 }
 
-                BottomNav(
-                    navController = navController,
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                )
-
-            }
-            AnimatedVisibility(
-                visible = authOpened,
-                enter = fadeIn(animationSpec = spring()),
-                exit = fadeOut(animationSpec = spring())
-            ) {
-                LoginScreen(
-                    onLoginCancel = {
-                        corrutineScope.launch {
-                            isBlured = false
-                            authOpened = false
+                // Login overlay
+                AnimatedVisibility(
+                    visible = authOpened,
+                    enter = fadeIn(animationSpec = spring()),
+                    exit = fadeOut(animationSpec = spring())
+                ) {
+                    LoginScreen(
+                        onLoginCancel = {
+                            coroutineScope.launch {
+                                isBlured = false
+                                authOpened = false
+                            }
+                        },
+                        onLoginSuccess = {
+                            coroutineScope.launch {
+                                isBlured = false
+                                authOpened = false
+                            }
                         }
-                    },
-                    onLoginSuccess = {
-                        corrutineScope.launch {
-                            isBlured = false
-                            authOpened = false
-                        }
-                    }
-                )
+                    )
+                }
             }
         }
     )
-
-
 }
