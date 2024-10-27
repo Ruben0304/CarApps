@@ -1,13 +1,23 @@
 package ruben.hernandez.rentalcar.views.components.common
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -32,8 +42,8 @@ import carrental.composeapp.generated.resources.ChatS
 import carrental.composeapp.generated.resources.Shopping_Bag
 import carrental.composeapp.generated.resources.Shopping_BagS
 import org.jetbrains.compose.resources.painterResource
+import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.navigation.Screen
-
 
 @Composable
 fun BottomNav(navController: NavController, modifier: Modifier = Modifier) {
@@ -43,13 +53,12 @@ fun BottomNav(navController: NavController, modifier: Modifier = Modifier) {
         shadowElevation = 25.dp,
         tonalElevation = 25.dp,
         color = Color.White,
-//        border = BorderStroke(.1.dp, Color.LightGray),
         modifier = modifier
             .fillMaxWidth()
             .height(80.dp)
     ) {
         Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxSize()
         ) {
@@ -58,7 +67,7 @@ fun BottomNav(navController: NavController, modifier: Modifier = Modifier) {
                 iconUnselected = painterResource(Res.drawable.Home),
                 label = "Inicio",
                 isSelected = selectedItem == 0,
-                onClick = { selectedItem = 0; navController.navigate(Screen.Home.route) },
+                onClick = { if (selectedItem != 0) { selectedItem = 0; navController.navigate(Screen.Home.route) } },
                 modifier = Modifier.weight(1f)
             )
 
@@ -67,7 +76,7 @@ fun BottomNav(navController: NavController, modifier: Modifier = Modifier) {
                 iconUnselected = painterResource(Res.drawable.Shopping_Bag),
                 label = "Explorar",
                 isSelected = selectedItem == 1,
-                onClick = { selectedItem = 1; navController.navigate(Screen.Search.route) },
+                onClick = { if (selectedItem != 1) { selectedItem = 1; navController.navigate(Screen.Search.route) } },
                 modifier = Modifier.weight(1f)
             )
 
@@ -76,7 +85,7 @@ fun BottomNav(navController: NavController, modifier: Modifier = Modifier) {
                 iconUnselected = painterResource(Res.drawable.Chat),
                 label = "Consultas",
                 isSelected = selectedItem == 2,
-                onClick = { selectedItem = 2 },
+                onClick = { if (selectedItem != 2) { selectedItem = 2 } },
                 modifier = Modifier.weight(1f)
             )
 
@@ -85,7 +94,7 @@ fun BottomNav(navController: NavController, modifier: Modifier = Modifier) {
                 iconUnselected = painterResource(Res.drawable.Key),
                 label = "Mi auto",
                 isSelected = selectedItem == 3,
-                onClick = { selectedItem = 3 },
+                onClick = { if (selectedItem != 3) { selectedItem = 3 } },
                 modifier = Modifier.weight(1f)
             )
         }
@@ -101,25 +110,37 @@ fun NavItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val iconSize by animateDpAsState(targetValue = if (isSelected) 30.dp else 25.dp)
+    val textColor by animateColorAsState(targetValue = if (isSelected) AppColors.principal else Color(72, 76, 82))
+    val interactionSource = remember { MutableInteractionSource() }
+
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = modifier
-            .clickable(onClick = onClick)
+            .clickable(onClick = onClick, interactionSource = interactionSource, indication = null)
             .fillMaxSize()
     ) {
         val icon = if (isSelected) iconSelected else iconUnselected
-        val textColor = if (isSelected) Color(80, 123, 217) else Color(165, 163, 163, 255)
+        val iconTintColor = if (isSelected) Color.Unspecified else Color(72, 76, 82)
 
         Icon(
             painter = icon,
             contentDescription = "",
-            modifier = Modifier.size(25.dp),
-            tint = Color.Unspecified // Deja el color sin especificar para que use el color del recurso
+            modifier = Modifier.size(iconSize),
+            tint = iconTintColor // Asigna el color para iconos no seleccionados
         )
+
         Text(
             text = label,
             color = textColor
         )
     }
 }
+
+
+
+
+
+
