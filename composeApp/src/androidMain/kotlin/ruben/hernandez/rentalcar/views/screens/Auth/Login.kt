@@ -1,6 +1,7 @@
 package ruben.hernandez.rentalcar.views.screens.Auth
 
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedContent
 
@@ -24,15 +25,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -40,70 +35,58 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import ruben.hernandez.rentalcar.views.components.common.BackButton
-import ruben.hernandez.rentalcar.views.components.auth.ButtonState
 import ruben.hernandez.rentalcar.views.components.auth.CustomTextField
 import ruben.hernandez.rentalcar.views.components.auth.ForgotPassword
 import ruben.hernandez.rentalcar.views.components.auth.LoginButton
 import ruben.hernandez.rentalcar.views.components.auth.LoginLogo
 import ruben.hernandez.rentalcar.views.components.auth.LoginTitle
 import ruben.hernandez.rentalcar.views.components.auth.SocialIcons
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.togetherWith
 
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
+
+import ruben.hernandez.rentalcar.viewModels.Chat.Auth.LoginEvent
+import ruben.hernandez.rentalcar.viewModels.Chat.Auth.LoginViewModel
 
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 
 @RequiresApi(Build.VERSION_CODES.S)
-@Preview
-@Composable
-fun PruebaLoginView() {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-//        LoginScreen(
-//            onLoginSuccess = {
-//                // Acción tras login exitoso
-//            }
-//        )
-    }
-}
-
-
-@RequiresApi(Build.VERSION_CODES.S)
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun LoginScreen(
+    viewModel: LoginViewModel = viewModel(),
     onLoginSuccess: () -> Unit,
     onLoginCancel: () -> Unit
 ) {
-    var email by remember { mutableStateOf(TextFieldValue("")) }
-    var password by remember { mutableStateOf(TextFieldValue("")) }
-    var name by remember { mutableStateOf(TextFieldValue("")) }
-    var confirmPassword by remember { mutableStateOf(TextFieldValue("")) }
-    var buttonState by remember { mutableStateOf(ButtonState.Idle) }
-    var isRegistering by remember { mutableStateOf(false) }
-    val coroutineScope = rememberCoroutineScope()
+    val uiState by viewModel.uiState.collectAsState()
+    val context = LocalContext.current
 
-    val textColor = Color.Black
-    val colorBackground = Color(0x7AB4BBC2)
+    // Recolectar eventos del ViewModel
+    LaunchedEffect(true) {
+        viewModel.events.collect { event ->
+            when (event) {
+                is LoginEvent.NavigateToHome -> onLoginSuccess()
+                is LoginEvent.ShowError -> {
+                    Toast.makeText(context, event.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = colorBackground)
+            .background(color = Color(0x7AB4BBC2))
             .pointerInput(Unit) {
-                detectTapGestures { }  // Intercepta clicks sin hacer nada
+                detectTapGestures { }
             },
         contentAlignment = Alignment.Center
     ) {
@@ -126,9 +109,8 @@ fun LoginScreen(
             LoginTitle()
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Contenedor principal con animación
             AnimatedContent(
-                targetState = isRegistering,
+                targetState = uiState.isRegistering,
                 transitionSpec = {
                     (fadeIn(animationSpec = tween(300, delayMillis = 300)) +
                             slideInVertically(
@@ -150,29 +132,29 @@ fun LoginScreen(
                 ) {
                     if (isReg) {
                         CustomTextField(
-                            value = name,
-                            onValueChange = { name = it },
+                            value = uiState.name,
+                            onValueChange = { viewModel.onNameChanged(it) },
                             placeholder = "Nombre",
-                            textColor = textColor,
+                            textColor = Color.Black,
                             modifier = Modifier.fillMaxWidth(.9f)
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                     }
 
                     CustomTextField(
-                        value = email,
-                        onValueChange = { email = it },
+                        value = uiState.email,
+                        onValueChange = { viewModel.onEmailChanged(it) },
                         placeholder = "Email",
-                        textColor = textColor,
+                        textColor = Color.Black,
                         modifier = Modifier.fillMaxWidth(.9f)
                     )
                     Spacer(modifier = Modifier.height(16.dp))
 
                     CustomTextField(
-                        value = password,
-                        onValueChange = { password = it },
+                        value = uiState.password,
+                        onValueChange = { viewModel.onPasswordChanged(it) },
                         placeholder = "Password",
-                        textColor = textColor,
+                        textColor = Color.Black,
                         isPassword = true,
                         modifier = Modifier.fillMaxWidth(.9f),
                         showForgotPassword = !isReg
@@ -190,10 +172,10 @@ fun LoginScreen(
                     if (isReg) {
                         Spacer(modifier = Modifier.height(16.dp))
                         CustomTextField(
-                            value = confirmPassword,
-                            onValueChange = { confirmPassword = it },
+                            value = uiState.confirmPassword,
+                            onValueChange = { viewModel.onConfirmPasswordChanged(it) },
                             placeholder = "Confirmar Password",
-                            textColor = textColor,
+                            textColor = Color.Black,
                             isPassword = true,
                             modifier = Modifier.fillMaxWidth(.9f)
                         )
@@ -203,19 +185,16 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
             LoginButton(
-                buttonState = buttonState,
-                onClick = {
-                    buttonState = ButtonState.Loading
-                    coroutineScope.launch {
-                        delay(1000)
-                        buttonState = ButtonState.Finished
-                        delay(650)
-                        onLoginSuccess()
-                    }
-                }
+                buttonState = uiState.buttonState,
+                onClick = { viewModel.onLogin() }
             )
+
             Spacer(modifier = Modifier.height(24.dp))
-            SocialIcons(modifier = Modifier.padding(vertical = 40.dp).fillMaxWidth())
+            SocialIcons(
+                modifier = Modifier
+                    .padding(vertical = 40.dp)
+                    .fillMaxWidth()
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
             Row(
@@ -224,7 +203,7 @@ fun LoginScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = if (isRegistering) "¿Ya tienes cuenta? " else "¿No estás registrado? ",
+                    text = if (uiState.isRegistering) "¿Ya tienes cuenta? " else "¿No estás registrado? ",
                     color = Color.White,
                     style = TextStyle(
                         shadow = Shadow(
@@ -235,14 +214,13 @@ fun LoginScreen(
                     )
                 )
                 Text(
-                    text = if (isRegistering) "Iniciar sesión" else "Registrarse",
+                    text = if (uiState.isRegistering) "Iniciar sesión" else "Registrarse",
                     color = Color.Black,
                     fontFamily = poppinsFontFamily,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
-                        .clickable { isRegistering = !isRegistering }
-                        .padding(start = 4.dp),
-
+                        .clickable { viewModel.onRegisterModeChanged(!uiState.isRegistering) }
+                        .padding(start = 4.dp)
                 )
             }
         }

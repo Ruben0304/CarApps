@@ -61,11 +61,47 @@ type Pieza {
 }
 
 type Mutation {
+  login(input: LoginInput!): AuthResponse!
+
+  register(input: RegisterInput!): AuthResponse!
+
   insertarCarro(input: CarroInputUpdate!): Carro!
 
   actualizarCarro(id: String!, input: CarroInputUpdate!): Carro
 
   insertarPieza(input: PiezaInputUpdate!): Pieza!
+}
+
+type AuthResponse {
+  token: String!
+
+  user: User!
+}
+
+type User {
+  id: String!
+
+  username: String!
+
+  phone: String!
+
+  fullName: String!
+}
+
+input LoginInput {
+  username: String!
+
+  password: String!
+}
+
+input RegisterInput {
+  username: String!
+
+  password: String!
+
+  phone: String!
+
+  fullName: String!
 }
 
 input CarroInputUpdate {
