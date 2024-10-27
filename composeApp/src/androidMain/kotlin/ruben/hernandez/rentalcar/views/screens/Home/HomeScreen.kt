@@ -29,6 +29,8 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -63,7 +65,7 @@ import ruben.hernandez.rentalcar.views.screens.Auth.LoginScreen
 
 
 @RequiresApi(Build.VERSION_CODES.S)
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun App(navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
@@ -101,6 +103,7 @@ fun App(navController: NavController) {
                 ) {
                     Column {
                         Column {
+                            TopAppBar(title = { /*TODO*/ })
                             TopBar(onClick = {
                                 coroutineScope.launch {
                                     isBlured = true
@@ -174,27 +177,18 @@ fun App(navController: NavController) {
                                     SectionHeader(title = "Mejor valorados")
                                 }
                                 items(5) { index ->
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .zIndex(if (expandedCardIndex == index) 100f else 1f)
-                                    ) {
-                                        AnimatedCarCard(
+
+                                        CarCard(
                                             carName = "Porsche 718 Cayman S",
                                             carType = "Coupe",
                                             imageUrl = "https://pngimg.com/d/maserati_PNG28.png",
                                             passengers = 2,
                                             transmission = "Manual",
                                             pricePerDay = "$400/d",
-                                            isExpanded = expandedCardIndex == index,
-                                            onExpand = {
-                                                expandedCardIndex = index
-                                            },
-                                            onCollapse = {
-                                                expandedCardIndex = null
-                                            }
+                                            onClick = {coroutineScope.launch { sheetState.expand();expandedCardIndex = index }}
+
                                         )
-                                    }
+
                                 }
                             }
                         }

@@ -52,7 +52,8 @@ fun BotonColor(
     alClic: () -> Unit = {},
     tamanoTexto: TextUnit = 13.sp,
     tamanoIcono: Dp = 15.dp,
-    forma: Shape = CircleShape
+    forma: Shape = CircleShape,
+    paddingtexto: Dp = 4.dp
 ) {
     Button(
         onClick = alClic,
@@ -87,7 +88,7 @@ fun BotonColor(
                 fontSize = tamanoTexto,
                 textAlign = TextAlign.Center,
                 fontFamily = poppinsFontFamily,
-                modifier = Modifier.padding(horizontal = 4.dp),
+                modifier = Modifier.padding(horizontal = 0.dp),
                 color = colorTexto
             )
         }

@@ -208,18 +208,24 @@ import carrental.composeapp.generated.resources.MessagingWhite
 import carrental.composeapp.generated.resources.Res
 import carrental.composeapp.generated.resources.mecanica
 import androidx.compose.material3.Surface
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 
 import coil.compose.rememberImagePainter
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.haze
+import dev.chrisbanes.haze.hazeChild
+import dev.chrisbanes.haze.materials.ExperimentalHazeMaterialsApi
+import dev.chrisbanes.haze.materials.HazeMaterials
 import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.components.common.BackButton
 import ruben.hernandez.rentalcar.views.components.common.BotonColor
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalHazeMaterialsApi::class)
 @Composable
 fun MechanicCard(
     modifier: Modifier = Modifier,
@@ -254,10 +260,11 @@ fun MechanicCard(
         animationSpec = tween(durationMillis = animationDuration)
     )
 
+    val hazeState = remember { HazeState() }
+
 
     Box(modifier = Modifier.fillMaxSize()) {
         val interactionSource = remember { MutableInteractionSource() }
-        val pressed by interactionSource.collectIsPressedAsState()
         val haptic = LocalHapticFeedback.current
 
         Card(
@@ -326,7 +333,7 @@ fun MechanicCard(
 
                         HorizontalDivider(
                             modifier = Modifier
-                                .padding(vertical = 15.dp),
+                                .padding(vertical = 10.dp),
                             color = Color(
                                 231,
                                 229,
@@ -336,24 +343,27 @@ fun MechanicCard(
                         )
 
                         if (isExpanded)
-                            Column(
+                            LazyColumn(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(bottom = 100.dp)
-                                    .verticalScroll(rememberScrollState())
+                                    .haze(state = hazeState)
+
                             ) {
-                                Text(
-                                    text = buildAnnotatedString {
-                                        withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                            append("Descripción: ")
-                                        }
-                                        append("Ernesto Pérez, un mecánico con más de 20 años de experiencia, te ofrece su taller en el corazón del municipio Playa, La Habana.\n\n")
-                                        append("Ernesto es conocido por su pasión por los automóviles y su compromiso con la excelencia. Cada reparación que realiza es un testimonio de su dedicación y su profundo conocimiento de la mecánica. Desde la reparación de motores y transmisiones hasta el mantenimiento regular y la solución de problemas eléctricos, Ernesto se especializa en todo tipo de vehículos, incluyendo coches clásicos y modernos.\n\n")
-                                        append("Además de su habilidad técnica, Ernesto se destaca por su trato amable y atención al cliente. Entiende la importancia de la confianza en este negocio y siempre se asegura de mantener a sus clientes informados sobre cada paso del proceso de reparación. Su transparencia y honestidad han ganado el corazón de la comunidad local.\n\n")
-                                        append("En el taller de Ernesto, no solo encontrarás un servicio técnico de primera, sino también un lugar donde se valora la integridad y la relación a largo plazo con los clientes. Ya sea que necesites una revisión rutinaria o una reparación compleja, Ernesto y su equipo están listos para ayudarte a mantener tu vehículo en perfecto estado. Tu satisfacción es su prioridad.")
-                                    },
-                                    style = MaterialTheme.typography.body1
-                                )
+                                item {
+                                    Text(
+                                        text = buildAnnotatedString {
+                                            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                                                append("Descripción: ")
+                                            }
+                                            append("Ernesto Pérez, un mecánico con más de 20 años de experiencia, te ofrece su taller en el corazón del municipio Playa, La Habana.\n\n")
+                                            append("Ernesto es conocido por su pasión por los automóviles y su compromiso con la excelencia. Cada reparación que realiza es un testimonio de su dedicación y su profundo conocimiento de la mecánica. Desde la reparación de motores y transmisiones hasta el mantenimiento regular y la solución de problemas eléctricos, Ernesto se especializa en todo tipo de vehículos, incluyendo coches clásicos y modernos.\n\n")
+                                            append("Además de su habilidad técnica, Ernesto se destaca por su trato amable y atención al cliente. Entiende la importancia de la confianza en este negocio y siempre se asegura de mantener a sus clientes informados sobre cada paso del proceso de reparación. Su transparencia y honestidad han ganado el corazón de la comunidad local.\n\n")
+                                            append("En el taller de Ernesto, no solo encontrarás un servicio técnico de primera, sino también un lugar donde se valora la integridad y la relación a largo plazo con los clientes. Ya sea que necesites una revisión rutinaria o una reparación compleja, Ernesto y su equipo están listos para ayudarte a mantener tu vehículo en perfecto estado. Tu satisfacción es su prioridad.")
+                                        },
+                                        style = MaterialTheme.typography.body1
+                                    )
+                                }
+
 
 
                             }
@@ -410,14 +420,17 @@ fun MechanicCard(
                     }
                 }
                 Surface(
-                    shape = RoundedCornerShape(30.dp),
-//                    shadowElevation = if (isExpanded) 3.dp else 0.dp,
-                    color = Color.White,
-//                    color = if (isExpanded) Color(180, 194, 221, 62) else Color.Transparent,
+                    color = Color.Transparent,
+                    shape = CircleShape,
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
                         .padding(horizontal = 12.dp, vertical = if (isExpanded) 20.dp else 0.dp)
                         .height(80.dp)
+                        .hazeChild(
+                            state = hazeState,
+                            style = HazeMaterials.ultraThin(),
+                            shape = CircleShape
+                        )
 
                 ) {
                     Row(

@@ -300,13 +300,13 @@ fun CarCard(
     passengers: Int,
     transmission: String,
     pricePerDay: String,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
+    modifier: Modifier = Modifier
 ) {
     Surface(
         shape = RoundedCornerShape(18.dp),
         shadowElevation = 6.dp,
-        modifier = Modifier
-            .padding(16.dp),
+        modifier = modifier,
         color = Color.White,
         onClick = onClick
     ) {
