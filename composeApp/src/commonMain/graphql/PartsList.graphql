@@ -1,0 +1,10 @@
+query PartsList{
+    piezas {
+        Id
+        tipo
+        modelo
+        precio
+        uso
+        cantidad
+    }
+}
