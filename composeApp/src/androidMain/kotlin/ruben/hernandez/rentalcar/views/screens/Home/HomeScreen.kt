@@ -31,6 +31,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -47,9 +48,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.draw.blur
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.haze
+import dev.chrisbanes.haze.hazeChild
+import dev.chrisbanes.haze.materials.ExperimentalHazeMaterialsApi
+import dev.chrisbanes.haze.materials.HazeMaterials
 import kotlinx.coroutines.launch
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.components.car.AnimatedCarCard
@@ -63,9 +70,14 @@ import ruben.hernandez.rentalcar.views.screens.Auth.LoginScreen
 
 
 @RequiresApi(Build.VERSION_CODES.S)
-@OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
+@OptIn(
+    ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class,
+    ExperimentalHazeMaterialsApi::class
+)
 @Composable
 fun App(navController: NavController) {
+
+    fun isAtLeastApi32() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2
     val coroutineScope = rememberCoroutineScope()
     var sheetState = rememberBottomSheetState(
         initialValue = BottomSheetValue.Collapsed,
@@ -82,7 +94,7 @@ fun App(navController: NavController) {
         targetValue = if (isBlured) 30.dp else 0.dp,
         animationSpec = tween(durationMillis = 400, easing = FastOutSlowInEasing)
     )
-
+    val hazeState = remember { HazeState() }
     MenuDeslizable(
         sheetContent = vista,
         sheetState = sheetState,
@@ -91,135 +103,116 @@ fun App(navController: NavController) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(AppColors.backgroundGreyWhite)
+                    .background(Brush.linearGradient(AppColors.backgroundGradient))
+                    .blur(blurRadius)
             ) {
-                // Contenido principal que se blurrea
-                Box(
+
+
+                var paddinTop = if (isAtLeastApi32()) 0.dp else 165.dp
+
+                LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
-                        .blur(blurRadius)
-                ) {
-                    Column {
-                        Column {
-                            TopBar(onClick = {
+                        .padding(top = paddinTop)
+                        .haze(state = hazeState),
+                    contentPadding = PaddingValues(top = 20.dp, bottom = 25.dp),
+
+                    ) {
+                    if (isAtLeastApi32())
+                        item {
+                            Spacer(modifier = Modifier.height(150.dp))
+                        }
+
+                    item {
+                        SectionHeader(title = "Recientes")
+                    }
+                    item {
+                        MechanicCarHorizontal()
+                    }
+                    item {
+                        Spacer(modifier = Modifier.height(20.dp))
+                    }
+                    item {
+                        SectionHeader(title = "Mejor valorados")
+                    }
+                    items(5) { index ->
+
+                        CarCard(
+                            carName = "Porsche 718 Cayman S",
+                            carType = "Coupe",
+                            imageUrl = "https://pngimg.com/d/maserati_PNG28.png",
+                            passengers = 2,
+                            transmission = "Manual",
+                            pricePerDay = "$400/d",
+                            onClick = {
                                 coroutineScope.launch {
-                                    isBlured = true
+                                    sheetState.expand();expandedCardIndex = index
                                 }
-                                authOpened = true
-                            })
-                            Row(
-                                modifier = Modifier.padding(
-                                    top = 15.dp,
-                                    start = 20.dp,
-                                    bottom = 10.dp,
-                                    end = 20.dp
-                                ),
-                            ) {
-
-                            }
-                        }
-
-                        HorizontalCarBrandList(
-                            carBrands = listOf(
-                                CarBrand(
-                                    "Mercedes",
-                                    "https://i.pinimg.com/736x/ec/12/2a/ec122af05ba3534cc01e2cfc269b3c12.jpg"
-                                ),
-                                CarBrand(
-                                    "Lada",
-                                    "https://logopond.com/logos/ef337ee83020b8e9a550f203d2f54fdb.png"
-                                ),
-                                CarBrand(
-                                    "Toyota",
-                                    "https://w0.peakpx.com/wallpaper/463/113/HD-wallpaper-toyota-icio-logo.jpg"
-                                ),
-                                CarBrand(
-                                    "Audi",
-                                    "https://w0.peakpx.com/wallpaper/337/544/HD-wallpaper-audi-logo.jpg"
-                                ),
-                                CarBrand(
-                                    "BMW",
-                                    "https://static.vecteezy.com/system/resources/previews/020/502/870/original/bmw-brand-logo-car-symbol-blue-and-white-design-germany-automobile-illustration-with-black-background-free-vector.jpg"
-                                ),
-
-                                )
-                        )
-                        Spacer(modifier = Modifier.height(12.dp))
-
-                        Box(
+                            },
                             modifier = Modifier
-                                .fillMaxSize()
-                                .background(
-                                    color = Color.White,
-                                    shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
-                                )
-                        ) {
-                            LazyColumn(
-                                modifier = Modifier.fillMaxSize(),
-                                contentPadding = PaddingValues(top = 20.dp, bottom = 25.dp)
-                            ) {
-                                item {
-                                    SectionHeader(title = "Recientes")
-                                }
-                                item {
-                                    MechanicCarHorizontal()
-                                }
-                                item {
-                                    Spacer(modifier = Modifier.height(20.dp))
-                                }
-                                item {
-                                    SectionHeader(title = "Mejor valorados")
-                                }
-                                items(5) { index ->
+                                .fillMaxWidth()
+                                .padding(horizontal = 20.dp, vertical = 20.dp)
 
-                                    CarCard(
-                                        carName = "Porsche 718 Cayman S",
-                                        carType = "Coupe",
-                                        imageUrl = "https://pngimg.com/d/maserati_PNG28.png",
-                                        passengers = 2,
-                                        transmission = "Manual",
-                                        pricePerDay = "$400/d",
-                                        onClick = {
-                                            coroutineScope.launch {
-                                                sheetState.expand();expandedCardIndex = index
-                                            }
-                                        }
+                        )
 
-                                    )
-
-                                }
-                            }
-                        }
                     }
 
-                    BottomNav(
-                        navController = navController,
-                        modifier = Modifier.align(Alignment.BottomCenter)
-                    )
                 }
+                TopAppBar(
+                    colors = TopAppBarDefaults.largeTopAppBarColors(Color.Transparent),
 
-                // Login overlay
-                AnimatedVisibility(
-                    visible = authOpened,
-                    enter = fadeIn(animationSpec = spring()),
-                    exit = fadeOut(animationSpec = spring())
-                ) {
-                    LoginScreen(
-                        onLoginCancel = {
-                            coroutineScope.launch {
-                                isBlured = false
-                                authOpened = false
-                            }
-                        },
-                        onLoginSuccess = {
-                            coroutineScope.launch {
-                                isBlured = false
-                                authOpened = false
-                            }
+                    modifier = Modifier
+                        // We use hazeChild on anything where we want the background
+                        // blurred.
+                        .hazeChild(
+                            state = hazeState,
+                        )
+                        .height(165.dp)
+                        .fillMaxWidth(), title = {
+                        Column {
+
+
+                            TopBar(modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 22.dp),
+                                onClick = {
+                                    coroutineScope.launch {
+                                        isBlured = true
+                                    }
+                                    authOpened = true
+                                })
+
                         }
-                    )
-                }
+                    })
+                BottomNav(
+                    navController = navController,
+                    modifier = Modifier.align(Alignment.BottomCenter)
+                )
             }
+
+
+            // Login overlay
+            AnimatedVisibility(
+                visible = authOpened,
+                enter = fadeIn(animationSpec = spring()),
+                exit = fadeOut(animationSpec = spring())
+            ) {
+                LoginScreen(
+                    onLoginCancel = {
+                        coroutineScope.launch {
+                            isBlured = false
+                            authOpened = false
+                        }
+                    },
+                    onLoginSuccess = {
+                        coroutineScope.launch {
+                            isBlured = false
+                            authOpened = false
+                        }
+                    }
+                )
+            }
+
         }
     )
 }

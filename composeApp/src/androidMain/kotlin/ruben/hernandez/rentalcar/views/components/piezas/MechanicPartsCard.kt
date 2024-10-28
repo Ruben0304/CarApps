@@ -157,8 +157,8 @@ fun MechanicCarList() {
 @Composable
 fun MechanicCarHorizontal() {
     LazyRow(
-        contentPadding = PaddingValues(5.dp),
-//        horizontalArrangement = Arrangement.spacedBy(0.dp),
+        contentPadding = PaddingValues(start = 15.dp, top = 10.dp),
+        horizontalArrangement = Arrangement.spacedBy(15.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
         // Lista de coches (puedes añadir más elementos aquí)
@@ -169,7 +169,9 @@ fun MechanicCarHorizontal() {
                 imageUrl = "https://pngimg.com/d/engine_PNG20.png", // URL de la imagen
                 isFavorite = false,
                 onFavoriteClick = {},
-                price = "$400"
+                price = "$400",
+                modifier = Modifier.height(230.dp)
+
             )
         }
 

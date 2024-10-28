@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -134,7 +135,7 @@ fun SearchScreen(navController: NavController = rememberNavController(), generic
                             isFavorite = false,
                             onFavoriteClick = {},
                             price = "$400",
-                            modifier = Modifier.height(270.dp)
+                            modifier = Modifier.height(270.dp).width(100.dp)
                         )
                     }
 

@@ -1,5 +1,6 @@
 package ruben.hernandez.rentalcar.views
 
+import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -59,4 +60,5 @@ fun CarRentalAppTheme(
 //        typography = androidx.compose.material3.Typography,
         content = content
     )
+
 }

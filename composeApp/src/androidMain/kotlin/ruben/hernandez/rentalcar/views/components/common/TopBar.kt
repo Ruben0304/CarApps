@@ -41,11 +41,9 @@ import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
-fun TopBar(onClick: () -> Unit) {
+fun TopBar(onClick: () -> Unit,modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 22.dp)
+        modifier = modifier
     ) {
         Row(
             modifier = Modifier
