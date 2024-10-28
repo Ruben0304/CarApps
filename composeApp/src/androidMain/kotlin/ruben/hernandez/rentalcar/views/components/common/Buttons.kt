@@ -14,8 +14,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.MyLocation
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -36,9 +38,12 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import carrental.composeapp.generated.resources.Home
+import carrental.composeapp.generated.resources.MapMarker
 import carrental.composeapp.generated.resources.Phone
 import carrental.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.painterResource
+import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 @Composable
@@ -224,6 +229,29 @@ fun BackButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
 
     ) {
         Icon(imageVector = Icons.Filled.ArrowBackIosNew, contentDescription = "back", tint = Color.Gray, modifier = Modifier.padding(12.dp))
+    }
+}
+
+@Composable
+fun MapButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    color: Color = Color.Black,
+    icono: Painter
+) {
+    IconButton (
+        onClick = onClick,
+        modifier= Modifier
+            .background (color, shape = CircleShape)
+            
+
+    ) {
+        Icon(
+            painter = icono,
+            contentDescription = "map",
+            tint = Color.White,
+            modifier = Modifier.padding(12.dp)
+        )
     }
 }
 
