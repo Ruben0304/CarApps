@@ -103,7 +103,6 @@ fun App(navController: NavController) {
                 ) {
                     Column {
                         Column {
-                            TopAppBar(title = { /*TODO*/ })
                             TopBar(onClick = {
                                 coroutineScope.launch {
                                     isBlured = true
@@ -118,10 +117,7 @@ fun App(navController: NavController) {
                                     end = 20.dp
                                 ),
                             ) {
-                                SearchInput(
-                                    modifier = Modifier.fillMaxWidth()
-                                )
-                                Spacer(modifier = Modifier.width(15.dp))
+
                             }
                         }
 

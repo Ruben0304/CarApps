@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -32,38 +33,62 @@ import ruben.hernandez.rentalcar.views.poppinsFontFamily
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun TopBar(onClick: () -> Unit) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 16.dp, top = 22.dp, start = 20.dp, end = 20.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Column {
-//            Text("Ubicación", fontSize = 14.sp, color = AppColors.dark, fontFamily = poppinsFontFamily)
-//            Text("Havana, Cuba", fontSize = 16.sp, fontWeight = FontWeight.Bold,fontFamily = poppinsFontFamily, color = AppColors.dark)
-        }
-        Spacer(modifier = Modifier.weight(1f))
-        Image(
-            painter = rememberAsyncImagePainter(
-                ImageRequest.Builder(LocalContext.current)
-                    .data(data = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx_HPjBBKzO2_jwe1dSfxMoTwNrTTEFMa3YmrBZCo5bh5S0jXPWfcRAcmKBe4pP1wmgyY&usqp=CAU")
-                    .apply(block = fun ImageRequest.Builder.() {
-                        crossfade(true)
-                    }).build()
-            ),
-            contentDescription = "Notification Picture",
+    Column {
+        Row(
             modifier = Modifier
-                .size(40.dp)
-                .clip(CircleShape)
-                .border(1.5.dp, Color.LightGray, shape = CircleShape),
-            contentScale = ContentScale.FillBounds
-        )
-        Spacer(modifier = Modifier.width(15.dp))
-        ButtonProfile(
-            modifier = Modifier,
-           onClick = onClick
-        )
+                .fillMaxWidth()
+                .padding(bottom = 16.dp, top = 22.dp, start = 20.dp, end = 20.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
 
+
+                Column {
+                    Text(
+                        "Ubicación",
+                        fontSize = 14.sp,
+                        color = AppColors.dark,
+                        fontFamily = poppinsFontFamily
+                    )
+                    Text(
+                        "Havana, Cuba",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = poppinsFontFamily,
+                        color = AppColors.dark
+                    )
+                }
+
+                Spacer(modifier = Modifier.weight(1f))
+//            Image(
+//                painter = rememberAsyncImagePainter(
+//                    ImageRequest.Builder(LocalContext.current)
+//                        .data(data = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx_HPjBBKzO2_jwe1dSfxMoTwNrTTEFMa3YmrBZCo5bh5S0jXPWfcRAcmKBe4pP1wmgyY&usqp=CAU")
+//                        .apply(block = fun ImageRequest.Builder.() {
+//                            crossfade(true)
+//                        }).build()
+//                ),
+//                contentDescription = "Notification Picture",
+//                modifier = Modifier
+//                    .size(40.dp)
+//                    .clip(CircleShape)
+//                    .border(1.5.dp, Color.LightGray, shape = CircleShape),
+//                contentScale = ContentScale.FillBounds
+//            )
+            Spacer(modifier = Modifier.width(15.dp))
+            ButtonProfile(
+                modifier = Modifier,
+                onClick = onClick
+            )
+
+
+
+        }
+        SearchInput(
+            modifier = Modifier
+                .padding(start = 10.dp, top = 20.dp)
+                .fillMaxWidth(.95f)
+                .height(38.dp)
+        )
     }
 
 }

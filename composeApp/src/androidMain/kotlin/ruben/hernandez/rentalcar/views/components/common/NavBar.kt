@@ -58,9 +58,9 @@ fun BottomNav(navController: NavController, modifier: Modifier = Modifier) {
             .height(80.dp)
     ) {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxWidth().padding(horizontal = 5.dp)
         ) {
             NavItem(
                 iconSelected = painterResource(Res.drawable.HomeS),
@@ -120,7 +120,7 @@ fun NavItem(
         verticalArrangement = Arrangement.Center,
         modifier = modifier
             .clickable(onClick = onClick, interactionSource = interactionSource, indication = null)
-            .fillMaxSize()
+
     ) {
         val icon = if (isSelected) iconSelected else iconUnselected
         val iconTintColor = if (isSelected) Color.Unspecified else Color(72, 76, 82)
