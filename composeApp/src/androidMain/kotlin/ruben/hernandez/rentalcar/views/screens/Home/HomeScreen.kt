@@ -62,8 +62,6 @@ import ruben.hernandez.rentalcar.views.components.common.TopBar
 import ruben.hernandez.rentalcar.views.screens.Auth.LoginScreen
 
 
-
-
 @RequiresApi(Build.VERSION_CODES.S)
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -127,25 +125,25 @@ fun App(navController: NavController) {
                                     "Mercedes",
                                     "https://i.pinimg.com/736x/ec/12/2a/ec122af05ba3534cc01e2cfc269b3c12.jpg"
                                 ),
-                            CarBrand(
-                                "Lada",
-                                "https://logopond.com/logos/ef337ee83020b8e9a550f203d2f54fdb.png"
-                            ),
-                            CarBrand(
-                                "Toyota",
-                                "https://w0.peakpx.com/wallpaper/463/113/HD-wallpaper-toyota-icio-logo.jpg"
-                            ),
-                            CarBrand(
-                                "Audi",
-                                "https://w0.peakpx.com/wallpaper/337/544/HD-wallpaper-audi-logo.jpg"
-                            ),
-                            CarBrand(
-                                "BMW",
-                                "https://static.vecteezy.com/system/resources/previews/020/502/870/original/bmw-brand-logo-car-symbol-blue-and-white-design-germany-automobile-illustration-with-black-background-free-vector.jpg"
-                            ),
+                                CarBrand(
+                                    "Lada",
+                                    "https://logopond.com/logos/ef337ee83020b8e9a550f203d2f54fdb.png"
+                                ),
+                                CarBrand(
+                                    "Toyota",
+                                    "https://w0.peakpx.com/wallpaper/463/113/HD-wallpaper-toyota-icio-logo.jpg"
+                                ),
+                                CarBrand(
+                                    "Audi",
+                                    "https://w0.peakpx.com/wallpaper/337/544/HD-wallpaper-audi-logo.jpg"
+                                ),
+                                CarBrand(
+                                    "BMW",
+                                    "https://static.vecteezy.com/system/resources/previews/020/502/870/original/bmw-brand-logo-car-symbol-blue-and-white-design-germany-automobile-illustration-with-black-background-free-vector.jpg"
+                                ),
 
-                            )
-                    )
+                                )
+                        )
                         Spacer(modifier = Modifier.height(12.dp))
 
                         Box(
@@ -174,16 +172,20 @@ fun App(navController: NavController) {
                                 }
                                 items(5) { index ->
 
-                                        CarCard(
-                                            carName = "Porsche 718 Cayman S",
-                                            carType = "Coupe",
-                                            imageUrl = "https://pngimg.com/d/maserati_PNG28.png",
-                                            passengers = 2,
-                                            transmission = "Manual",
-                                            pricePerDay = "$400/d",
-                                            onClick = {coroutineScope.launch { sheetState.expand();expandedCardIndex = index }}
+                                    CarCard(
+                                        carName = "Porsche 718 Cayman S",
+                                        carType = "Coupe",
+                                        imageUrl = "https://pngimg.com/d/maserati_PNG28.png",
+                                        passengers = 2,
+                                        transmission = "Manual",
+                                        pricePerDay = "$400/d",
+                                        onClick = {
+                                            coroutineScope.launch {
+                                                sheetState.expand();expandedCardIndex = index
+                                            }
+                                        }
 
-                                        )
+                                    )
 
                                 }
                             }

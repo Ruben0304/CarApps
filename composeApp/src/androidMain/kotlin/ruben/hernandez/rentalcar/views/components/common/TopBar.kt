@@ -3,7 +3,9 @@ package ruben.hernandez.rentalcar.views.components.common
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,8 +29,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import carrental.composeapp.generated.resources.MapMarker
+import carrental.composeapp.generated.resources.PlaceMarker
+import carrental.composeapp.generated.resources.Res
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
@@ -33,32 +42,45 @@ import ruben.hernandez.rentalcar.views.poppinsFontFamily
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun TopBar(onClick: () -> Unit) {
-    Column {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 22.dp)
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 16.dp, top = 22.dp, start = 20.dp, end = 20.dp),
+                .padding(horizontal = 20.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
-
-                Column {
+            Column {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Default.LocationOn,
+                        contentDescription = "Ubicación Icon",
+                        modifier = Modifier.size(18.dp),
+                        tint = Color.Gray
+                    )
+                    Spacer(modifier = Modifier.width(1.dp))
                     Text(
                         "Ubicación",
                         fontSize = 14.sp,
-                        color = AppColors.dark,
+                        color = Color.Gray,
                         fontFamily = poppinsFontFamily
                     )
-                    Text(
-                        "Havana, Cuba",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        fontFamily = poppinsFontFamily,
-                        color = AppColors.dark
-                    )
                 }
+                Spacer(modifier = Modifier.height(3.dp))
+                Text(
+                    "Playa, La Habana!",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = poppinsFontFamily,
+                    color = AppColors.dark
+                )
 
-                Spacer(modifier = Modifier.weight(1f))
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
 //            Image(
 //                painter = rememberAsyncImagePainter(
 //                    ImageRequest.Builder(LocalContext.current)
@@ -79,16 +101,26 @@ fun TopBar(onClick: () -> Unit) {
                 modifier = Modifier,
                 onClick = onClick
             )
-
-
-
         }
-        SearchInput(
-            modifier = Modifier
-                .padding(start = 10.dp, top = 20.dp)
-                .fillMaxWidth(.95f)
-                .height(38.dp)
-        )
-    }
 
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp, vertical = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            SearchInput(
+                modifier = Modifier
+                    .weight(1f)
+                    .height(42.dp)
+            )
+
+            MapButton(
+                onClick = { },
+                modifier = Modifier.size(42.dp),
+                icono = painterResource(resource = Res.drawable.PlaceMarker),
+                )
+        }
+    }
 }
