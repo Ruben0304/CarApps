@@ -223,6 +223,7 @@ import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.components.common.BackButton
 import ruben.hernandez.rentalcar.views.components.common.BotonColor
+import ruben.hernandez.rentalcar.views.components.common.Rating
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalHazeMaterialsApi::class)
@@ -315,7 +316,7 @@ fun MechanicCard(
                     Spacer(modifier = Modifier.height(4.dp))
 
                     // Sección de texto
-                    Column(modifier = Modifier.padding(vertical = 16.dp, horizontal = 28.dp)) {
+                    Column(modifier = Modifier.padding(vertical = 16.dp, horizontal = 18.dp)) {
                         Text(
                             text = "Alberta Mecánica",
                             fontFamily = poppinsFontFamily,
@@ -365,7 +366,6 @@ fun MechanicCard(
                                 }
 
 
-
                             }
 
                     }
@@ -388,53 +388,32 @@ fun MechanicCard(
                         )
                     }
 
-                Surface(
-                    color = Color(0xFFF2E6D3),
-                    shape = CircleShape,
-                    modifier = Modifier
+                Rating(
+                    rating = 4.3f, modifier = Modifier
                         .align(Alignment.TopEnd)
                         .padding(
                             horizontal = 28.dp,
                             vertical = 20.dp
                         )
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 18.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Filled.Star,
-                            contentDescription = "Rating",
-                            tint = Color(0xFFFFC107),
-                            modifier = Modifier.size(22.dp)
-                        )
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Text(
-                            text = "4.3",
-                            fontFamily = poppinsFontFamily,
-                            fontSize = 15.sp,
-                            fontWeight = FontWeight.W500,
-                            color = Color(43, 38, 38)
-                        )
-                        Spacer(modifier = Modifier.width(6.dp))
-                    }
-                }
+                )
                 Surface(
-                    color = Color.Transparent,
-                    shape = CircleShape,
+                    color = if (isExpanded) Color(192, 177, 177, 111) else Color.Transparent,
+                    shape = RoundedCornerShape(15.dp),
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
-                        .padding(horizontal = 12.dp, vertical = if (isExpanded) 20.dp else 0.dp)
-                        .height(80.dp)
+                        .padding(
+                            horizontal = if (isExpanded) 10.dp else 5.dp,
+                            vertical = if (isExpanded) 20.dp else 10.dp
+                        )
+                        .height(65.dp)
                         .hazeChild(
                             state = hazeState,
-                            style = HazeMaterials.ultraThin(),
-                            shape = CircleShape
+                            shape = RoundedCornerShape(15.dp)
                         )
 
                 ) {
                     Row(
-                        modifier = Modifier.padding(horizontal = 28.dp),
+                        modifier = Modifier.padding(horizontal = 18.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
 
@@ -446,13 +425,13 @@ fun MechanicCard(
                                 painter = painterResource(resource = Res.drawable.Conflict),
                                 contentDescription = "Especialidad",
                                 tint = AppColors.principal,
-                                modifier = Modifier.size(28.dp)
+                                modifier = Modifier.size(25.dp)
                             )
                             Spacer(modifier = Modifier.width(8.dp))
 
                             Text(
                                 text = "Electricista",
-                                fontSize = 17.sp,
+                                fontSize = 16.sp,
                                 fontFamily = poppinsFontFamily,
                                 color = AppColors.dark
                             )
@@ -462,10 +441,10 @@ fun MechanicCard(
                             texto = "Escribir",
                             icono = painterResource(resource = Res.drawable.MessagingWhite),
                             colorTexto = Color.White,
-                            color = AppColors.principal.copy(.9f),
+                            color = AppColors.principal,
                             tamanoTexto = 16.sp,
                             tamanoIcono = 20.dp,
-                            modifier = Modifier.height(if (isExpanded) 50.dp else 45.dp)
+                            modifier = Modifier.height(45.dp)
                         )
 
                     }

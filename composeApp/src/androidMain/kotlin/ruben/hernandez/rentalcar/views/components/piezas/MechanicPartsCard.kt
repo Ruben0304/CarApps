@@ -37,10 +37,13 @@ import androidx.compose.material3.*
 import androidx.compose.ui.draw.shadow
 
 import coil.compose.rememberAsyncImagePainter
+import ruben.hernandez.rentalcar.views.components.common.FiveStarRating
 import ruben.hernandez.rentalcar.views.components.common.LikeButton
+import ruben.hernandez.rentalcar.views.components.common.Rating
 
 @Composable
 fun MechanicPartCard(
+    modifier: Modifier = Modifier,
     name: String,
     partType: String,
     imageUrl: String,
@@ -52,16 +55,8 @@ fun MechanicPartCard(
     Card(
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        modifier = Modifier
-            .padding(16.dp)
-            .size(180.dp, 280.dp)
-            .shadow(
-                spotColor = Color(113, 163, 248, 255),
-                elevation = 100.dp,
-                shape = RoundedCornerShape(16.dp)
-            ),
+        modifier = modifier,
         colors = CardDefaults.cardColors(containerColor = Color.White)
-
     ) {
         Box {
             Column {
@@ -82,21 +77,21 @@ fun MechanicPartCard(
                             .padding(8.dp),
                         onFavoriteClick = onFavoriteClick,
                         isFavorite = isFavorite
-
                     )
+
                 }
 
                 Column(
                     modifier = Modifier
-                        .padding(12.dp)
+                        .padding(10.dp) // Reduje el padding
                 ) {
                     Text(
                         text = name,
-                        fontSize = 13.sp,
+                        fontSize = 12.sp, // Reduje el tamaño de fuente
                         fontWeight = FontWeight.Bold,
                         maxLines = 1
                     )
-                    Spacer(modifier = Modifier.height(5.dp))
+                    Spacer(modifier = Modifier.height(4.dp))
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -104,18 +99,18 @@ fun MechanicPartCard(
                             imageVector = Icons.Filled.LocationOn,
                             contentDescription = null,
                             tint = Color.Gray,
-                            modifier = Modifier.size(14.dp)
+                            modifier = Modifier.size(12.dp)
                         )
                         Text(
                             text = partType,
-                            fontSize = 14.sp,
+                            fontSize = 12.sp,
                             color = Color.Gray
                         )
                     }
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(6.dp))
                     Text(
                         text = price,
-                        fontSize = 15.sp,
+                        fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,
                         color = AppColors.dark,
                         modifier = Modifier.fillMaxWidth(),
@@ -123,6 +118,15 @@ fun MechanicPartCard(
                     )
                 }
             }
+            // Agregar el rating en la esquina inferior
+            FiveStarRating(
+                rating = 4.5f,
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(start = 10.dp, bottom = 10.dp),
+                starSize = 14.dp,
+                starSpacing = 2.dp
+            )
         }
     }
 }
@@ -130,10 +134,10 @@ fun MechanicPartCard(
 @Composable
 fun MechanicCarList() {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(minSize = 190.dp),
-        contentPadding = PaddingValues(5.dp),
-        verticalArrangement = Arrangement.spacedBy(5.dp),
-        modifier = Modifier.fillMaxSize()
+        columns = GridCells.Fixed(2),
+        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         // Lista de coches (puedes añadir más elementos aquí)
         items(5) { // ejemplo con 5 elementos

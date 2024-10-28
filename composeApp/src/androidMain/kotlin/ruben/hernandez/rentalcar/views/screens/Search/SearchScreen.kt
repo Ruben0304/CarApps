@@ -31,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -65,6 +66,7 @@ fun SearchScreen(navController: NavController = rememberNavController(), generic
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .background(Brush.linearGradient(AppColors.backgroundGradient))
     ) {
 
 //        var visible by remember { mutableStateOf(false) }
@@ -109,11 +111,12 @@ fun SearchScreen(navController: NavController = rememberNavController(), generic
             }
             ListTypes.Pieza -> {
                 LazyVerticalGrid(
-                    columns = GridCells.Adaptive(minSize = 190.dp),
-                    contentPadding = PaddingValues(0.dp),
-                    verticalArrangement = Arrangement.spacedBy(5.dp),
+                    columns = GridCells.Fixed(2),
+                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 12.dp),
+                    horizontalArrangement = Arrangement.spacedBy(15.dp),
+                    verticalArrangement = Arrangement.spacedBy(20.dp),
                     modifier = Modifier
-                        .fillMaxSize()
+                        .fillMaxSize().padding(12.dp)
                         .haze(state = hazeState)
                 ) {
                     item{
@@ -130,7 +133,8 @@ fun SearchScreen(navController: NavController = rememberNavController(), generic
                             imageUrl = "https://pngimg.com/d/engine_PNG20.png", // URL de la imagen
                             isFavorite = false,
                             onFavoriteClick = {},
-                            price = "$400"
+                            price = "$400",
+                            modifier = Modifier.height(270.dp)
                         )
                     }
 
