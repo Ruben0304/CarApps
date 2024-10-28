@@ -80,6 +80,8 @@ kotlin {
             implementation(libs.coil.kt.coil.svg)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
             implementation(libs.ktor.client.cio.v300rc1)
+            implementation(libs.haze)
+           implementation(libs.haze.materials)
 
         }
         commonMain.dependencies {
@@ -96,6 +98,7 @@ kotlin {
             implementation(libs.navigation.compose)
             implementation(libs.apollo.runtime)
             implementation(libs.apollo.api)
+
         }
     }
 }

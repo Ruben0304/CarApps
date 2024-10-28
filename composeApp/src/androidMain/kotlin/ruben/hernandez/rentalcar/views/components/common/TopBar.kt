@@ -39,8 +39,8 @@ fun TopBar(onClick: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column {
-            Text("Ubicación", fontSize = 14.sp, color = Color.LightGray, fontFamily = poppinsFontFamily)
-            Text("Havana, Cuba", fontSize = 18.sp, fontWeight = FontWeight.Bold,fontFamily = poppinsFontFamily, color = AppColors.dark)
+//            Text("Ubicación", fontSize = 14.sp, color = AppColors.dark, fontFamily = poppinsFontFamily)
+//            Text("Havana, Cuba", fontSize = 16.sp, fontWeight = FontWeight.Bold,fontFamily = poppinsFontFamily, color = AppColors.dark)
         }
         Spacer(modifier = Modifier.weight(1f))
         Image(
@@ -65,4 +65,5 @@ fun TopBar(onClick: () -> Unit) {
         )
 
     }
+
 }

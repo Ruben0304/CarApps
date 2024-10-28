@@ -20,6 +20,7 @@ bomVersion = "3.0.0"
 coilCompose = "2.3.0"
 coilSvgVersion = "2.4.0"
 compose-plugin = "1.6.11"
+haze = "0.7.3"
 junit = "4.13.2"
 kotlin = "2.0.20"
 kotlinxCoroutinesAndroid = "1.8.0"
@@ -54,6 +55,8 @@ apollo-runtime = { module = "com.apollographql.apollo:apollo-runtime", version.r
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 coil-kt-coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coilSvgVersion" }
 gotrue-kt = { module = "io.github.jan-tennert.supabase:gotrue-kt", version.ref = "authKt" }
+haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
+haze-materials = { module = "dev.chrisbanes.haze:haze-materials" , version.ref ="haze" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
