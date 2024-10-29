@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -111,8 +112,8 @@ fun BotonColorIconoDerecha(
     icono: Painter,
     texto: String = "Soy botón",
     alClic: () -> Unit = {},
-    tamanoTexto: TextUnit = 13.sp,
-    tamanoIcono: Dp = 15.dp,
+    tamanoTexto: TextUnit = 15.sp,
+    tamanoIcono: Dp = 20.dp,
     forma: Shape = CircleShape
 ) {
     Button(
@@ -152,6 +153,44 @@ fun BotonColorIconoDerecha(
                 modifier = Modifier.size(tamanoIcono)
             )
         }
+    }
+}
+
+@Composable
+fun BotonCircularIcono(
+    modifier: Modifier = Modifier,
+    color: Color = Color(88, 133, 243, 255),
+    colorIcono: Color = Color.White,
+    colorSombra: Color? = null,
+    icono: Painter,
+    alClic: () -> Unit = {},
+    tamanoIcono: Dp = 20.dp
+) {
+    Button(
+        onClick = alClic,
+        modifier = if (colorSombra != null && colorSombra != Color.Black)
+            modifier.shadow(
+                elevation = 8.dp,
+                shape = CircleShape,
+                spotColor = colorSombra,
+                ambientColor = colorSombra
+            )
+        else modifier,
+        shape = CircleShape,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = color
+        ),
+        elevation = if (colorSombra == Color.Black)
+            ButtonDefaults.buttonElevation(8.dp)
+        else ButtonDefaults.buttonElevation(0.dp),
+        contentPadding = PaddingValues(8.dp)
+    ) {
+        Icon(
+            painter = icono,
+            contentDescription = "icono de búsqueda",
+            tint = colorIcono,
+            modifier = Modifier.size(tamanoIcono)
+        )
     }
 }
 

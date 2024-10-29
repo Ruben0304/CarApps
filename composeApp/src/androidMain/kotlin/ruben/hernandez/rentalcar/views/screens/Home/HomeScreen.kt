@@ -108,7 +108,7 @@ fun App(navController: NavController) {
             ) {
 
 
-                var paddinTop = if (isAtLeastApi32()) 0.dp else 165.dp
+                var paddinTop = if (isAtLeastApi32()) 0.dp else 105.dp
 
                 LazyColumn(
                     modifier = Modifier
@@ -170,7 +170,6 @@ fun App(navController: NavController) {
                         .height(165.dp)
                         .fillMaxWidth(), title = {
                         Column {
-
 
                             TopBar(modifier = Modifier
                                 .fillMaxWidth()

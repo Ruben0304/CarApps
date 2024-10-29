@@ -38,17 +38,19 @@ import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
-
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
-fun TopBar(onClick: () -> Unit,modifier: Modifier = Modifier) {
+fun TopBar(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 20.dp),
+                .padding(horizontal = 10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column {
@@ -67,18 +69,36 @@ fun TopBar(onClick: () -> Unit,modifier: Modifier = Modifier) {
                         fontFamily = poppinsFontFamily
                     )
                 }
-                Spacer(modifier = Modifier.height(3.dp))
                 Text(
-                    "Playa, La Habana!",
+                    "Playa, La Habana",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     fontFamily = poppinsFontFamily,
                     color = AppColors.dark
                 )
-
             }
 
             Spacer(modifier = Modifier.weight(1f))
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                ButtonSearch(
+                    modifier = Modifier.size(42.dp),
+                    onClick = { }
+                )
+
+                ButtonProfile(
+                    modifier = Modifier.height(42.dp),
+                    onClick = onClick
+                )
+            }
+        }
+    }
+}
+
+//icons como histories de ig
 //            Image(
 //                painter = rememberAsyncImagePainter(
 //                    ImageRequest.Builder(LocalContext.current)
@@ -94,31 +114,3 @@ fun TopBar(onClick: () -> Unit,modifier: Modifier = Modifier) {
 //                    .border(1.5.dp, Color.LightGray, shape = CircleShape),
 //                contentScale = ContentScale.FillBounds
 //            )
-            Spacer(modifier = Modifier.width(15.dp))
-            ButtonProfile(
-                modifier = Modifier,
-                onClick = onClick
-            )
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp, vertical = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            SearchInput(
-                modifier = Modifier
-                    .weight(1f)
-                    .height(42.dp)
-            )
-
-            MapButton(
-                onClick = { },
-                modifier = Modifier.size(42.dp),
-                icono = painterResource(resource = Res.drawable.PlaceMarker),
-                )
-        }
-    }
-}
