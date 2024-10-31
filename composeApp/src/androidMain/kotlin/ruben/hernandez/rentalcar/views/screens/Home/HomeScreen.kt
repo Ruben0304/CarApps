@@ -12,6 +12,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -23,6 +24,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
@@ -52,15 +54,21 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import carrental.composeapp.generated.resources.Res
+import carrental.composeapp.generated.resources.chatPromo
+import carrental.composeapp.generated.resources.rent
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
 import dev.chrisbanes.haze.hazeChild
 import dev.chrisbanes.haze.materials.ExperimentalHazeMaterialsApi
 import dev.chrisbanes.haze.materials.HazeMaterials
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.components.car.AnimatedCarCard
 import ruben.hernandez.rentalcar.views.components.car.CarCard
+import ruben.hernandez.rentalcar.views.components.common.CarPromotionalCard
+import ruben.hernandez.rentalcar.views.components.common.CarrouselPromo
 import ruben.hernandez.rentalcar.views.components.common.MenuDeslizable
 import ruben.hernandez.rentalcar.views.components.piezas.MechanicCarHorizontal
 import ruben.hernandez.rentalcar.views.components.common.SearchInput
@@ -77,7 +85,7 @@ import ruben.hernandez.rentalcar.views.screens.Auth.LoginScreen
 @Composable
 fun App(navController: NavController) {
 
-    fun isAtLeastApi32() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2
+    var isAtLeastApi32 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2
     val coroutineScope = rememberCoroutineScope()
     var sheetState = rememberBottomSheetState(
         initialValue = BottomSheetValue.Collapsed,
@@ -108,30 +116,39 @@ fun App(navController: NavController) {
             ) {
 
 
-                var paddinTop = if (isAtLeastApi32()) 0.dp else 105.dp
+                val paddinTop = if (isAtLeastApi32) 0.dp else 85.dp
 
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(top = paddinTop)
                         .haze(state = hazeState),
-                    contentPadding = PaddingValues(top = 20.dp, bottom = 25.dp),
+                    contentPadding = PaddingValues(top = 3.dp, bottom = 25.dp),
 
                     ) {
-                    if (isAtLeastApi32())
+                    if (isAtLeastApi32)
                         item {
-                            Spacer(modifier = Modifier.height(150.dp))
+                            Spacer(modifier = Modifier.height(87.dp))
                         }
 
                     item {
-                        SectionHeader(title = "Recientes")
-                    }
-                    item {
-                        MechanicCarHorizontal()
+                        CarrouselPromo()
                     }
                     item {
                         Spacer(modifier = Modifier.height(20.dp))
                     }
+                    item {
+                        SectionHeader(title = "Recientes")
+                    }
+
+                    item {
+                        MechanicCarHorizontal()
+                    }
+
+                    item {
+                        Spacer(modifier = Modifier.height(20.dp))
+                    }
+
                     item {
                         SectionHeader(title = "Mejor valorados")
                     }
@@ -151,29 +168,32 @@ fun App(navController: NavController) {
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(horizontal = 20.dp, vertical = 20.dp)
+                                .padding(horizontal = 15.dp, vertical = 20.dp)
 
                         )
 
                     }
 
                 }
+                val mod = Modifier
+                    .height(95.dp)
+                    .fillMaxWidth()
                 TopAppBar(
                     colors = TopAppBarDefaults.largeTopAppBarColors(Color.Transparent),
 
-                    modifier = Modifier
-                        // We use hazeChild on anything where we want the background
-                        // blurred.
-                        .hazeChild(
+
+                    modifier = if (isAtLeastApi32)
+                        mod.hazeChild(
                             state = hazeState,
+                            style = HazeMaterials.thin()
                         )
-                        .height(165.dp)
-                        .fillMaxWidth(), title = {
+                    else
+                        mod, title = {
                         Column {
 
                             TopBar(modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(top = 22.dp),
+                                .padding(top = 15.dp, end = 18.dp, start = 8.dp),
                                 onClick = {
                                     coroutineScope.launch {
                                         isBlured = true
@@ -185,7 +205,12 @@ fun App(navController: NavController) {
                     })
                 BottomNav(
                     navController = navController,
-                    modifier = Modifier.align(Alignment.BottomCenter)
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .hazeChild(
+                            state = hazeState,
+                            style = HazeMaterials.thin()
+                        )
                 )
             }
 

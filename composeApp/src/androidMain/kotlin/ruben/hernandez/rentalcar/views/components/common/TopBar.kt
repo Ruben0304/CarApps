@@ -44,44 +44,35 @@ fun TopBar(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier
-    ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 10.dp),
+            modifier = modifier,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        imageVector = Icons.Default.LocationOn,
-                        contentDescription = "Ubicación Icon",
-                        modifier = Modifier.size(18.dp),
-                        tint = Color.Gray
-                    )
-                    Spacer(modifier = Modifier.width(1.dp))
-                    Text(
-                        "Ubicación",
-                        fontSize = 14.sp,
-                        color = Color.Gray,
-                        fontFamily = poppinsFontFamily
-                    )
-                }
+
+
                 Text(
-                    "Playa, La Habana",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
+                    "Ubicación",
+                    fontSize = 14.sp,
+                    color = Color.Gray,
                     fontFamily = poppinsFontFamily,
-                    color = AppColors.dark
+
+
                 )
+                    Text(
+                        "Playa, La Habana",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        fontFamily = poppinsFontFamily,
+                        color = AppColors.dark,
+                        )
+
             }
 
             Spacer(modifier = Modifier.weight(1f))
 
             Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(13.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 ButtonSearch(
@@ -95,7 +86,7 @@ fun TopBar(
                 )
             }
         }
-    }
+
 }
 
 //icons como histories de ig

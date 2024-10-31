@@ -50,9 +50,9 @@ fun BottomNav(navController: NavController, modifier: Modifier = Modifier) {
     var selectedItem by remember { mutableStateOf(0) }
 
     Surface(
-        shadowElevation = 25.dp,
-        tonalElevation = 25.dp,
-        color = Color.White,
+//        shadowElevation = 25.dp,
+//        tonalElevation = 25.dp,
+        color = Color.White.copy(.7f),
         modifier = modifier
             .fillMaxWidth()
             .height(80.dp)
@@ -76,7 +76,7 @@ fun BottomNav(navController: NavController, modifier: Modifier = Modifier) {
                 iconUnselected = painterResource(Res.drawable.Shopping_Bag),
                 label = "Explorar",
                 isSelected = selectedItem == 1,
-                onClick = { if (selectedItem != 1) { selectedItem = 1; navController.navigate(Screen.Search.route) } },
+                onClick = { if (selectedItem != 1) { selectedItem = 1;  } },
                 modifier = Modifier.weight(1f)
             )
 
@@ -110,7 +110,7 @@ fun NavItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val iconSize by animateDpAsState(targetValue = if (isSelected) 30.dp else 25.dp)
+    val iconSize by animateDpAsState(targetValue = if (isSelected) 36.dp else 35.dp)
     val textColor by animateColorAsState(targetValue = if (isSelected) AppColors.principal else Color(72, 76, 82))
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -132,6 +132,7 @@ fun NavItem(
             tint = iconTintColor // Asigna el color para iconos no seleccionados
         )
 
+        if (isSelected)
         Text(
             text = label,
             color = textColor

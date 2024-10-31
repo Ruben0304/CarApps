@@ -170,7 +170,7 @@ fun MechanicCarHorizontal() {
                 isFavorite = false,
                 onFavoriteClick = {},
                 price = "$400",
-                modifier = Modifier.height(230.dp)
+                modifier = Modifier.height(230.dp).width(150.dp)
 
             )
         }
