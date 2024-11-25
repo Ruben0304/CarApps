@@ -2,8 +2,6 @@ package ruben.hernandez.rentalcar.views.components.chat
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,16 +19,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import carrental.composeapp.generated.resources.Account
-import carrental.composeapp.generated.resources.Res
 import coil.compose.rememberAsyncImagePainter
-import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.models.Mecanico
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
@@ -71,12 +64,12 @@ fun PerfilMecanico(
 ) {
     Surface(
         shape = RoundedCornerShape(10.dp),
-        modifier = Modifier.padding(end = 10.dp, bottom = 10.dp).width(100.dp).background(Color.White),
+        modifier = Modifier.padding(end = 10.dp, bottom = 10.dp).width(100.dp).background(AppColors.cardsBackground),
         onClick = onClick
     ) {
         Column(
             Modifier
-                .background(Color.White)
+                .background(AppColors.cardsBackground)
                 .padding(start = 2.dp, end = 4.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -90,7 +83,7 @@ fun PerfilMecanico(
             Row(modifier = Modifier.width(90.dp)) {
                 Text(
                     text = "${mecanico.nombre} ${mecanico.apellido}",
-                    color = AppColors.dark,
+                    color = AppColors.text,
                     fontSize = 13.sp,
                     textAlign = TextAlign.Center,
                     fontFamily = poppinsFontFamily

@@ -106,7 +106,8 @@ fun CarPromotionalCard(
                     modificador = Modifier.wrapContentWidth(),
                     texto = "Reservar ahora",
                     tamanoTexto = 14.sp,
-                    colorSombra = Color.Blue
+                    colorSombra = Color.Blue,
+                    colorTexto = Color.White
                 )
             }
         }

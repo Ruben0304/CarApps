@@ -185,7 +185,7 @@ fun App(navController: NavController) {
                     modifier = if (isAtLeastApi32)
                         mod.hazeChild(
                             state = hazeState,
-                            style = HazeMaterials.thin()
+                            style = HazeMaterials.thin(AppColors.navColor)
                         )
                     else
                         mod, title = {
@@ -203,15 +203,19 @@ fun App(navController: NavController) {
 
                         }
                     })
-                BottomNav(
-                    navController = navController,
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .hazeChild(
-                            state = hazeState,
-                            style = HazeMaterials.thin()
-                        )
-                )
+
+                val modNav = Modifier
+                    .align(Alignment.BottomCenter)
+                    BottomNav(
+                        navController = navController,
+                        modifier = if (isAtLeastApi32)
+                            modNav.hazeChild(
+                                state = hazeState,
+                                style = HazeMaterials.regular(AppColors.navColor)
+                            )
+                        else
+                            modNav
+                    )
             }
 
 

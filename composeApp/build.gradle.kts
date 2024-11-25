@@ -75,14 +75,13 @@ kotlin {
             implementation(libs.androidx.ui.text.google.fonts)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.coil.compose)
-            implementation(libs.androidx.ui.text.google.fonts.v150)
             implementation(libs.accompanist.pager)
             implementation(libs.coil.kt.coil.svg)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
             implementation(libs.ktor.client.cio.v300rc1)
             implementation(libs.haze)
            implementation(libs.haze.materials)
-
+            implementation(libs.androidx.ui.text.google.fonts)
         }
         commonMain.dependencies {
             implementation(compose.runtime)

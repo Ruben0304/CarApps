@@ -40,13 +40,14 @@ import carrental.composeapp.generated.resources.Res
 import carrental.composeapp.generated.resources.Shape
 import carrental.composeapp.generated.resources.Wrapper
 import carrental.composeapp.generated.resources.profile
+import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.viewModels.Chat.Auth.ButtonState
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 // Colores personalizados
 val backgroundColor = Color(0xFFE0E0E0)
 val cardBackground = Color(0xFF1C1C1C).copy(alpha = 0.85f)
-val textColor = Color.White
+val textColor = AppColors.cardsBackground
 
 
 @Composable
@@ -79,7 +80,6 @@ fun CustomTextField(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(8.dp))
-
                             .padding(16.dp)
                     ) {
                         if (value.text.isEmpty()) {
@@ -151,17 +151,8 @@ fun LoginLogo() {
                 BorderStroke(
                     3.dp, brush = Brush.horizontalGradient(
                         listOf(
-                            Color(
-                                135,
-                                178,
-                                240,
-                                255
-                            ), Color(
-                                222,
-                                161,
-                                226,
-                                255
-                            )
+                            Color(128, 120, 247, 255),
+                            Color(88, 133, 243, 255)
                         )
                     )
                 ), shape = CircleShape
@@ -173,8 +164,7 @@ fun LoginLogo() {
 fun LoginTitle() {
     Text(
         text = "Iniciar sesión",
-        color = Color(32, 32, 32, 255),
-        fontFamily = poppinsFontFamily,
+        color = AppColors.navColor,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp
     )
@@ -198,10 +188,12 @@ fun LoginButton(
                 Box(
                     modifier = Modifier
                         .matchParentSize()
-                        .background(
-                            color = Color.Black,
-                            shape = RoundedCornerShape(80)
-                        )
+                        .background(brush = Brush.horizontalGradient(
+                            listOf(
+                                Color(128, 120, 247, 255),
+                                Color(88, 133, 243, 255)
+                            )
+                        ),shape = RoundedCornerShape(80))
                 )
                 Button(
                     onClick = onClick,
@@ -209,7 +201,7 @@ fun LoginButton(
                         .fillMaxSize(),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Transparent,
-                        contentColor = Color.White
+                        contentColor = AppColors.cardsBackground
                     ),
                     elevation = ButtonDefaults.elevatedButtonElevation(12.dp),
                     enabled = buttonState != ButtonState.Loading
@@ -222,7 +214,7 @@ fun LoginButton(
                     ) {
                         androidx.compose.animation.AnimatedVisibility(visible = buttonState == ButtonState.Loading) {
                             CircularProgressIndicator(
-                                color = Color.White, strokeWidth = 4.dp, modifier = Modifier.size(20.dp)
+                                color = AppColors.cardsBackground, strokeWidth = 4.dp, modifier = Modifier.size(20.dp)
 
                             )
                         }
@@ -234,7 +226,7 @@ fun LoginButton(
                             },
                             fontSize = 18.sp,
                             fontWeight = FontWeight.SemiBold,
-                            fontFamily = poppinsFontFamily
+                            color = Color.White
                         )
                     }
                 }

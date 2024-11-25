@@ -111,7 +111,7 @@ package ruben.hernandez.rentalcar.views.components.mechanic
 //                        BotonColor(
 //                            texto = "Escribir",
 //                            icono = painterResource(resource = Res.drawable.MessagingWhite),
-//                            colorTexto = Color.White,
+//                            colorTexto = AppColors.cardsBackground,
 //                            color = AppColors.principal.copy(.9f),
 //                            tamanoTexto = 16.sp,
 //                            tamanoIcono = 20.dp
@@ -169,27 +169,18 @@ package ruben.hernandez.rentalcar.views.components.mechanic
 
 
 import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.indication
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -208,17 +199,14 @@ import carrental.composeapp.generated.resources.MessagingWhite
 import carrental.composeapp.generated.resources.Res
 import carrental.composeapp.generated.resources.mecanica
 import androidx.compose.material3.Surface
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 
-import coil.compose.rememberImagePainter
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
 import dev.chrisbanes.haze.hazeChild
 import dev.chrisbanes.haze.materials.ExperimentalHazeMaterialsApi
-import dev.chrisbanes.haze.materials.HazeMaterials
 import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.components.common.BackButton
@@ -433,14 +421,14 @@ fun MechanicCard(
                                 text = "Electricista",
                                 fontSize = 16.sp,
                                 fontFamily = poppinsFontFamily,
-                                color = AppColors.dark
+                                color = AppColors.text
                             )
                         }
 
                         BotonColor(
                             texto = "Escribir",
                             icono = painterResource(resource = Res.drawable.MessagingWhite),
-                            colorTexto = Color.White,
+                            colorTexto = AppColors.cardsBackground,
                             color = AppColors.principal,
                             tamanoTexto = 16.sp,
                             tamanoIcono = 20.dp,

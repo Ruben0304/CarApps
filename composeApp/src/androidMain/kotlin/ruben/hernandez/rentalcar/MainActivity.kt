@@ -14,6 +14,7 @@ import ruben.hernandez.rentalcar.navigation.AppRoutes
 
 
 import ruben.hernandez.rentalcar.navigation.ChatRoutes
+import ruben.hernandez.rentalcar.views.theme.CarAppTheme
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.S)
@@ -21,9 +22,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val navController = rememberNavController()
-            AppRoutes(navController = navController)
-            ChatRoutes(navController = navController)
+            CarAppTheme {
+                val navController = rememberNavController()
+                AppRoutes(navController = navController)
+                ChatRoutes(navController = navController)
+            }
         }
     }
 }
@@ -32,7 +35,10 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun AppAndroidPreview() {
-    val navController = rememberNavController()
-    AppRoutes(navController = navController)
+    CarAppTheme {
+        val navController = rememberNavController()
+        AppRoutes(navController = navController)
+    }
+
     //ChatRoutes(navController = navController)
 }

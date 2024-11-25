@@ -41,7 +41,7 @@ fun ChatItemComponent(
         onClick = {
             onClick(contenido.id)
         },
-        color = Color.White
+        color = AppColors.cardsBackground
 
     ) {
         Box {
@@ -54,7 +54,7 @@ fun ChatItemComponent(
                         text = contenido.nombre,
                         fontSize = 18.sp,
                         fontFamily = poppinsFontFamily,
-                        color = AppColors.dark,
+                        color = AppColors.text,
                     )
 
                     Spacer(modifier = Modifier.height(6.dp))
@@ -95,7 +95,7 @@ fun ChatItemComponent(
                             text = contenido.cantNotif.toString(),
                             fontSize = 12.sp,
                             fontFamily = poppinsFontFamily,
-                            color = Color.White,
+                            color = AppColors.cardsBackground,
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .align(Alignment.Center)

@@ -28,6 +28,7 @@ import androidx.navigation.compose.rememberNavController
 import carrental.composeapp.generated.resources.Phone
 import carrental.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.painterResource
+import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.models.ChatMessage
 //import ruben.hernandez.rentalcar.appclip.Icon
 //import ruben.hernandez.rentalcar.messagesthreadname.MessagesThreadName
@@ -48,7 +49,7 @@ fun ChatScreen(navController: NavController = rememberNavController()) {
         modifier = Modifier
             .fillMaxSize()
             .background(
-                color = Color.White
+                color = AppColors.cardsBackground
             )
     ) {
         Row(

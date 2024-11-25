@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -50,12 +51,13 @@ fun BottomNav(navController: NavController, modifier: Modifier = Modifier) {
     var selectedItem by remember { mutableStateOf(0) }
 
     Surface(
-//        shadowElevation = 25.dp,
+//        shadowElevation = 100.dp,
 //        tonalElevation = 25.dp,
-        color = Color.White.copy(.7f),
+        color = Color.Transparent,
         modifier = modifier
             .fillMaxWidth()
-            .height(80.dp)
+            .height(78.dp)
+
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -110,8 +112,8 @@ fun NavItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val iconSize by animateDpAsState(targetValue = if (isSelected) 36.dp else 35.dp)
-    val textColor by animateColorAsState(targetValue = if (isSelected) AppColors.principal else Color(72, 76, 82))
+    val iconSize by animateDpAsState(targetValue = if (isSelected) 33.dp else 33.dp)
+    val textColor by animateColorAsState(targetValue = if (isSelected) AppColors.text else Color.Gray)
     val interactionSource = remember { MutableInteractionSource() }
 
 
@@ -123,7 +125,7 @@ fun NavItem(
 
     ) {
         val icon = if (isSelected) iconSelected else iconUnselected
-        val iconTintColor = if (isSelected) Color.Unspecified else Color(72, 76, 82)
+        val iconTintColor = if (isSelected) AppColors.buttonNav else Color.Gray
 
         Icon(
             painter = icon,
@@ -132,7 +134,6 @@ fun NavItem(
             tint = iconTintColor // Asigna el color para iconos no seleccionados
         )
 
-        if (isSelected)
         Text(
             text = label,
             color = textColor

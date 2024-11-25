@@ -51,7 +51,7 @@ import ruben.hernandez.rentalcar.views.poppinsFontFamily
 fun BotonColor(
     modifier: Modifier = Modifier,
     color: Color = Color(88, 133, 243, 255),
-    colorTexto: Color = Color.White,
+    colorTexto: Color = AppColors.cardsBackground,
     colorSombra: Color? = null,
     icono: Painter? = null,
     texto: String = "",
@@ -119,17 +119,22 @@ fun BotonColorIconoDerecha(
     Button(
         onClick = alClic,
         modifier =
-        if (colorSombra != null && colorSombra != Color.Black) modificador.shadow(
+        if (colorSombra != null && colorSombra != Color.Black)
+            modificador.shadow(
             elevation = 8.dp,
             shape = forma,
-            spotColor = colorSombra,
-            ambientColor = colorSombra
-        ) else modificador,
+        ).background(brush = Brush.horizontalGradient(
+                listOf(
+                    Color(128, 120, 247, 255),
+                    Color(88, 133, 243, 255)
+                )
+            ), shape = CircleShape).height(40.dp)
+            else modificador,
         shape = forma,
         colors = ButtonDefaults.buttonColors(
-            containerColor = color
+            containerColor = Color.Transparent
         ),
-        elevation = if (colorSombra == Color.Black) ButtonDefaults.buttonElevation(8.dp) else ButtonDefaults.buttonElevation(0.dp)
+
 
     ) {
         Row(
@@ -142,7 +147,6 @@ fun BotonColorIconoDerecha(
                 text = texto,
                 fontSize = tamanoTexto,
                 textAlign = TextAlign.Center,
-                fontFamily = poppinsFontFamily,
                 modifier = Modifier.padding(horizontal = 4.dp),
                 color = colorTexto
             )
@@ -159,8 +163,8 @@ fun BotonColorIconoDerecha(
 @Composable
 fun BotonCircularIcono(
     modifier: Modifier = Modifier,
-    color: Color = Color(88, 133, 243, 255),
-    colorIcono: Color = Color.White,
+    color: Color = AppColors.cardsBackground,
+    colorIcono: Color = AppColors.text,
     colorSombra: Color? = null,
     icono: Painter,
     alClic: () -> Unit = {},
@@ -170,11 +174,9 @@ fun BotonCircularIcono(
         onClick = alClic,
         modifier = if (colorSombra != null && colorSombra != Color.Black)
             modifier.shadow(
-                elevation = 8.dp,
+                elevation = 5.dp,
                 shape = CircleShape,
-                spotColor = colorSombra,
-                ambientColor = colorSombra
-            )
+            ).height(40.dp)
         else modifier,
         shape = CircleShape,
         colors = ButtonDefaults.buttonColors(
@@ -203,7 +205,7 @@ fun BotonGradiente(
             Color(88, 133, 243, 255)
         )
     ),
-    colorTexto: Color = Color.White,
+    colorTexto: Color = AppColors.cardsBackground,
     colorSombra: Color? = null,
     icono: Painter? = null,
     texto: String = "Soy botón",
@@ -288,7 +290,7 @@ fun MapButton(
         Icon(
             painter = icono,
             contentDescription = "map",
-            tint = Color.White,
+            tint = AppColors.cardsBackground,
             modifier = Modifier.padding(12.dp)
         )
     }
@@ -298,7 +300,7 @@ fun MapButton(
 fun ButtonNotBackground(
     modificador: Modifier = Modifier,
     color: Color = Color(88, 133, 243, 255),
-    colorTexto: Color = Color.White,
+    colorTexto: Color = AppColors.cardsBackground,
     colorSombra: Color? = null,
     icono: Painter? = null,
     texto: String = "Soy botón",

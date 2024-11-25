@@ -62,6 +62,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import coil.compose.rememberAsyncImagePainter
+import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.models.ChatMessage
 import java.io.File
 
@@ -128,7 +129,7 @@ fun MessageBubble(message: ChatMessage) {
                 } else {
                     Text(
                         text = message.content ?: "",
-                        color = if (message.isReceived) Color.Black else Color.White,
+                        color = if (message.isReceived) Color.Black else AppColors.cardsBackground,
                         style = TextStyle(fontSize = 16.sp),
                         modifier = Modifier.align(if (message.isReceived) Alignment.CenterStart else Alignment.CenterEnd)
                     )
@@ -212,7 +213,7 @@ fun ElegantChatInput(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(24.dp))
-                    .background(Color.White),
+                    .background(AppColors.cardsBackground),
                 border = BorderStroke(1.dp,Color.LightGray),
                 shape = RoundedCornerShape(24.dp),
             ) {
@@ -250,7 +251,7 @@ fun ElegantChatInput(
                             Icon(
                                 imageVector = Icons.Default.ArrowUpward,
                                 contentDescription = "Send",
-                                tint = Color.White,
+                                tint = AppColors.cardsBackground,
                                 modifier = Modifier.size(18.dp)
                             )
                         }
