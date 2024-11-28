@@ -1,4 +1,4 @@
-package ruben.hernandez.rentalcar.views.screens.Auth
+package ruben.hernandez.rentalcar.views.screens
 
 import android.os.Build
 import android.widget.Toast

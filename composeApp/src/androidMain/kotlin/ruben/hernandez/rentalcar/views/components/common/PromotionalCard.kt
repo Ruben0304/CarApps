@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
@@ -127,6 +128,7 @@ fun CarrouselPromo(){
                     resource = Res.drawable.chatPromo
                 ),
                 description = "Escribele a este y al otro",
+                modifier = Modifier.height(200.dp),
                 onActionClick = {}
             )
         }
@@ -138,7 +140,8 @@ fun CarrouselPromo(){
                     resource = Res.drawable.rent
                 ),
                 description = "renta por aqui y por alla",
-                onActionClick = {}
+                onActionClick = {},
+                modifier = Modifier.height(200.dp)
             )
         }
 

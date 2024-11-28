@@ -2,21 +2,23 @@ package ruben.hernandez.rentalcar.navigation
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import ruben.hernandez.rentalcar.views.screens.Home.App
+import dev.chrisbanes.haze.HazeState
+import ruben.hernandez.rentalcar.views.fragments.HomeFragment
 
-import ruben.hernandez.rentalcar.views.screens.Search.SearchScreen
+import ruben.hernandez.rentalcar.views.screens.SearchScreen
 
 
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
-fun AppRoutes(navController: NavHostController) {
+fun AppRoutes(navController: NavHostController,paddingValues: PaddingValues, hazeState : HazeState) {
     NavHost(navController = navController, startDestination = Screen.Home.route) {
         composable(Screen.Home.route) {
-            App(navController)
+            HomeFragment(paddingValues,hazeState)
         }
         composable(Screen.Search.route) {
             SearchScreen(navController)

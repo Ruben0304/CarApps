@@ -20,10 +20,11 @@ fun ButtonProfile(
 
     BotonColorIconoDerecha(
         icono = painterResource(resource = Res.drawable.Account),
-        color = AppColors.principal,
-        colorSombra = Color(14, 67, 119, 255),
+        color = AppColors.principalLinearGradient,
+        colorSombra = AppColors.principal,
         texto = "Cuenta",
-        alClic = onClick
+        alClic = onClick,
+        modifier = modifier
     )
 }
 
