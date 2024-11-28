@@ -59,6 +59,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import coil.compose.AsyncImage
+import ruben.hernandez.rentalcar.AppColors
 
 // Primero, creamos un estado compartido para controlar la expansión
 object CardExpansionState {
@@ -138,12 +139,12 @@ fun AnimatedCarCard(
                     scaleY = animatedScale
                 }
                 .clickable(enabled = !isExpanded) { onExpand() },
-            color = Color.White
+            color = AppColors.cardsBackground
         ) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color.White)
+                    .background(AppColors.cardsBackground)
             ) {
                 Column(
                     modifier = Modifier
@@ -173,7 +174,8 @@ fun AnimatedCarCard(
                             Text(
                                 text = carName,
                                 fontSize = if (isExpanded) 24.sp else 20.sp,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
+                                color = AppColors.text
                             )
                             Text(
                                 text = carType,
@@ -231,7 +233,8 @@ fun AnimatedCarCard(
                         Text(
                             text = transmission,
                             modifier = Modifier.padding(start = 4.dp),
-                            fontSize = if (isExpanded) 16.sp else 14.sp
+                            fontSize = if (isExpanded) 16.sp else 14.sp,
+                            color = AppColors.text
                         )
                         Spacer(modifier = Modifier.weight(1f))
 
@@ -307,7 +310,7 @@ fun CarCard(
         shape = RoundedCornerShape(18.dp),
         shadowElevation = 6.dp,
         modifier = modifier,
-        color = Color.White,
+        color = AppColors.cardsBackground,
         onClick = onClick
     ) {
         Column(
@@ -323,13 +326,14 @@ fun CarCard(
                         text = carName,
                         fontSize = 20.sp,
                         fontFamily = poppinsFontFamily,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = AppColors.text
                     )
                     Text(
                         text = carType,
                         fontSize = 14.sp,
                         fontFamily = poppinsFontFamily,
-                        color = Color.Gray
+                        color = Color.Gray,
                     )
                 }
 
@@ -365,7 +369,8 @@ fun CarCard(
                     text = "$passengers",
                     modifier = Modifier.padding(start = 4.dp, end = 16.dp),
                     fontFamily = poppinsFontFamily,
-                    fontSize = 14.sp
+                    fontSize = 14.sp,
+                    color = AppColors.text
                 )
 
                 Icon(
@@ -378,7 +383,8 @@ fun CarCard(
                     text = transmission,
                     modifier = Modifier.padding(start = 4.dp),
                     fontFamily = poppinsFontFamily,
-                    fontSize = 14.sp
+                    fontSize = 14.sp,
+                    color = AppColors.text
                 )
                 Spacer(modifier = Modifier.weight(1f))
 
@@ -387,8 +393,8 @@ fun CarCard(
                     text = pricePerDay,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
-                    fontFamily = poppinsFontFamily,
-                    textAlign = TextAlign.End
+                    textAlign = TextAlign.End,
+                    color = AppColors.text
                 )
             }
         }

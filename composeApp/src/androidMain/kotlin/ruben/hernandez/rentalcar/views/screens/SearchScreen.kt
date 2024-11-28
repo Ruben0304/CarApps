@@ -1,9 +1,7 @@
-package ruben.hernandez.rentalcar.views.screens.Search
+package ruben.hernandez.rentalcar.views.screens
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,14 +22,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,15 +39,10 @@ import dev.chrisbanes.haze.haze
 import dev.chrisbanes.haze.hazeChild
 import dev.chrisbanes.haze.materials.ExperimentalHazeMaterialsApi
 import dev.chrisbanes.haze.materials.HazeMaterials
-import kotlinx.coroutines.delay
 import ruben.hernandez.rentalcar.AppColors
-import ruben.hernandez.rentalcar.views.components.car.AnimatedCarCard
 import ruben.hernandez.rentalcar.views.components.car.CarCard
 import ruben.hernandez.rentalcar.views.components.common.BackButton
-import ruben.hernandez.rentalcar.views.components.car.CarList
-import ruben.hernandez.rentalcar.views.components.piezas.MechanicCarList
 import ruben.hernandez.rentalcar.views.components.common.SearchInput
-import ruben.hernandez.rentalcar.views.components.common.TopBar
 import ruben.hernandez.rentalcar.views.components.piezas.MechanicPartCard
 import ruben.hernandez.rentalcar.views.components.search.TopNavButton
 

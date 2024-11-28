@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 @Composable
@@ -21,7 +22,7 @@ fun SectionHeader(title: String) {
             text = title,
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            fontFamily = poppinsFontFamily
+            color = AppColors.text
         )
         Spacer(modifier = Modifier.weight(1f))
         Text(
@@ -29,7 +30,6 @@ fun SectionHeader(title: String) {
             fontSize = 14.sp,
             color = Color.Gray,
             fontWeight = FontWeight.Normal,
-            fontFamily = poppinsFontFamily
         )
     }
 }

@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 @Preview
@@ -54,7 +55,7 @@ fun CardCarSpecs(
                 )
             ),
 
-        color = Color.White,
+        color = AppColors.cardsBackground,
 //        border = BorderStroke(.5.dp,Color.LightGray)
     ) {
         Column(

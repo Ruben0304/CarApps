@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.models.ChatItem
 
 @SuppressLint("UseOfNonLambdaOffsetOverload")
@@ -32,7 +33,7 @@ fun ChatsList(
     ) {
         LazyColumn(
             modifier = modifier
-                .background(Color.White),
+                .background(AppColors.cardsBackground),
         ) {
             itemsIndexed(listaConversaciones) { index, item ->
                 val animatedProgress = remember {

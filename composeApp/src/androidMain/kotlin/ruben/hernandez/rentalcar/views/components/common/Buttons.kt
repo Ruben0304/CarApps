@@ -3,22 +3,26 @@ package ruben.hernandez.rentalcar.views.components.common
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
-import androidx.compose.material.icons.filled.MyLocation
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -34,13 +38,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import carrental.composeapp.generated.resources.Home
-import carrental.composeapp.generated.resources.MapMarker
 import carrental.composeapp.generated.resources.Phone
 import carrental.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.painterResource
@@ -51,7 +54,7 @@ import ruben.hernandez.rentalcar.views.poppinsFontFamily
 fun BotonColor(
     modifier: Modifier = Modifier,
     color: Color = Color(88, 133, 243, 255),
-    colorTexto: Color = Color.White,
+    colorTexto: Color = AppColors.cardsBackground,
     colorSombra: Color? = null,
     icono: Painter? = null,
     texto: String = "",
@@ -74,7 +77,9 @@ fun BotonColor(
         colors = ButtonDefaults.buttonColors(
             containerColor = color
         ),
-        elevation = if (colorSombra == Color.Black) ButtonDefaults.buttonElevation(8.dp) else ButtonDefaults.buttonElevation(0.dp)
+        elevation = if (colorSombra == Color.Black) ButtonDefaults.buttonElevation(8.dp) else ButtonDefaults.buttonElevation(
+            0.dp
+        )
 
     ) {
         Row(
@@ -87,7 +92,9 @@ fun BotonColor(
                     painter = icono,
                     contentDescription = "icono",
                     tint = colorTexto,
-                    modifier = Modifier.size(tamanoIcono).fillMaxSize()
+                    modifier = Modifier
+                        .size(tamanoIcono)
+                        .fillMaxSize()
                 )
             Text(
                 text = texto,
@@ -101,12 +108,10 @@ fun BotonColor(
     }
 }
 
-
-
 @Composable
 fun BotonColorIconoDerecha(
-    modificador: Modifier = Modifier,
-    color: Color = Color(88, 133, 243, 255),
+    modifier: Modifier = Modifier,
+    color: List<Color>,
     colorTexto: Color = Color.White,
     colorSombra: Color? = null,
     icono: Painter,
@@ -114,41 +119,51 @@ fun BotonColorIconoDerecha(
     alClic: () -> Unit = {},
     tamanoTexto: TextUnit = 15.sp,
     tamanoIcono: Dp = 20.dp,
-    forma: Shape = CircleShape
+    forma: Shape = RoundedCornerShape(8.dp),
+    altura: Dp = 40.dp,
+    anchura: Dp? = null
 ) {
-    Button(
-        onClick = alClic,
-        modifier =
-        if (colorSombra != null && colorSombra != Color.Black) modificador.shadow(
-            elevation = 8.dp,
-            shape = forma,
-            spotColor = colorSombra,
-            ambientColor = colorSombra
-        ) else modificador,
-        shape = forma,
-        colors = ButtonDefaults.buttonColors(
-            containerColor = color
-        ),
-        elevation = if (colorSombra == Color.Black) ButtonDefaults.buttonElevation(8.dp) else ButtonDefaults.buttonElevation(0.dp)
+    Surface(
+        modifier = modifier
+            .height(altura)
+            .then(if (anchura != null) Modifier.width(anchura) else Modifier)
+            .then(
+                if (colorSombra != null) {
+                    Modifier.shadow(
+                        elevation = 10.dp,
+                        shape = forma,
+                        spotColor = colorSombra
+                    )
+                } else Modifier
+            )
+            .background(
+                brush = Brush.horizontalGradient(color),
+                shape = forma
+            )
+            .clip(forma),
+        color = Color.Transparent
 
     ) {
         Row(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
-
-            ) {
-
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)
+        ) {
             Text(
                 text = texto,
                 fontSize = tamanoTexto,
-                textAlign = TextAlign.Center,
-                fontFamily = poppinsFontFamily,
-                modifier = Modifier.padding(horizontal = 4.dp),
-                color = colorTexto
+                color = colorTexto,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 8.dp),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
             Icon(
                 painter = icono,
-                contentDescription = "icono",
+                contentDescription = texto,
                 tint = colorTexto,
                 modifier = Modifier.size(tamanoIcono)
             )
@@ -159,8 +174,8 @@ fun BotonColorIconoDerecha(
 @Composable
 fun BotonCircularIcono(
     modifier: Modifier = Modifier,
-    color: Color = Color(88, 133, 243, 255),
-    colorIcono: Color = Color.White,
+    color: Color = AppColors.cardsBackground,
+    colorIcono: Color = AppColors.text,
     colorSombra: Color? = null,
     icono: Painter,
     alClic: () -> Unit = {},
@@ -169,12 +184,12 @@ fun BotonCircularIcono(
     Button(
         onClick = alClic,
         modifier = if (colorSombra != null && colorSombra != Color.Black)
-            modifier.shadow(
-                elevation = 8.dp,
-                shape = CircleShape,
-                spotColor = colorSombra,
-                ambientColor = colorSombra
-            )
+            modifier
+                .shadow(
+                    elevation = 5.dp,
+                    shape = CircleShape,
+                )
+                .height(40.dp)
         else modifier,
         shape = CircleShape,
         colors = ButtonDefaults.buttonColors(
@@ -203,7 +218,7 @@ fun BotonGradiente(
             Color(88, 133, 243, 255)
         )
     ),
-    colorTexto: Color = Color.White,
+    colorTexto: Color = AppColors.cardsBackground,
     colorSombra: Color? = null,
     icono: Painter? = null,
     texto: String = "Soy botón",
@@ -230,7 +245,9 @@ fun BotonGradiente(
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Transparent
         ),
-        elevation = if (colorSombra == Color.Black) ButtonDefaults.buttonElevation(8.dp) else ButtonDefaults.buttonElevation(0.dp)
+        elevation = if (colorSombra == Color.Black) ButtonDefaults.buttonElevation(8.dp) else ButtonDefaults.buttonElevation(
+            0.dp
+        )
 
     ) {
         Row(
@@ -267,7 +284,12 @@ fun BackButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
         modifier = modifier
 
     ) {
-        Icon(imageVector = Icons.Filled.ArrowBackIosNew, contentDescription = "back", tint = Color.Gray, modifier = Modifier.padding(12.dp))
+        Icon(
+            imageVector = Icons.Filled.ArrowBackIosNew,
+            contentDescription = "back",
+            tint = Color.Gray,
+            modifier = Modifier.padding(12.dp)
+        )
     }
 }
 
@@ -278,17 +300,17 @@ fun MapButton(
     color: Color = Color.Black,
     icono: Painter
 ) {
-    IconButton (
+    IconButton(
         onClick = onClick,
-        modifier= Modifier
-            .background (color, shape = CircleShape)
-            
+        modifier = Modifier
+            .background(color, shape = CircleShape)
+
 
     ) {
         Icon(
             painter = icono,
             contentDescription = "map",
-            tint = Color.White,
+            tint = AppColors.cardsBackground,
             modifier = Modifier.padding(12.dp)
         )
     }
@@ -298,7 +320,7 @@ fun MapButton(
 fun ButtonNotBackground(
     modificador: Modifier = Modifier,
     color: Color = Color(88, 133, 243, 255),
-    colorTexto: Color = Color.White,
+    colorTexto: Color = AppColors.cardsBackground,
     colorSombra: Color? = null,
     icono: Painter? = null,
     texto: String = "Soy botón",
@@ -322,7 +344,9 @@ fun ButtonNotBackground(
         colors = ButtonDefaults.buttonColors(
             containerColor = color
         ),
-        elevation = if (colorSombra == Color.Black) ButtonDefaults.buttonElevation(8.dp) else ButtonDefaults.buttonElevation(0.dp)
+        elevation = if (colorSombra == Color.Black) ButtonDefaults.buttonElevation(8.dp) else ButtonDefaults.buttonElevation(
+            0.dp
+        )
 
     ) {
         Row(

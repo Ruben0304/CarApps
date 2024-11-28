@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -44,7 +43,7 @@ fun ChatsCenterScreen(
     viewModel: ChatCenterViewModel = ChatCenterViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    Scaffold(containerColor = Color.White, floatingActionButton = {
+    Scaffold(containerColor = AppColors.cardsBackground, floatingActionButton = {
         BotonColor(
             texto = "Consultar",
             icono = painterResource(resource = Res.drawable.MessagingWhite),
@@ -80,12 +79,12 @@ fun ChatsCenterScreen(
                     shadowElevation = 8.dp,
                     shape = CircleShape,
                     onClick = { TODO() },
-                    color = AppColors.dark
+                    color = AppColors.text
                 ) {
                     Box {
                         Text(
                             text = "RH",
-                            color = Color.White,
+                            color = AppColors.cardsBackground,
                             textAlign = TextAlign.Center,
                             modifier = Modifier.align(Alignment.Center)
                         )

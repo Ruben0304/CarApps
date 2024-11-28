@@ -34,12 +34,9 @@ import androidx.compose.foundation.lazy.LazyRow
 
 import androidx.compose.material3.*
 
-import androidx.compose.ui.draw.shadow
-
 import coil.compose.rememberAsyncImagePainter
 import ruben.hernandez.rentalcar.views.components.common.FiveStarRating
 import ruben.hernandez.rentalcar.views.components.common.LikeButton
-import ruben.hernandez.rentalcar.views.components.common.Rating
 
 @Composable
 fun MechanicPartCard(
@@ -56,7 +53,7 @@ fun MechanicPartCard(
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         modifier = modifier,
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+        colors = CardDefaults.cardColors(containerColor = AppColors.cardsBackground)
     ) {
         Box {
             Column {
@@ -89,7 +86,8 @@ fun MechanicPartCard(
                         text = name,
                         fontSize = 12.sp, // Reduje el tamaño de fuente
                         fontWeight = FontWeight.Bold,
-                        maxLines = 1
+                        maxLines = 1,
+                        color = AppColors.text
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Row(
@@ -112,7 +110,7 @@ fun MechanicPartCard(
                         text = price,
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,
-                        color = AppColors.dark,
+                        color = AppColors.text,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.End
                     )
@@ -170,7 +168,7 @@ fun MechanicCarHorizontal() {
                 isFavorite = false,
                 onFavoriteClick = {},
                 price = "$400",
-                modifier = Modifier.height(230.dp)
+                modifier = Modifier.height(230.dp).width(150.dp)
 
             )
         }

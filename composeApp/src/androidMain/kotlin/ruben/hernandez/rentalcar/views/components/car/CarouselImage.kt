@@ -23,6 +23,7 @@ import androidx.compose.ui.layout.ContentScale
 import coil.size.Scale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import ruben.hernandez.rentalcar.AppColors
 
 
 @Composable
@@ -70,7 +71,7 @@ fun CarouselImage(imagenes: List<String>, modifier: Modifier = Modifier) {
                         .graphicsLayer { scaleX = .9f }
                         .width(400.dp)
                         .height(600.dp),
-                    color = Color.White,          // Fondo transparente
+                    color = AppColors.cardsBackground,          // Fondo transparente
                     shadowElevation = 4.dp             // Sombra en Surface
                 ) {
                     AsyncImage(

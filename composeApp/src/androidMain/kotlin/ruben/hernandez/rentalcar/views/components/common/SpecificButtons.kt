@@ -8,6 +8,7 @@ import carrental.composeapp.generated.resources.Account
 import carrental.composeapp.generated.resources.Res
 import carrental.composeapp.generated.resources.Search
 import org.jetbrains.compose.resources.painterResource
+import ruben.hernandez.rentalcar.AppColors
 
 
 @Preview
@@ -16,13 +17,14 @@ fun ButtonProfile(
     modifier: Modifier = Modifier,
     onClick:  () -> Unit = {},
 ) {
+
     BotonColorIconoDerecha(
         icono = painterResource(resource = Res.drawable.Account),
-        color = Color.White,
-        colorTexto =  Color(32, 31, 31, 255),
-        colorSombra = Color(14, 67, 119, 255),
+        color = AppColors.principalLinearGradient,
+        colorSombra = AppColors.principal,
         texto = "Cuenta",
-        alClic = onClick
+        alClic = onClick,
+        modifier = modifier
     )
 }
 
@@ -34,8 +36,6 @@ fun ButtonSearch(
     BotonCircularIcono(
         modifier = modifier,
         icono = painterResource(resource = Res.drawable.Search),
-        color = Color.White,
-        colorIcono = Color(32, 31, 31, 255),
         colorSombra = Color(14, 67, 119, 255),
         alClic = onClick
     )

@@ -1,4 +1,4 @@
-package ruben.hernandez.rentalcar.views.screens.Auth
+package ruben.hernandez.rentalcar.views.screens
 
 import android.os.Build
 import android.widget.Toast
@@ -52,6 +52,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
+import ruben.hernandez.rentalcar.AppColors
 
 import ruben.hernandez.rentalcar.viewModels.Chat.Auth.LoginEvent
 import ruben.hernandez.rentalcar.viewModels.Chat.Auth.LoginViewModel
@@ -135,7 +136,7 @@ fun LoginScreen(
                             value = uiState.name,
                             onValueChange = { viewModel.onNameChanged(it) },
                             placeholder = "Nombre",
-                            textColor = Color.Black,
+                            textColor = AppColors.navColor,
                             modifier = Modifier.fillMaxWidth(.9f)
                         )
                         Spacer(modifier = Modifier.height(16.dp))
@@ -145,7 +146,7 @@ fun LoginScreen(
                         value = uiState.email,
                         onValueChange = { viewModel.onEmailChanged(it) },
                         placeholder = "Email",
-                        textColor = Color.Black,
+                        textColor = AppColors.navColor,
                         modifier = Modifier.fillMaxWidth(.9f)
                     )
                     Spacer(modifier = Modifier.height(16.dp))
@@ -154,7 +155,7 @@ fun LoginScreen(
                         value = uiState.password,
                         onValueChange = { viewModel.onPasswordChanged(it) },
                         placeholder = "Password",
-                        textColor = Color.Black,
+                        textColor = AppColors.navColor,
                         isPassword = true,
                         modifier = Modifier.fillMaxWidth(.9f),
                         showForgotPassword = !isReg
@@ -175,7 +176,7 @@ fun LoginScreen(
                             value = uiState.confirmPassword,
                             onValueChange = { viewModel.onConfirmPasswordChanged(it) },
                             placeholder = "Confirmar Password",
-                            textColor = Color.Black,
+                            textColor = AppColors.navColor,
                             isPassword = true,
                             modifier = Modifier.fillMaxWidth(.9f)
                         )

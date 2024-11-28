@@ -1,11 +1,34 @@
 package ruben.hernandez.rentalcar
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import ruben.hernandez.rentalcar.AppColors.darkMode
 
-object AppColors{
-    val backgroundGreyWhite = Color(241, 241, 241)
-    val dark = Color(41, 41, 46)
-    val principal = Color(88, 133, 243, 255)
-    val white = Color.White
-    val backgroundGradient = listOf(Color(250, 247, 247, 255), principal.copy(.25f))
+object AppColors {
+    var darkMode by mutableStateOf(true)
+
+    val buttonNav: Color
+        get() = if(darkMode) Color.Black.copy(0.25f) else Color.White.copy(0.25f)
+
+    val navColor: Color
+        get() = if(darkMode) Color.White else Color.Black
+
+    val text: Color
+        get() = if (darkMode) Color.White else Color(41, 41, 46)
+
+    val cardsBackground: Color
+        get() = if (darkMode) Color(0xFF1C1C1D) else Color.White
+
+    val principal: Color
+        get() = if (darkMode) Color(173,143,104) else Color(163,133,94)
+
+    val principalLinearGradient: List<Color>
+        get() = listOf(Color(173,143,104), Color(163,133,94))
+
+    val backgroundGradient: List<Color>
+        get() = if (darkMode)
+            listOf(Color(0,0,0), Color(0,0,0))
+        else listOf(Color(255, 255, 255, 255), Color(255, 255, 255, 255), principal.copy(.15f))
 }
