@@ -28,37 +28,3 @@ val poppinsFontFamily = FontFamily(
     Font(googleFont = poppinsFont, fontProvider = provider, weight = FontWeight.Medium),
     Font(googleFont = poppinsFont, fontProvider = provider, weight = FontWeight.Bold)
 )
-
-
-@Composable
-fun CarRentalAppTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-
-
-    val colors = if (darkTheme) {
-        darkColorScheme(
-            primary = Color(0xFFBB86FC),
-            secondary = Color(0xFF03DAC5),
-            background = Color(0xFF121212)
-        )
-    } else {
-        lightColorScheme(
-            primary = Color(0xFF6200EE),
-            secondary = Color(0xFF03DAC5),
-            background = Color(0xFFFFFFFF)
-        )
-    }
-
-
-
-
-    androidx.compose.material3.MaterialTheme(
-
-        colorScheme = colors,
-//        typography = androidx.compose.material3.Typography,
-        content = content
-    )
-
-}

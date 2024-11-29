@@ -159,7 +159,7 @@ private fun SettingsSection(
             style = MaterialTheme.typography.labelLarge.copy(
                 fontFamily = poppinsFontFamily,
                 fontWeight = FontWeight.Bold,
-                color = AppColors.dark
+                color = AppColors.text
             ),
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
@@ -180,7 +180,7 @@ private fun SettingsItem(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 4.dp),
         shape = RoundedCornerShape(12.dp),
-        color = AppColors.white
+        color = AppColors.navColor
     ) {
         Row(
             modifier = Modifier
@@ -204,7 +204,7 @@ private fun SettingsItem(
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
                     text = title,
-                    color = AppColors.dark,
+                    color = AppColors.text,
                     style = MaterialTheme.typography.bodyLarge.copy(
                         fontFamily = poppinsFontFamily
                     )
@@ -223,7 +223,7 @@ private fun SettingsItem(
                         colors = SwitchDefaults.colors(
                             checkedThumbColor = AppColors.principal,
                             checkedTrackColor = AppColors.principal.copy(alpha = 0.5f),
-                            uncheckedThumbColor = AppColors.dark,
+                            uncheckedThumbColor = AppColors.text,
                             uncheckedTrackColor = Color.White
                         )
                     )
@@ -233,7 +233,7 @@ private fun SettingsItem(
                     Icon(
                         imageVector = Icons.Default.ChevronRight,
                         contentDescription = null,
-                        tint = AppColors.dark
+                        tint = AppColors.text
                     )
                 }
             }
