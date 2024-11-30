@@ -141,7 +141,8 @@ fun BotonColorIconoDerecha(
                 shape = forma
             )
             .clip(forma),
-        color = Color.Transparent
+        color = Color.Transparent,
+        onClick = alClic
 
     ) {
         Row(
