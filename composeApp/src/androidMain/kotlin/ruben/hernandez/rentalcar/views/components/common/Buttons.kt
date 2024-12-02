@@ -53,7 +53,7 @@ import ruben.hernandez.rentalcar.views.poppinsFontFamily
 @Composable
 fun BotonColor(
     modifier: Modifier = Modifier,
-    color: Color = Color(88, 133, 243, 255),
+    color: Color = AppColors.principal,
     colorTexto: Color = AppColors.cardsBackground,
     colorSombra: Color? = null,
     icono: Painter? = null,

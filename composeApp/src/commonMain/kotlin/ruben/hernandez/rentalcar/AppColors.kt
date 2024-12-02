@@ -13,6 +13,9 @@ object AppColors {
         get() = if(darkMode) Color.Black.copy(0.25f) else Color.White.copy(0.25f)
 
     val navColor: Color
+        get() = Color.Gray
+
+    val navColorSelected: Color
         get() = if(darkMode) Color.White else Color.Black
 
     val text: Color
@@ -23,6 +26,12 @@ object AppColors {
 
     val principal: Color
         get() = if (darkMode) Color(173,143,104) else Color(163,133,94)
+
+    val piezas: Color
+        get() = if (darkMode) Color(57,137,78) else Color(76,168,100)
+
+    val carros: Color
+        get() = if (darkMode) Color(57,88,137) else Color(57,88,137)
 
     val principalLinearGradient: List<Color>
         get() = listOf(Color(173,143,104), Color(163,133,94))

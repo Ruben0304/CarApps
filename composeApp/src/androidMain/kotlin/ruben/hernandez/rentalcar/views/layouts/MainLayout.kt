@@ -62,10 +62,8 @@ fun MainLayout(
 ) {
     val navController = rememberNavController()
     val navItems = listOf(
-        BottomNavItem("Inicio", painterResource(resource = Res.drawable.Home), Destination.Home.route),
-        BottomNavItem("Alquilar", painterResource(resource = Res.drawable.Chat), Destination.Rent.route),
-        BottomNavItem("Tienda", painterResource(resource = Res.drawable.Shopping_Bag), Destination.Store.route),
-        BottomNavItem("Mecanicos", painterResource(resource = Res.drawable.Key), Destination.Mechanic.route),
+        BottomNavItem("Tienda", painterResource(resource = Res.drawable.Shopping_Bag), Destination.Home.route),
+        BottomNavItem("Consultas", painterResource(resource = Res.drawable.Chat), Destination.Rent.route),
         BottomNavItem("Ajustes", painterResource(resource = Res.drawable.Account), Destination.Settings.route)
     )
 

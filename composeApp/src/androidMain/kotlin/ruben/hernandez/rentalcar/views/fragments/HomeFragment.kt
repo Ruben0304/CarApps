@@ -2,8 +2,12 @@ package ruben.hernandez.rentalcar.views.fragments
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -11,34 +15,65 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import carrental.composeapp.generated.resources.Part3D
+import carrental.composeapp.generated.resources.Res
+import carrental.composeapp.generated.resources.mercedeskey
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
-import ruben.hernandez.rentalcar.views.components.car.CarCard
-import ruben.hernandez.rentalcar.views.components.common.CarrouselPromo
-import ruben.hernandez.rentalcar.views.components.common.SectionHeader
-import ruben.hernandez.rentalcar.views.components.home.ModernCardPiezas
-import ruben.hernandez.rentalcar.views.components.piezas.MechanicCarHorizontal
+import org.jetbrains.compose.resources.painterResource
+import ruben.hernandez.rentalcar.AppColors
+import ruben.hernandez.rentalcar.views.components.home.ModernHomeCard
 
 
 @Composable
-fun HomeFragment(paddingValues: PaddingValues,hazeState: HazeState) {
+fun HomeFragment(paddingValues: PaddingValues) {
 
-
-
-    LazyColumn(
-        contentPadding = paddingValues,
+    Box(
         modifier = Modifier
-            .haze(hazeState)
             .background(Color.Transparent)
+            .padding(paddingValues)
             .fillMaxSize()
     ) {
-        item {
-
+        Column(Modifier.fillMaxWidth(.95f).align(Alignment.TopCenter)) {
+            Text(
+                text = "Buenas tardes 👋🏼",
+                color = AppColors.text
+            )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(15.dp),
+                modifier = Modifier.fillMaxHeight(.45f)
+            ) {
+                ModernHomeCard(modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                    onButtonClick = { /*TODO*/ },
+                    image = painterResource(resource = Res.drawable.Part3D),
+                    color = AppColors.piezas,
+                    text = "Encuentra la pieza que necesitas",
+                    buttonText = "Ver piezas",
+                    imagePercent = .9f
+                )
+                ModernHomeCard(modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                    onButtonClick = { /*TODO*/ },
+                    image = painterResource(resource = Res.drawable.mercedeskey),
+                    color = AppColors.carros,
+                    text = "Alquila el auto de tus sueños",
+                    buttonText = "Ver autos",
+                    imagePercent = .75f
+                )
+            }
         }
+    }
+//
+
 //        item {
 //            CarrouselPromo()
 //        }
@@ -79,7 +114,7 @@ fun HomeFragment(paddingValues: PaddingValues,hazeState: HazeState) {
 //            )
 //
 //        }
-    }
+
 }
 //
 //@RequiresApi(Build.VERSION_CODES.S)
