@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 import ruben.hernandez.rentalcar.AppColors.darkMode
 
 object AppColors {
-    var darkMode by mutableStateOf(true)
+    var darkMode by mutableStateOf(false)
 
     val buttonNav: Color
         get() = if(darkMode) Color.Black.copy(0.25f) else Color.White.copy(0.25f)

@@ -7,11 +7,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
+import ruben.hernandez.rentalcar.navigation.Destination
 import ruben.hernandez.rentalcar.views.components.car.CarCard
 import ruben.hernandez.rentalcar.views.components.common.CarrouselPromo
 import ruben.hernandez.rentalcar.views.components.common.SectionHeader
@@ -19,7 +22,11 @@ import ruben.hernandez.rentalcar.views.components.piezas.MechanicCarHorizontal
 
 
 @Composable
-fun HomeFragment(paddingValues: PaddingValues,hazeState: HazeState) {
+fun HomeFragment(
+    paddingValues: PaddingValues,
+    hazeState: HazeState,
+    navigateToOtherItem: (String) -> Unit
+) {
     LazyColumn(
         contentPadding = paddingValues,
         modifier = Modifier
@@ -56,7 +63,6 @@ fun HomeFragment(paddingValues: PaddingValues,hazeState: HazeState) {
                 transmission = "Manual",
                 pricePerDay = "$400/d",
                 onClick = {
-
                 },
                 modifier = Modifier
                     .fillMaxWidth()
