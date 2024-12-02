@@ -1,76 +1,84 @@
 package ruben.hernandez.rentalcar.views.fragments
 
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
-import ruben.hernandez.rentalcar.navigation.Destination
 import ruben.hernandez.rentalcar.views.components.car.CarCard
 import ruben.hernandez.rentalcar.views.components.common.CarrouselPromo
 import ruben.hernandez.rentalcar.views.components.common.SectionHeader
+import ruben.hernandez.rentalcar.views.components.home.ModernCardPiezas
 import ruben.hernandez.rentalcar.views.components.piezas.MechanicCarHorizontal
 
 
 @Composable
-fun HomeFragment(
-    paddingValues: PaddingValues,
-    hazeState: HazeState,
-    navigateToOtherItem: (String) -> Unit
-) {
+fun HomeFragment(paddingValues: PaddingValues,hazeState: HazeState) {
+
+
+
     LazyColumn(
         contentPadding = paddingValues,
         modifier = Modifier
             .haze(hazeState)
+            .background(Color.Transparent)
+            .fillMaxSize()
     ) {
         item {
-            CarrouselPromo()
-        }
-        item {
-            Spacer(modifier = Modifier.height(20.dp))
-        }
-        item {
-            SectionHeader(title = "Recientes")
-        }
-
-        item {
-            MechanicCarHorizontal()
-        }
-
-        item {
-            Spacer(modifier = Modifier.height(20.dp))
-        }
-
-        item {
-            SectionHeader(title = "Mejor valorados")
-        }
-        items(5) { index ->
-
-            CarCard(
-                carName = "Porsche 718 Cayman S",
-                carType = "Coupe",
-                imageUrl = "https://pngimg.com/d/maserati_PNG28.png",
-                passengers = 2,
-                transmission = "Manual",
-                pricePerDay = "$400/d",
-                onClick = {
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 10.dp, vertical = 20.dp)
-
-            )
 
         }
+//        item {
+//            CarrouselPromo()
+//        }
+//        item {
+//            Spacer(modifier = Modifier.height(20.dp))
+//        }
+//        item {
+//            SectionHeader(title = "Recientes")
+//        }
+//
+//        item {
+//            MechanicCarHorizontal()
+//        }
+//
+//        item {
+//            Spacer(modifier = Modifier.height(20.dp))
+//        }
+//
+//        item {
+//            SectionHeader(title = "Mejor valorados")
+//        }
+//        items(5) { index ->
+//
+//            CarCard(
+//                carName = "Porsche 718 Cayman S",
+//                carType = "Coupe",
+//                imageUrl = "https://pngimg.com/d/maserati_PNG28.png",
+//                passengers = 2,
+//                transmission = "Manual",
+//                pricePerDay = "$400/d",
+//                onClick = {
+//
+//                },
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(horizontal = 10.dp, vertical = 20.dp)
+//
+//            )
+//
+//        }
     }
 }
 //

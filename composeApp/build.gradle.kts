@@ -67,6 +67,7 @@ kotlin {
             implementation("io.ktor:ktor-client-serialization:2.2.0")
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
             implementation(libs.androidx.animation)
+            implementation(libs.ktor.client.okhttp)
             // For swipe-to-refresh, placeholder loading, etc.
             implementation(libs.accompanist.systemuicontroller)
             implementation(libs.accompanist.navigation.animation)
@@ -97,7 +98,11 @@ kotlin {
             implementation(libs.navigation.compose)
             implementation(libs.apollo.runtime)
             implementation(libs.apollo.api)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            api(libs.koin.core)
 
+            implementation(libs.bundles.ktor)
         }
     }
 }

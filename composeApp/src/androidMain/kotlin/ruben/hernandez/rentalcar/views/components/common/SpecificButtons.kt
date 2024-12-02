@@ -33,10 +33,5 @@ fun ButtonSearch(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
-    BotonCircularIcono(
-        modifier = modifier,
-        icono = painterResource(resource = Res.drawable.Search),
-        colorSombra = Color(14, 67, 119, 255),
-        alClic = onClick
-    )
+
 }

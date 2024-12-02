@@ -38,6 +38,7 @@ import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.navigation.Destination
 import ruben.hernandez.rentalcar.views.components.car.CarCard
+import ruben.hernandez.rentalcar.views.components.common.BotonCircularIcono
 import ruben.hernandez.rentalcar.views.components.common.BotonColorIconoDerecha
 import ruben.hernandez.rentalcar.views.components.common.ButtonProfile
 import ruben.hernandez.rentalcar.views.components.common.ButtonSearch
@@ -102,23 +103,27 @@ fun MainLayout(
                     }
                 },
                 actions = {
-                    ButtonSearch(
-                        modifier = Modifier.size(42.dp),
-                        onClick = { }
+                    BotonCircularIcono(
+                        modifier = Modifier.size(38.dp),
+                        icono = painterResource(resource = Res.drawable.Search),
+                        colorSombra = Color(14, 67, 119, 255),
+                        alClic = {},
+                        tamanoIcono = 17.dp
                     )
-                    Spacer(modifier = Modifier.width(15.dp))
+                    Spacer(modifier = Modifier.fillMaxWidth(.035f))
                     BotonColorIconoDerecha(
                         icono = painterResource(resource = Res.drawable.Account),
                         color = AppColors.principalLinearGradient,
                         colorSombra = AppColors.principal,
                         texto = "Cuenta",
                         tamanoTexto = 14.sp,
-                        alClic = {},
+                        alClic = {AppColors.darkMode = !AppColors.darkMode},
                         forma = CircleShape,
                         altura = 38.dp, // Altura más pequeña
 //                        minAltura = 15.dp, // Altura mínima configurable
                         tamanoIcono = 17.dp, // Ajusta el ícono
-                        modifier = Modifier.fillMaxWidth(.25f)
+                        modifier = Modifier.fillMaxWidth(.32f),
+
                     )
 
                     Spacer(modifier = Modifier.width(10.dp))
