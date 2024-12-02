@@ -17,6 +17,8 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import carrental.composeapp.generated.resources.Account
 import carrental.composeapp.generated.resources.Car
 import carrental.composeapp.generated.resources.Chat
@@ -34,10 +36,10 @@ import dev.chrisbanes.haze.materials.HazeMaterials
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
+import ruben.hernandez.rentalcar.navigation.Destination
 import ruben.hernandez.rentalcar.views.components.car.CarCard
 import ruben.hernandez.rentalcar.views.components.common.BotonCircularIcono
 import ruben.hernandez.rentalcar.views.components.common.BotonColorIconoDerecha
-import ruben.hernandez.rentalcar.views.components.common.BottomNav
 import ruben.hernandez.rentalcar.views.components.common.ButtonProfile
 import ruben.hernandez.rentalcar.views.components.common.ButtonSearch
 import ruben.hernandez.rentalcar.views.components.common.CarrouselPromo
@@ -56,19 +58,18 @@ data class BottomNavItem(
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalHazeMaterialsApi::class)
 @Composable
 fun MainLayout(
-    content: @Composable (HazeState,PaddingValues) -> Unit
+    content: @Composable (HazeState, PaddingValues, NavHostController) -> Unit
 ) {
-    val navItems =
-        listOf(
-            BottomNavItem("Inicio", painterResource(resource = Res.drawable.Home), "home"),
-            BottomNavItem("Alquilar", painterResource(resource = Res.drawable.Chat), "rent"),
-            BottomNavItem("Tienda", painterResource(resource = Res.drawable.Shopping_Bag), "store"),
-            BottomNavItem("Mecanicos", painterResource(resource = Res.drawable.Key), "mechanics"),
-            BottomNavItem("Ajustes", painterResource(resource = Res.drawable.Account), "settings")
-        )
+    val navController = rememberNavController()
+    val navItems = listOf(
+        BottomNavItem("Inicio", painterResource(resource = Res.drawable.Home), Destination.Home.route),
+        BottomNavItem("Alquilar", painterResource(resource = Res.drawable.Chat), Destination.Rent.route),
+        BottomNavItem("Tienda", painterResource(resource = Res.drawable.Shopping_Bag), Destination.Store.route),
+        BottomNavItem("Mecanicos", painterResource(resource = Res.drawable.Key), Destination.Mechanic.route),
+        BottomNavItem("Ajustes", painterResource(resource = Res.drawable.Account), Destination.Settings.route)
+    )
 
     val hazeState = remember { HazeState() }
-    var selectedNavItem by remember { mutableStateOf(0) }
 
     Scaffold(
         modifier = Modifier
@@ -142,25 +143,42 @@ fun MainLayout(
                     Modifier.navigationBarsPadding(),
                 containerColor = Color.Transparent
             ) {
+                val currentDestination = navController.currentDestination?.route
+
                 navItems.forEachIndexed { index, item ->
                     NavigationBarItem(
                         icon = {
                             Icon(
                                 item.icon,
                                 contentDescription = item.title,
-                                tint = if (selectedNavItem == index) AppColors.navColor else Color.Gray,
+                                tint = if (currentDestination == item.route)
+                                    AppColors.navColor
+                                else Color.Gray,
                                 modifier = Modifier.size(28.dp)
                             )
                         },
                         label = {
                             Text(
                                 item.title,
-                                color = if (selectedNavItem == index) AppColors.navColor else Color.Gray,
+                                color = if (currentDestination == item.route)
+                                    AppColors.navColor
+                                else Color.Gray,
                                 fontSize = 12.sp
                             )
                         },
-                        selected = false,
-                        onClick = { selectedNavItem = index }
+                        selected = currentDestination == item.route,
+                        onClick = {
+                            navController.navigate(item.route) {
+                                // Pop up to the start destination to avoid building a large stack of destinations
+                                popUpTo(navController.graph.startDestinationId) {
+                                    saveState = true
+                                }
+                                // Avoid multiple copies of the same destination on the back stack
+                                launchSingleTop = true
+                                // Restore state when re-selecting a previously selected item
+                                restoreState = true
+                            }
+                        }
                     )
                 }
             }
@@ -174,14 +192,15 @@ fun MainLayout(
                     )
                 )
         ) {
-            if (isAtLeastApi32)
-            Column{
-                content(hazeState,paddingValues)
+            if (isAtLeastApi32) {
+                Column {
+                    content(hazeState, paddingValues, navController)
+                }
+            } else {
+                Box(modifier = Modifier.padding(paddingValues)) {
+                    content(hazeState, paddingValues, navController)
+                }
             }
-            else
-                Box(modifier = Modifier.padding(paddingValues)){content(hazeState,paddingValues)}
-
         }
-
     }
 }

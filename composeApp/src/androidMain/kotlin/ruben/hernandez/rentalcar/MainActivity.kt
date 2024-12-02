@@ -54,9 +54,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AppAndroidPreview() {
     CarAppTheme {
-        MainLayout { hazeState: HazeState, paddingValues: PaddingValues ->
-            val navController = rememberNavController()
-            AppRoutes(navController = navController,paddingValues = paddingValues, hazeState = hazeState)
+        MainLayout { hazeState, paddingValues, navController ->
+            AppRoutes(
+                navController = navController,
+                paddingValues = paddingValues,
+                hazeState = hazeState,
+                onNavigate = {} // Optional navigation callback
+            )
         }
     }
 }
