@@ -25,7 +25,7 @@ object AppColors {
         get() = if (darkMode) Color(0xFF1C1C1D) else Color.White
 
     val principal: Color
-        get() = if (darkMode) Color(173,143,104) else Color(163,133,94)
+        get() = if (darkMode) Color(137,113,57) else Color(137,113,57)
 
     val piezas: Color
         get() = if (darkMode) Color(57,137,78) else Color(76,168,100)

@@ -86,19 +86,15 @@ fun MainLayout(
                         style = HazeMaterials.thin(AppColors.buttonNav)
                     ),
                 title = {
-                    Column {
+
+
                         Text(
-                            text = "LA HABANA, CUBA",
-                            fontSize = 12.sp,
-                            color = AppColors.text.copy(alpha = 0.7f)
-                        )
-                        Text(
-                            text = "Bienvenido",
-                            fontSize = 24.sp,
+                            text = "Inicio",
+                            fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             color = AppColors.text
                         )
-                    }
+
                 },
                 actions = {
                     BotonCircularIcono(
@@ -152,7 +148,7 @@ fun MainLayout(
                                 tint = if (currentDestination == item.route)
                                     AppColors.navColor
                                 else Color.Gray,
-                                modifier = Modifier.size(28.dp)
+                                modifier = Modifier.size(25.dp)
                             )
                         },
                         label = {

@@ -20,7 +20,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import carrental.composeapp.generated.resources.Part3D
 import carrental.composeapp.generated.resources.Res
 import carrental.composeapp.generated.resources.mercedeskey
@@ -29,25 +33,35 @@ import dev.chrisbanes.haze.haze
 import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.views.components.home.ModernHomeCard
+import ruben.hernandez.rentalcar.views.components.home.ModernMechanicCard
 
 
 @Composable
 fun HomeFragment(paddingValues: PaddingValues) {
 
-    Box(
+    Column(
         modifier = Modifier
             .background(Color.Transparent)
             .padding(paddingValues)
             .fillMaxSize()
     ) {
-        Column(Modifier.fillMaxWidth(.95f).align(Alignment.TopCenter)) {
-            Text(
-                text = "Buenas tardes 👋🏼",
-                color = AppColors.text
-            )
+            Column(modifier = Modifier.padding(horizontal = 10.dp)) {
+                Text(
+                    text = "Buenas tardes 👋🏼",
+                    color = AppColors.text,
+                    fontSize = 35.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "¿En qué podemos ayudarte?",
+                    color = AppColors.text.copy(.85f),
+                    fontSize = 18.sp
+                )
+            }
+
             Row(
-                horizontalArrangement = Arrangement.spacedBy(15.dp),
-                modifier = Modifier.fillMaxHeight(.45f)
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 20.dp).weight(.35f)
             ) {
                 ModernHomeCard(modifier = Modifier
                     .weight(1f)
@@ -56,8 +70,7 @@ fun HomeFragment(paddingValues: PaddingValues) {
                     image = painterResource(resource = Res.drawable.Part3D),
                     color = AppColors.piezas,
                     text = "Encuentra la pieza que necesitas",
-                    buttonText = "Ver piezas",
-                    imagePercent = .9f
+                    buttonText = "Ver piezas"
                 )
                 ModernHomeCard(modifier = Modifier
                     .weight(1f)
@@ -66,11 +79,19 @@ fun HomeFragment(paddingValues: PaddingValues) {
                     image = painterResource(resource = Res.drawable.mercedeskey),
                     color = AppColors.carros,
                     text = "Alquila el auto de tus sueños",
-                    buttonText = "Ver autos",
-                    imagePercent = .75f
+                    buttonText = "Ver autos"
                 )
-            }
         }
+        ModernMechanicCard(modifier = Modifier
+            .weight(.25f)
+            .padding(horizontal = 10.dp)
+            .padding(bottom = 20.dp),
+            onButtonClick = { /*TODO*/ },
+            image = painterResource(resource = Res.drawable.mercedeskey),
+            color = AppColors.principal,
+            text = "Explorar mecánicos",
+            buttonText = "Explorar"
+        )
     }
 //
 

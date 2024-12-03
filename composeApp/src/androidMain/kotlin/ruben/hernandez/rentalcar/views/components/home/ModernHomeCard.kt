@@ -38,7 +38,6 @@ fun ModernHomeCard(
     image: Painter,
     color: Color,
     text: String,
-    imagePercent: Float,
     buttonText: String
 ) {
         Card(
@@ -78,8 +77,8 @@ fun ModernHomeCard(
                     painter = image,
                     contentDescription = "Brake disc illustration",
                     modifier = Modifier
-                        .fillMaxWidth(imagePercent)
                         .align(Alignment.Center)
+                        .fillMaxHeight(.5f)
                 )
 
                 Button(
