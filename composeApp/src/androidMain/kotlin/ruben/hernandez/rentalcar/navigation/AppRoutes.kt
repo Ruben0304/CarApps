@@ -29,19 +29,19 @@ fun AppRoutes(
             HomeFragment(
                 paddingValues = paddingValues,
                 hazeState = hazeState,
-                navigateToOtherItem = { destination ->
-                    navController.navigate(destination) {
-                        // Avoid multiple copies of the same destination on the back stack
-                        launchSingleTop = true
-                        // Pop up to the start destination to avoid building a large stack of destinations
-                        popUpTo(navController.graph.startDestinationId) {
-                            saveState = true
-                        }
-                        // Restore state when re-selecting a previously selected item
-                        restoreState = true
-                    }
-                    onNavigate(destination)
-                }
+//                navigateToOtherItem = { destination ->
+//                    navController.navigate(destination) {
+//                        // Avoid multiple copies of the same destination on the back stack
+//                        launchSingleTop = true
+//                        // Pop up to the start destination to avoid building a large stack of destinations
+//                        popUpTo(navController.graph.startDestinationId) {
+//                            saveState = true
+//                        }
+//                        // Restore state when re-selecting a previously selected item
+//                        restoreState = true
+//                    }
+//                    onNavigate(destination)
+//                }
             )
         }
         composable(Destination.Rent.route) {
