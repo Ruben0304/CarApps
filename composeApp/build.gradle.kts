@@ -83,6 +83,8 @@ kotlin {
             implementation(libs.haze)
            implementation(libs.haze.materials)
             implementation(libs.androidx.ui.text.google.fonts)
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -103,6 +105,10 @@ kotlin {
             api(libs.koin.core)
 
             implementation(libs.bundles.ktor)
+
+        }
+        nativeMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
@@ -169,5 +175,7 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.ui.text.google.fonts)
+    implementation(libs.androidx.activity.ktx)
+
 }
 
