@@ -22,6 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import carrental.composeapp.generated.resources.Account
 import carrental.composeapp.generated.resources.Car
 import carrental.composeapp.generated.resources.Chat
+import carrental.composeapp.generated.resources.ChatMessage
 import carrental.composeapp.generated.resources.Home
 import carrental.composeapp.generated.resources.Key
 import carrental.composeapp.generated.resources.Res
@@ -66,6 +67,9 @@ fun MainLayout(
         BottomNavItem("Consultas", painterResource(resource = Res.drawable.Chat), Destination.Rent.route),
         BottomNavItem("Ajustes", painterResource(resource = Res.drawable.Account), Destination.Settings.route)
     )
+    val navName by remember {
+        mutableStateOf(navController.currentDestination.toString())
+    }
 
     val hazeState = remember { HazeState() }
 
@@ -88,12 +92,15 @@ fun MainLayout(
                 title = {
 
 
+                    navName?.let {
                         Text(
-                            text = "Inicio",
+                            text = it,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             color = AppColors.text
                         )
+                    }
+
 
                 },
                 actions = {
@@ -104,7 +111,15 @@ fun MainLayout(
                         alClic = {},
                         tamanoIcono = 17.dp
                     )
-                    Spacer(modifier = Modifier.fillMaxWidth(.035f))
+                    Spacer(modifier = Modifier.width(10.dp))
+                    BotonCircularIcono(
+                        modifier = Modifier.size(38.dp),
+                        icono = painterResource(resource = Res.drawable.ChatMessage),
+                        colorSombra = Color(14, 67, 119, 255),
+                        alClic = {},
+                        tamanoIcono = 17.dp
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
                     BotonColorIconoDerecha(
                         icono = painterResource(resource = Res.drawable.Account),
                         color = AppColors.principalLinearGradient,
@@ -116,7 +131,7 @@ fun MainLayout(
                         altura = 38.dp, // Altura más pequeña
 //                        minAltura = 15.dp, // Altura mínima configurable
                         tamanoIcono = 17.dp, // Ajusta el ícono
-                        modifier = Modifier.fillMaxWidth(.32f),
+                        modifier = Modifier.fillMaxWidth(.38f),
 
                     )
 

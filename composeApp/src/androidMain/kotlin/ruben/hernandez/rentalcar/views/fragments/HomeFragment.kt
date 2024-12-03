@@ -49,7 +49,7 @@ fun HomeFragment(paddingValues: PaddingValues) {
                 Text(
                     text = "Buenas tardes 👋🏼",
                     color = AppColors.text,
-                    fontSize = 35.sp,
+                    fontSize = 30.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(

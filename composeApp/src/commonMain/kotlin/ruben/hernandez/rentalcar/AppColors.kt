@@ -34,7 +34,7 @@ object AppColors {
         get() = if (darkMode) Color(57,88,137) else Color(57,88,137)
 
     val principalLinearGradient: List<Color>
-        get() = listOf(Color(173,143,104), Color(163,133,94))
+        get() = listOf(Color(173,143,104), Color(137,113,57))
 
     val backgroundGradient: List<Color>
         get() = if (darkMode)

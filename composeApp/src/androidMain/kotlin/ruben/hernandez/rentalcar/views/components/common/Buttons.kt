@@ -126,23 +126,12 @@ fun BotonColorIconoDerecha(
     Surface(
         modifier = modifier
             .height(altura)
-            .then(if (anchura != null) Modifier.width(anchura) else Modifier)
-            .then(
-                if (colorSombra != null) {
-                    Modifier.shadow(
-                        elevation = 10.dp,
-                        shape = forma,
-                        spotColor = colorSombra
-                    )
-                } else Modifier
-            )
-            .background(
-                brush = Brush.horizontalGradient(color),
-                shape = forma
-            )
-            .clip(forma),
-        color = Color.Transparent,
-        onClick = alClic
+            .then(if (anchura != null) Modifier.width(anchura) else Modifier),
+        color = AppColors.cardsBackground,
+        onClick = alClic,
+        border = BorderStroke(1.dp,Brush.linearGradient(listOf( AppColors.carros,AppColors.piezas))),
+        shape = CircleShape,
+        shadowElevation = 8.dp
 
     ) {
         Row(
@@ -155,7 +144,7 @@ fun BotonColorIconoDerecha(
             Text(
                 text = texto,
                 fontSize = tamanoTexto,
-                color = colorTexto,
+                color = AppColors.text,
                 modifier = Modifier
                     .weight(1f)
                     .padding(end = 8.dp),
@@ -165,7 +154,7 @@ fun BotonColorIconoDerecha(
             Icon(
                 painter = icono,
                 contentDescription = texto,
-                tint = colorTexto,
+                tint = AppColors.text,
                 modifier = Modifier.size(tamanoIcono)
             )
         }

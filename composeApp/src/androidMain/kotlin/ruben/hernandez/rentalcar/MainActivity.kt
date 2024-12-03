@@ -1,22 +1,36 @@
 package ruben.hernandez.rentalcar
 
 
-
+import android.os.Build
 import android.os.Bundle
-import androidx.core.app.ComponentActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
+import androidx.navigation.compose.rememberNavController
+import ruben.hernandez.rentalcar.navigation.AppRoutes
+import ruben.hernandez.rentalcar.navigation.ChatRoutes
+import ruben.hernandez.rentalcar.views.layouts.MainLayout
+import ruben.hernandez.rentalcar.views.theme.CarAppTheme
 
 
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-         setC{
+        setContent {
 
-//            CarAppTheme {
-//                val navController = rememberNavController()
-////                AppRoutes(navController = navController)
-//                ChatRoutes(navController = navController)
-//            }
+
+                CarAppTheme {
+                    MainLayout { hazeState, paddingValues, navController ->
+                        AppRoutes(
+                            navController = navController,
+                            paddingValues = paddingValues,
+                            hazeState = hazeState,
+                            onNavigate = {} // Optional navigation callback
+                        )
+                    }
+                }
         }
     }
 }

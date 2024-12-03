@@ -56,6 +56,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.activity.ktx)
             // Navigation
             implementation(libs.androidx.navigation.compose)
             implementation(libs.kotlinx.serialization.json)
@@ -175,7 +176,7 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.ui.text.google.fonts)
-    implementation(libs.androidx.activity.ktx)
+
 
 }
 

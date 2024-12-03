@@ -71,7 +71,8 @@ fun ModernMechanicCard(
                         Brush.horizontalGradient(
                             colors = listOf(
                                 AppColors.cardsBackground.copy(alpha = 0.8f),
-                                AppColors.cardsBackground
+                                AppColors.cardsBackground.copy(.85f),
+                                Color.Black.copy(.9f)
                             )
                         )
                     )
@@ -89,10 +90,10 @@ fun ModernMechanicCard(
                         .padding(start = 10.dp)) {
                     Text(
                         text = text,
-                        fontSize = 18.sp,
+                        fontSize = 21.sp,
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White,
+                        color = AppColors.text,
 
 
                     )
@@ -102,7 +103,7 @@ fun ModernMechanicCard(
                         fontSize = 16.sp,
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.SemiBold,
-                        color = Color.White,
+                        color = AppColors.text.copy(.8f),
                         lineHeight = 25.sp,
                     )
                 }
