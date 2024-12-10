@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
-import org.koin.compose.viewmodel.koinViewModel
+import org.koin.androidx.compose.koinViewModel
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.navigation.Destination
 import ruben.hernandez.rentalcar.viewModels.Parts.PiezasViewModel

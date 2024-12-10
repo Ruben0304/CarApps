@@ -19,7 +19,7 @@ sealed class PartsUiState {
 
 class PiezasViewModel(
     private val repository: PiezasRepository
-) : ViewModel() {
+) : ViewModel(), KoinComponent {
     private val _uiState = MutableStateFlow<PartsUiState>(PartsUiState.Loading)
     val uiState: StateFlow<PartsUiState> = _uiState.asStateFlow()
 

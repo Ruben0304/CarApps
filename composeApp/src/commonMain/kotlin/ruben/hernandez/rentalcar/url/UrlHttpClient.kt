@@ -1,3 +1,3 @@
 package ruben.hernandez.rentalcar.url
 
-val BASE_URL: String = "http://127.0.0.1:8080/"
+val BASE_URL: String = "http://192.168.211.1:8080/"

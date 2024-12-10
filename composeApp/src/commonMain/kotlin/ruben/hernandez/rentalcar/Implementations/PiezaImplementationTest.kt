@@ -1,9 +1,10 @@
 package ruben.hernandez.rentalcar.Implementations
 
+import io.ktor.client.HttpClient
 import ruben.hernandez.rentalcar.models.Parts
 import ruben.hernandez.rentalcar.repositories.PiezasRepository
 
-class PiezaImplementationTest : PiezasRepository {
+class PiezaImplementationTest(private val httpClient: HttpClient) : PiezasRepository {
 
     // Lista de datos iniciales
     private val partsList = mutableListOf(

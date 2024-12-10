@@ -7,6 +7,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.navigation.compose.rememberNavController
+import org.koin.android.ext.koin.androidContext
+import ruben.hernandez.rentalcar.di.initKoin
 import ruben.hernandez.rentalcar.navigation.AppRoutes
 import ruben.hernandez.rentalcar.navigation.ChatRoutes
 import ruben.hernandez.rentalcar.views.layouts.MainLayout
@@ -19,7 +21,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-
 
                 CarAppTheme {
                     MainLayout { hazeState, paddingValues, navController ->
