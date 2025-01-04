@@ -27,11 +27,11 @@ import carrental.composeapp.generated.resources.MessagingWhite
 import carrental.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
+import ruben.hernandez.rentalcar.components.organism.ChatsList
 import ruben.hernandez.rentalcar.viewModels.Chat.ChatCenterViewModel
 import ruben.hernandez.rentalcar.viewModels.Chat.ListUiState
 import ruben.hernandez.rentalcar.views.components.common.BackButton
 import ruben.hernandez.rentalcar.views.components.common.BotonColor
-import ruben.hernandez.rentalcar.views.components.chat.ChatsList
 import ruben.hernandez.rentalcar.views.components.common.LoadingIndicator
 import ruben.hernandez.rentalcar.views.components.common.SearchInput
 

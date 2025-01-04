@@ -2,11 +2,8 @@ package ruben.hernandez.rentalcar.navigation
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -26,7 +23,7 @@ fun AppRoutes(
         startDestination = Destination.Home.route
     ) {
         composable(Destination.Home.route) {
-            HomeFragment(
+            StoreFragment(
                 paddingValues = paddingValues,
 //                navigateToOtherItem = { destination ->
 //                    navController.navigate(destination) {
@@ -60,7 +57,7 @@ fun AppRoutes(
             )
         }
         composable(Destination.Store.route) {
-            StoreFragment(
+            PiezasFragment(
                 paddingValues = paddingValues,
                 hazeState = hazeState,
                 navigateToOtherItem = { destination ->
@@ -96,24 +93,26 @@ fun AppRoutes(
                 paddingValues = paddingValues,
                 hazeState = hazeState,
                 navigateToOtherItem = { destination ->
-                    navController.navigate(destination) {
-                        launchSingleTop = true
-                        popUpTo(navController.graph.startDestinationId) {
-                            saveState = true
+                    if (destination == DestinationP.Account.route) {
+                        onNavigate(destination)
+                    } else {
+                        navController.navigate(destination) {
+                            launchSingleTop = true
+                            popUpTo(navController.graph.startDestinationId) {
+                                saveState = true
+                            }
+                            restoreState = true
                         }
-                        restoreState = true
                     }
-                    onNavigate(destination)
                 }
             )
         }
     }
 }
-
 sealed class Destination(val route: String) {
-    object Home : Destination("home")
+    object Home : Destination("Tienda")
     object Rent : Destination("rent")
-    object Store : Destination("store")
+    object Store : Destination("Consultas")
     object Mechanic : Destination("mechanic")
-    object Settings : Destination("settings")
+    object Settings : Destination("Configuraciones")
 }

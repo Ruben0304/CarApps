@@ -40,7 +40,7 @@ import dev.chrisbanes.haze.hazeChild
 import dev.chrisbanes.haze.materials.ExperimentalHazeMaterialsApi
 import dev.chrisbanes.haze.materials.HazeMaterials
 import ruben.hernandez.rentalcar.AppColors
-import ruben.hernandez.rentalcar.views.components.car.CarCard
+import ruben.hernandez.rentalcar.components.organism.CarCard
 import ruben.hernandez.rentalcar.views.components.common.BackButton
 import ruben.hernandez.rentalcar.views.components.common.SearchInput
 import ruben.hernandez.rentalcar.views.components.piezas.MechanicPartCard

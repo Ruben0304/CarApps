@@ -32,9 +32,9 @@ import carrental.composeapp.generated.resources.Close
 import carrental.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
+import ruben.hernandez.rentalcar.components.molecules.PerfilMecanico
+import ruben.hernandez.rentalcar.components.organism.MenuDesplegable
 import ruben.hernandez.rentalcar.viewModels.Chat.NewChatViewModel
-import ruben.hernandez.rentalcar.views.components.chat.MenuDesplegable
-import ruben.hernandez.rentalcar.views.components.chat.PerfilMecanico
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 
 @OptIn(ExperimentalMaterialApi::class)

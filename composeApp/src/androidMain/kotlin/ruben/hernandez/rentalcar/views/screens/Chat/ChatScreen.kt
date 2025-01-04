@@ -29,13 +29,12 @@ import carrental.composeapp.generated.resources.Phone
 import carrental.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
+import ruben.hernandez.rentalcar.components.organism.AnimatedMessageBubble
 import ruben.hernandez.rentalcar.models.ChatMessage
 //import ruben.hernandez.rentalcar.appclip.Icon
 //import ruben.hernandez.rentalcar.messagesthreadname.MessagesThreadName
 
-import ruben.hernandez.rentalcar.views.components.chat.AnimatedMessageBubble
 import ruben.hernandez.rentalcar.views.components.common.BackButton
-import ruben.hernandez.rentalcar.views.components.chat.ElegantChatInput
 
 
 
@@ -92,41 +91,41 @@ fun ChatScreen(navController: NavController = rememberNavController()) {
             }
         }
 
-        ElegantChatInput(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter),
-            onSendMessage = { newMessage ->
-                val isReceived = false
-                // Agregar el mensaje enviado a la lista
-                messages = messages + ChatMessage(
-                    id = messages.size,
-                    content = newMessage,
-                    isReceived = isReceived
-                )
+//        ElegantChatInput(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .align(Alignment.BottomCenter),
+//            onSendMessage = { newMessage ->
+//                val isReceived = false
+//                // Agregar el mensaje enviado a la lista
+//                messages = messages + ChatMessage(
+//                    id = messages.size,
+//                    content = newMessage,
+//                    isReceived = isReceived
+//                )
 
                 // Llamar a la función asíncrona para obtener la respuesta de la IA
-                coroutineScope.launch {
-                    // Llamar a la función asíncrona
-                    messages = messages + ChatMessage( // Agregar respuesta a la lista
-                        id = messages.size,
-                        content = "prueba recibir",
-                        isReceived = true // Marcar como recibido
-                    )
-                    listState.animateScrollToItem(0) // Desplazar hacia el mensaje más reciente
-                }
-            },
-            onSendImage = { imageUri ->
-                val isReceived = false
-                messages = messages + ChatMessage(
-                    id = messages.size,
-                    imageUri = imageUri.toString(),
-                    isReceived = isReceived
-                )
-                coroutineScope.launch {
-                    listState.animateScrollToItem(0)
-                }
-            }
-        )
+//                coroutineScope.launch {
+//                    // Llamar a la función asíncrona
+//                    messages = messages + ChatMessage( // Agregar respuesta a la lista
+//                        id = messages.size,
+//                        content = "prueba recibir",
+//                        isReceived = true // Marcar como recibido
+//                    )
+//                    listState.animateScrollToItem(0) // Desplazar hacia el mensaje más reciente
+//                }
+//            },
+//            onSendImage = { imageUri ->
+//                val isReceived = false
+//                messages = messages + ChatMessage(
+//                    id = messages.size,
+//                    imageUri = imageUri.toString(),
+//                    isReceived = isReceived
+//                )
+//                coroutineScope.launch {
+//                    listState.animateScrollToItem(0)
+////                }
+//            }
+//        )
     }
 }

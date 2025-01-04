@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import carrental.composeapp.generated.resources.Account
 import carrental.composeapp.generated.resources.Car
@@ -38,15 +39,8 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.navigation.Destination
-import ruben.hernandez.rentalcar.views.components.car.CarCard
 import ruben.hernandez.rentalcar.views.components.common.BotonCircularIcono
 import ruben.hernandez.rentalcar.views.components.common.BotonColorIconoDerecha
-import ruben.hernandez.rentalcar.views.components.common.ButtonProfile
-import ruben.hernandez.rentalcar.views.components.common.ButtonSearch
-import ruben.hernandez.rentalcar.views.components.common.CarrouselPromo
-import ruben.hernandez.rentalcar.views.components.common.SectionHeader
-import ruben.hernandez.rentalcar.views.components.common.TopBar
-import ruben.hernandez.rentalcar.views.components.piezas.MechanicCarHorizontal
 import ruben.hernandez.rentalcar.views.poppinsFontFamily
 import ruben.hernandez.rentalcar.views.util.isAtLeastApi32
 
@@ -67,9 +61,9 @@ fun MainLayout(
         BottomNavItem("Consultas", painterResource(resource = Res.drawable.Chat), Destination.Store.route),
         BottomNavItem("Ajustes", painterResource(resource = Res.drawable.Account), Destination.Settings.route)
     )
-    val navName by remember {
-        mutableStateOf(navController.currentDestination.toString())
-    }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
 
     val hazeState = remember { HazeState() }
 
@@ -90,18 +84,14 @@ fun MainLayout(
                         style = HazeMaterials.thin(AppColors.buttonNav)
                     ),
                 title = {
-
-
-                    navName?.let {
-                        Text(
-                            text = it,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = AppColors.text
-                        )
-                    }
-
-
+                    Text(
+                        text = currentRoute ?: "Sin ruta",
+                        fontSize = 18.sp,
+                        style = MaterialTheme.typography.bodyLarge.copy(
+                            fontFamily = poppinsFontFamily
+                        ),
+                        color = AppColors.text
+                    )
                 },
                 actions = {
                     BotonCircularIcono(
@@ -126,7 +116,7 @@ fun MainLayout(
                         colorSombra = AppColors.principal,
                         texto = "Cuenta",
                         tamanoTexto = 14.sp,
-                        alClic = {AppColors.darkMode = !AppColors.darkMode},
+                        alClic = {},
                         forma = CircleShape,
                         altura = 38.dp, // Altura más pequeña
 //                        minAltura = 15.dp, // Altura mínima configurable

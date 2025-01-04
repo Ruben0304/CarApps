@@ -37,12 +37,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import ruben.hernandez.rentalcar.views.components.common.BackButton
-import ruben.hernandez.rentalcar.views.components.auth.CustomTextField
-import ruben.hernandez.rentalcar.views.components.auth.ForgotPassword
-import ruben.hernandez.rentalcar.views.components.auth.LoginButton
-import ruben.hernandez.rentalcar.views.components.auth.LoginLogo
-import ruben.hernandez.rentalcar.views.components.auth.LoginTitle
-import ruben.hernandez.rentalcar.views.components.auth.SocialIcons
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.togetherWith
 
@@ -53,6 +47,12 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import ruben.hernandez.rentalcar.AppColors
+import ruben.hernandez.rentalcar.components.atoms.ForgotPassword
+import ruben.hernandez.rentalcar.components.atoms.LoginButton
+import ruben.hernandez.rentalcar.components.atoms.LoginLogo
+import ruben.hernandez.rentalcar.components.atoms.LoginTitle
+import ruben.hernandez.rentalcar.components.atoms.SocialIcons
+import ruben.hernandez.rentalcar.components.molecules.CustomTextField
 
 import ruben.hernandez.rentalcar.viewModels.Chat.Auth.LoginEvent
 import ruben.hernandez.rentalcar.viewModels.Chat.Auth.LoginViewModel

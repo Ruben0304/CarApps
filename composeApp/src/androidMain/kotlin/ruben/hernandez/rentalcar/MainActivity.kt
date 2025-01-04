@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.navigation.compose.rememberNavController
 import org.koin.android.ext.koin.androidContext
 import ruben.hernandez.rentalcar.di.initKoin
+import ruben.hernandez.rentalcar.navigation.AppNavigation
 import ruben.hernandez.rentalcar.navigation.AppRoutes
 import ruben.hernandez.rentalcar.navigation.ChatRoutes
 import ruben.hernandez.rentalcar.views.layouts.MainLayout
@@ -19,19 +20,11 @@ class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
-
-                CarAppTheme {
-                    MainLayout { hazeState, paddingValues, navController ->
-                        AppRoutes(
-                            navController = navController,
-                            paddingValues = paddingValues,
-                            hazeState = hazeState,
-                            onNavigate = {} // Optional navigation callback
-                        )
-                    }
-                }
+            CarAppTheme {
+                val navController = rememberNavController()
+                AppNavigation(navController)
+            }
         }
     }
 }
