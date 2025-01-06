@@ -40,7 +40,7 @@ import ruben.hernandez.rentalcar.views.components.common.BackButton
 
 @Composable
 fun ChatScreen(navController: NavController = rememberNavController()) {
-    var messages by remember { mutableStateOf(listOf<ChatMessage>()) }
+    val messages by remember { mutableStateOf(listOf<ChatMessage>()) }
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
 

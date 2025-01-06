@@ -20,7 +20,7 @@ fun AppRoutes(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Destination.Home.route
+        startDestination = Destination.Consultations.route
     ) {
         composable(Destination.Home.route) {
             StoreFragment(
@@ -107,12 +107,34 @@ fun AppRoutes(
                 }
             )
         }
+        composable(Destination.Consultations.route) {
+            ConsultationsFragment(
+                paddingValues = paddingValues,
+//                hazeState = hazeState,
+//                navigateToOtherItem = { destination ->
+//                    if (destination == DestinationP.Account.route) {
+//                        onNavigate(destination)
+//                    } else {
+//                        navController.navigate(destination) {
+//                            launchSingleTop = true
+//                            popUpTo(navController.graph.startDestinationId) {
+//                                saveState = true
+//                            }
+//                            restoreState = true
+//                        }
+//                    }
+//                }
+            )
+        }
     }
 }
+
+
 sealed class Destination(val route: String) {
     object Home : Destination("Tienda")
     object Rent : Destination("rent")
     object Store : Destination("Consultas")
     object Mechanic : Destination("mechanic")
     object Settings : Destination("Configuraciones")
+    object Consultations : Destination("Consultas")
 }

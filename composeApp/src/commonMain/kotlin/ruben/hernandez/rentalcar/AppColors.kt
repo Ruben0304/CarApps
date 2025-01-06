@@ -40,4 +40,10 @@ object AppColors {
         get() = if (darkMode)
             listOf(Color(0,0,0), Color(0,0,0))
         else listOf(Color(255, 255, 255, 255), Color(255, 255, 255, 255), principal.copy(.15f))
+
+    val infoText: Color
+        get() = if (darkMode)
+            Color(166, 164, 164)
+        else Color(41, 41, 46)
+
 }
