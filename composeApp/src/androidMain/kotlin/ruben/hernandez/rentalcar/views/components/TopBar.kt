@@ -66,7 +66,6 @@ fun TopBar(
             )
         },
         actions = {
-            if (!showBackButton) {  // Only show these actions in the main layout
                 BotonCircularIcono(
                     modifier = Modifier.size(38.dp),
                     icono = painterResource(resource = Res.drawable.Search),
@@ -96,7 +95,6 @@ fun TopBar(
                     modifier = Modifier.fillMaxWidth(.38f)
                 )
                 Spacer(modifier = Modifier.width(10.dp))
-            }
         }
     )
 }

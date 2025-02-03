@@ -1,6 +1,6 @@
 package ruben.hernandez.rentalcar.navigation
 
-import SearchFragment
+import ruben.hernandez.rentalcar.views.fragments.SearchFragment
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.fadeIn
