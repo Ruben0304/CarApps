@@ -20,24 +20,24 @@ fun AppRoutes(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Destination.Home.route
+        startDestination = Destination.Store.route
     ) {
-        composable(Destination.Home.route) {
+        composable(Destination.Store.route) {
             StoreFragment(
                 paddingValues = paddingValues,
-//                navigateToOtherItem = { destination ->
-//                    navController.navigate(destination) {
-//                        // Avoid multiple copies of the same destination on the back stack
-//                        launchSingleTop = true
-//                        // Pop up to the start destination to avoid building a large stack of destinations
-//                        popUpTo(navController.graph.startDestinationId) {
-//                            saveState = true
-//                        }
-//                        // Restore state when re-selecting a previously selected item
-//                        restoreState = true
-//                    }
-//                    onNavigate(destination)
-//                }
+// navigateToOtherItem = { destination ->
+// navController.navigate(destination) {
+// // Avoid multiple copies of the same destination on the back stack
+// launchSingleTop = true
+// // Pop up to the start destination to avoid building a large stack of destinations
+// popUpTo(navController.graph.startDestinationId) {
+// saveState = true
+// }
+// // Restore state when re-selecting a previously selected item
+// restoreState = true
+// }
+// onNavigate(destination)
+// }
             )
         }
         composable(Destination.Rent.route) {
@@ -56,7 +56,7 @@ fun AppRoutes(
                 }
             )
         }
-        composable(Destination.Store.route) {
+        composable(Destination.Consultation.route) {
             PiezasFragment(
                 paddingValues = paddingValues,
                 hazeState = hazeState,
@@ -109,10 +109,15 @@ fun AppRoutes(
         }
     }
 }
+
 sealed class Destination(val route: String) {
-    object Home : Destination("Tienda")
+    object Store : Destination("Tienda")
     object Rent : Destination("rent")
-    object Store : Destination("Consultas")
+    object Consultation : Destination("Consultas")
     object Mechanic : Destination("mechanic")
     object Settings : Destination("Configuraciones")
 }
+
+
+
+

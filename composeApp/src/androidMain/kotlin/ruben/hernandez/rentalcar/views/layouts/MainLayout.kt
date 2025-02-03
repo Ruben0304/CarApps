@@ -2,46 +2,29 @@ package ruben.hernandez.rentalcar.views.layouts
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import carrental.composeapp.generated.resources.Account
-import carrental.composeapp.generated.resources.Car
 import carrental.composeapp.generated.resources.Chat
-import carrental.composeapp.generated.resources.ChatMessage
-import carrental.composeapp.generated.resources.Home
-import carrental.composeapp.generated.resources.Key
 import carrental.composeapp.generated.resources.Res
-import carrental.composeapp.generated.resources.Search
 import carrental.composeapp.generated.resources.Shopping_Bag
-import carrental.composeapp.generated.resources.mecanica
 import dev.chrisbanes.haze.HazeState
-import dev.chrisbanes.haze.haze
 import dev.chrisbanes.haze.hazeChild
 import dev.chrisbanes.haze.materials.ExperimentalHazeMaterialsApi
 import dev.chrisbanes.haze.materials.HazeMaterials
-import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import ruben.hernandez.rentalcar.AppColors
 import ruben.hernandez.rentalcar.navigation.Destination
-import ruben.hernandez.rentalcar.views.components.common.BotonCircularIcono
-import ruben.hernandez.rentalcar.views.components.common.BotonColorIconoDerecha
-import ruben.hernandez.rentalcar.views.poppinsFontFamily
+import ruben.hernandez.rentalcar.views.components.TopBar
 import ruben.hernandez.rentalcar.views.util.isAtLeastApi32
 
 data class BottomNavItem(
@@ -50,15 +33,16 @@ data class BottomNavItem(
     val route: String
 )
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalHazeMaterialsApi::class)
+@OptIn(ExperimentalHazeMaterialsApi::class)
 @Composable
 fun MainLayout(
-    content: @Composable (HazeState, PaddingValues, NavHostController) -> Unit
+    content: @Composable (HazeState, PaddingValues, NavHostController) -> Unit,
+    onNavigateToSearch: () -> Unit
 ) {
     val navController = rememberNavController()
     val navItems = listOf(
-        BottomNavItem("Tienda", painterResource(resource = Res.drawable.Shopping_Bag), Destination.Home.route),
-        BottomNavItem("Consultas", painterResource(resource = Res.drawable.Chat), Destination.Store.route),
+        BottomNavItem("Tienda", painterResource(resource = Res.drawable.Shopping_Bag), Destination.Store.route),
+        BottomNavItem("Consultas", painterResource(resource = Res.drawable.Chat), Destination.Consultation.route),
         BottomNavItem("Ajustes", painterResource(resource = Res.drawable.Account), Destination.Settings.route)
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -72,61 +56,10 @@ fun MainLayout(
             .fillMaxSize(),
         containerColor = Color.Transparent,
         topBar = {
-            TopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent,
-                    titleContentColor = AppColors.text
-                ),
-                modifier = Modifier
-                    .statusBarsPadding()
-                    .hazeChild(
-                        state = hazeState,
-                        style = HazeMaterials.thin(AppColors.buttonNav)
-                    ),
-                title = {
-                    Text(
-                        text = currentRoute ?: "Sin ruta",
-                        fontSize = 18.sp,
-                        style = MaterialTheme.typography.bodyLarge.copy(
-                            fontFamily = poppinsFontFamily
-                        ),
-                        color = AppColors.text
-                    )
-                },
-                actions = {
-                    BotonCircularIcono(
-                        modifier = Modifier.size(38.dp),
-                        icono = painterResource(resource = Res.drawable.Search),
-                        colorSombra = Color(14, 67, 119, 255),
-                        alClic = {},
-                        tamanoIcono = 17.dp
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    BotonCircularIcono(
-                        modifier = Modifier.size(38.dp),
-                        icono = painterResource(resource = Res.drawable.ChatMessage),
-                        colorSombra = Color(14, 67, 119, 255),
-                        alClic = {},
-                        tamanoIcono = 17.dp
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    BotonColorIconoDerecha(
-                        icono = painterResource(resource = Res.drawable.Account),
-                        color = AppColors.principalLinearGradient,
-                        colorSombra = AppColors.principal,
-                        texto = "Cuenta",
-                        tamanoTexto = 14.sp,
-                        alClic = {},
-                        forma = CircleShape,
-                        altura = 38.dp, // Altura más pequeña
-//                        minAltura = 15.dp, // Altura mínima configurable
-                        tamanoIcono = 17.dp, // Ajusta el ícono
-                        modifier = Modifier.fillMaxWidth(.38f),
-
-                    )
-
-                    Spacer(modifier = Modifier.width(10.dp))
-                }
+            TopBar(
+                navController = navController,
+                currentRoute = currentRoute,
+                onSearchClick = onNavigateToSearch // Pasamos la función de navegación
             )
         },
         bottomBar = {

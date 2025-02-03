@@ -10,7 +10,10 @@ import ruben.hernandez.rentalcar.repositories.PiezasRepository
 import ruben.hernandez.rentalcar.repositories.SettingsRepository
 import ruben.hernandez.rentalcar.viewModels.Parts.PiezasViewModel
 import ruben.hernandez.rentalcar.viewModels.SettingsViewModel
+import ruben.hernandez.rentalcar.viewModels.AccountViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import ruben.hernandez.rentalcar.implementations.AccountImplementation
+import ruben.hernandez.rentalcar.repositories.AccountRepository
 
 expect val platformModule: Module
 
@@ -26,5 +29,9 @@ val appModule = module {
     single { provideDispatcher() }
     single<SettingsRepository> { SettingsImplementation(get()) }
     viewModelOf(::SettingsViewModel)
+
+    // Nuevas definiciones para Account
+    single<AccountRepository> { AccountImplementation(get()) }
+    viewModelOf(::AccountViewModel)
 }
 

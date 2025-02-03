@@ -34,47 +34,50 @@ fun StoreFragment(paddingValues: PaddingValues) {
             .padding(paddingValues)
             .fillMaxSize()
     ) {
-            Column(modifier = Modifier.padding(horizontal = 10.dp)) {
-                Text(
-                    text = "Buenas tardes 👋🏼",
-                    color = AppColors.text,
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    text = "¿En qué podemos ayudarte?",
-                    color = AppColors.text.copy(.85f),
-                    fontSize = 18.sp
-                )
-            }
-
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                modifier = Modifier.padding(horizontal = 10.dp, vertical = 20.dp).weight(.35f)
-            ) {
-                ModernHomeCard(modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
-                    onButtonClick = { /*TODO*/ },
-                    image = painterResource(resource = Res.drawable.Part3D),
-                    color = AppColors.piezas,
-                    text = "Encuentra la pieza que necesitas",
-                    buttonText = "Ver piezas"
-                )
-                ModernHomeCard(modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
-                    onButtonClick = { /*TODO*/ },
-                    image = painterResource(resource = Res.drawable.mercedeskey),
-                    color = AppColors.carros,
-                    text = "Alquila el auto de tus sueños",
-                    buttonText = "Ver autos"
-                )
+        Column(modifier = Modifier.padding(horizontal = 10.dp)) {
+            Text(
+                text = "Buenas tardes 👋🏼",
+                color = AppColors.text,
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = "¿En qué podemos ayudarte?",
+                color = AppColors.text.copy(.85f),
+                fontSize = 18.sp
+            )
         }
-        ModernMechanicCard(modifier = Modifier
-            .weight(.25f)
-            .padding(horizontal = 10.dp)
-            .padding(bottom = 20.dp),
+
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = Modifier.padding(horizontal = 10.dp, vertical = 20.dp).weight(.35f)
+        ) {
+            ModernHomeCard(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                onButtonClick = { /*TODO*/ },
+                image = painterResource(resource = Res.drawable.Part3D),
+                color = AppColors.piezas,
+                text = "Encuentra la pieza que necesitas",
+                buttonText = "Ver piezas"
+            )
+            ModernHomeCard(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                onButtonClick = { /*TODO*/ },
+                image = painterResource(resource = Res.drawable.mercedeskey),
+                color = AppColors.carros,
+                text = "Alquila el auto de tus sueños",
+                buttonText = "Ver autos"
+            )
+        }
+        ModernMechanicCard(
+            modifier = Modifier
+                .weight(.25f)
+                .padding(horizontal = 10.dp)
+                .padding(bottom = 20.dp),
             onButtonClick = { /*TODO*/ },
             image = painterResource(resource = Res.drawable.mercedeskey),
             color = AppColors.principal,
@@ -82,6 +85,7 @@ fun StoreFragment(paddingValues: PaddingValues) {
             buttonText = "Explorar"
         )
     }
+}
 //
 
 //        item {
@@ -125,7 +129,7 @@ fun StoreFragment(paddingValues: PaddingValues) {
 //
 //        }
 
-}
+
 //
 //@RequiresApi(Build.VERSION_CODES.S)
 //@OptIn(

@@ -63,6 +63,8 @@ fun PiezasFragment(
                     Text("Retry")
                 }
             }
+
+            else -> {}
         }
     }
 }
